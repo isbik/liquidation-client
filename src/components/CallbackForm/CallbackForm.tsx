@@ -22,4 +22,4 @@ const CallbackForm = (props: Props) => {
   );
 };
 
-export default CallbackForm;
+export { CallbackForm };

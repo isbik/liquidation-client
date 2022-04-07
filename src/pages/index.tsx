@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
-import { Header } from "../components";
-import CallbackForm from "../components/CallbackForm/CallbackForm";
+import { CallbackForm, Header } from "../components";
 
 const Home: NextPage = () => {
   return (

@@ -8,7 +8,7 @@ const Header = (props: Props) => {
       <div className="mobile-header">
         <div className="logo mobile-logo">
           <a href="index.html">
-            <img src="img/logo.png" />
+            <img src="static/logo.png" />
           </a>
         </div>
         <div className="mobile-btn"></div>
@@ -18,7 +18,7 @@ const Header = (props: Props) => {
           <div className="container">
             <div className="logo">
               <a href="index.html">
-                <img src="img/logo.png" />
+                <img src="static/logo.png" />
               </a>
             </div>
             <nav className="menu">
