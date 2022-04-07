@@ -1,0 +1,21 @@
+.mobile-logo {
+	display: none;
+}
+
+
+@media (max-width: 540px) {
+	.mobile-logo {
+		display: block;
+		img {
+			height: 26px;
+			max-width: 160px;
+			width: 100%;
+			object-fit: contain;
+		}
+	}
+	.header-inner {
+		.logo {
+			display: none;
+		}
+	}
+}

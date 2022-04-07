@@ -1,0 +1,42 @@
+.bredcrumbs {
+  padding: 20px 0 80px;
+}
+
+.breadcrumbs {
+  margin-top: 12px;
+  margin-bottom: 40px;
+
+  .bc_sep {
+    margin: 0 4px 0 8px;
+    color: transparent;
+    width: 1px;
+    height: 14px;
+    font-size: 11px;
+    border-left: 1px solid #C5CDD7;
+  }
+
+
+  .bc_link {
+
+
+    a {
+      font-family: "Roboto-Medium";
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    &:last-child {
+      a {
+        color: #a4a8ad;
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .breadcrumbs {
+    margin-bottom: 20px;
+  }
+}

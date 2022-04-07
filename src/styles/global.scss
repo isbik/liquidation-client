@@ -1,0 +1,126 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/*main styles*/
+@import "reset.scss";
+@import "variables.scss";
+@import "grid.scss";
+@import "fonts.scss";
+@import "main-styles.scss";
+
+/* blocks */
+@import "blocks/header/header.scss";
+@import "blocks/header/header_auth.scss";
+@import "blocks/header/header_categories.scss";
+@import "blocks/header/header_logo.scss";
+@import "blocks/header/header_menu.scss";
+@import "blocks/header/header_search.scss";
+@import "blocks/footer/footer.scss";
+@import "components/breadcrumb.scss";
+@import "components/popup.scss";
+@import "components/filter.scss";
+@import "blocks/similar-products.scss";
+@import "components/pagination.scss";
+
+/* pages */
+@import "pages/index.scss";
+@import "pages/404.scss";
+@import "pages/contacts.scss";
+@import "pages/catalog.scss";
+@import "pages/catalog-inner.scss";
+@import "pages/product.scss";
+@import "pages/order-page.scss";
+@import "pages/auth.scss";
+@import "pages/delivery.scss";
+@import "pages/politic.scss";
+@import "pages/reg.scss";
+@import "pages/account.scss";
+@import "pages/account-bets.scss";
+
+*,
+*::after,
+::before {
+  box-sizing: border-box;
+}
+
+* {
+  font-family: $font-family;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: #fff;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+span {
+  display: inline-block;
+}
+
+.hamburger {
+  display: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 10px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+}
+
+.container-fluid {
+  max-width: 100%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+}
+
+.title {
+  display: block;
+  width: 100%;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 48px;
+  color: #000000;
+}
+
+input {
+  border: none;
+}
+
+h1 {
+  display: block;
+  width: 100%;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  color: #000000;
+}
+
+@media (max-width: 540px) {
+  h1 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  .container {
+    padding: 0 15px;
+  }
+  .title {
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 34px;
+  }
+}

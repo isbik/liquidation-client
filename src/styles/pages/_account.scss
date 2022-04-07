@@ -1,0 +1,224 @@
+.account-section {
+  padding: 60px 0 120px;
+  h1 {
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: "Inter";
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  .navigation {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    .nav-item {
+      text-decoration: none;
+      font-family: "Inter";
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: #000000;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      height: 47px;
+      display: flex;
+      width: 100%;
+      margin-bottom: 10px;
+      padding-left: 44px;
+      align-items: center;
+    }
+    .nav-item.active {
+      background: #001F4D;
+      color: #fff;
+    }
+  }
+  .account-inner {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    width: 100%;
+    padding: 30px 15px;
+    margin-right: 30px;
+  }
+  .item-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    .item-title {
+      font-family: "Inter";
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #000000;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .item-desc {
+      font-family: "Inter";
+      font-size: 16px;
+      line-height: 19px;
+      color: #000000;
+      width: 100%;
+    }
+  }
+  .btn-blue {
+    max-width: 208px;
+    width: 100%;
+    display: flex;
+    background: #367AF5;
+    border-radius: 5px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    font-family: "Inter";
+    font-size: 16px;
+    line-height: 19px;
+    margin-top: 20px;
+  }
+}
+
+/* Сведения о компании */
+
+.company-info {
+  .img-wrapper {
+    float: left;
+    height: 100%;
+    margin-right: 45px;
+    min-width: 137px;
+    img {
+      height: 174px;
+      border-radius: 4px;
+      width: 100%;
+      object-fit: cover;
+      border: 1px solid #000000;
+      padding: 1px;
+    }
+  }
+}
+/* Настройки аккаунта */
+.account-section {
+  .account-settings {
+    padding-left: 100px;
+    padding-right: 100px;
+    input {
+      border: 1px solid #000000;
+      border-radius: 5px;
+      height: 34px;
+      width: 100%;
+    }
+    .items-wrapper {
+      margin-bottom: 28px;
+      h3 {
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 22px;
+        color: #000000;
+        display: block;
+        width: 100%;
+        margin-bottom: 23px;
+      }
+    }
+    .item-wrapper {
+      .item-title {
+        max-width: 172px;
+      }
+    }
+    .btn-blue {
+      margin: auto;
+    }
+  }
+}
+
+
+/*  Мои объявления */
+.account-section {
+  .advertisement-inner {
+    padding: 30px 35px;
+    .info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h3 {
+        font-family: "Inter";
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+      }
+      .btn-blue {
+        max-width: 198px;
+        height: 33px;
+        margin-top: 0;
+      }
+    }
+    .catalog-wrapper {
+      background: #E8E8E8;
+      border: 1px solid #7B7B7B;
+      margin-top: 17px;
+      min-height: 335px;
+      .catalog-item {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        padding: 5px 32px 5px 8px;
+        border-bottom: 1px solid #7B7B7B;
+
+        .img-wrapper {
+          height: 55px;
+          width: 54px;
+          margin-right: 10px;
+          overflow: hidden;
+          border: 1px solid #000;
+          border-radius: 4px;
+          img {
+            max-width: 60px;
+            height: inherit;
+            object-fit: cover;
+          }
+        }
+        .info-wrapper {
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          .item-info {
+              text-align: center;
+            .item-title {
+              font-family: "Inter";
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 17px;
+              color: #000000;
+
+              span {
+                font-family: "Inter";
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                color: #000000;
+              }
+              span.quantity {
+                color: #367AF5;
+              }
+            }
+            p {
+              font-family: "Inter";
+              font-size: 14px;
+              line-height: 17px;
+              color: #000000;
+              span {
+                font-family: "Inter";
+                font-size: 14px;
+                line-height: 17px;
+                color: #000000;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

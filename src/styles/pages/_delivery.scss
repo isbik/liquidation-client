@@ -1,0 +1,113 @@
+.about_delivery .container {
+  color: #000;
+  font-family: "Roboto-Medium";
+}
+
+.delivery_wrapper-title {
+  font-size: 40px;
+  line-height: 47px;
+  font-weight: 500;
+  margin: 80px 0 30px;
+  text-align: center;
+}
+
+.delivery_wrapper-subtitle {
+  font-size: 30px;
+  line-height: 35px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.delivery_wrapper-text {
+  max-width: 933px;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 60px;
+}
+
+.delivery_info {
+  background-color: #f4f5fa;
+}
+
+.delivery_info-wrapper {
+  display: flex;
+}
+
+.delivery_info-img {
+  margin-right: 30px;
+  padding: 17px 0;
+}
+
+.delivery_info-inner-title {
+  line-height: 35px;
+  font-size: 30px;
+  margin: 53px 0 10px;
+  font-weight: 500;
+  font-family: "Roboto-Medium";
+}
+
+.deliver_info-material ul li {
+  font-size: 18px;
+  line-height: 21px;
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #000000;
+  font-family: "Roboto-Medium";
+}
+
+.tech_support-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 77px 0 120px;
+  width: 100%;
+}
+
+.tech_support-info {
+  color: #000;
+}
+.tech_support-nummber {
+  margin-bottom: 15px;
+}
+.help_form.tech_support_form {
+  input {
+    border: 1px solid rgba(0, 0, 0, 0.7);
+  }
+}
+.tech_support-title {
+  font-family: "Roboto-Medium";
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 35px;
+  margin-bottom: 15px;
+}
+
+.tech_support-tel-title {
+  font-size: 24px;
+  line-height: 29px;
+  font-family: "Inter-SemiBold";
+}
+
+.tech_support-nummber a {
+  font-size: 28px;
+  line-height: 34px;
+  color: #000;
+  margin-bottom: 15px;
+  font-family: "Inter-Regular";
+}
+
+.tech_support-mail-title {
+  font-size: 24px;
+  line-height: 29px;
+  font-family: "Inter-SemiBold";
+}
+
+.tech_support-mail a {
+  font-size: 24px;
+  line-height: 29px;
+  font-family: "Inter-Regular";
+  color: #000;
+}
+
+.tech_support_form {
+  text-align: center;
+}

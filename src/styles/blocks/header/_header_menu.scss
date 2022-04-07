@@ -1,0 +1,65 @@
+header .container .menu ul {
+  display: flex;
+}
+.top-menu {
+  margin-bottom: 15px;
+}
+header .container .menu ul li {
+  padding-left: 22px;
+}
+
+header .container .menu ul li a {
+  font-family: $font-family;
+  font-weight: 500;
+  line-height: 20px;
+  font-size: 16px;
+}
+.enter {
+	span {
+		font-family: "Inter";
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+		display: inline-flex;
+    color: #fff;
+	}
+	.enter_item {
+		font-family: $font-family;
+  		font-weight: 500;
+  		line-height: 20px;
+  		font-size: 16px;
+  		color: #367AF5;
+	}
+}
+
+@media (max-width: 540px) {
+  header {
+    .top-menu {
+      margin-bottom: 0;
+    }
+    .header-inner {
+      .menu ul {
+        flex-wrap: wrap;
+  
+        li {
+          width: 100%;
+          text-align: center;
+          padding-left: 0;
+  
+          a {
+            color: #000;
+          }
+        }
+      }
+      .enter {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+  
+        span {
+          color: #000;
+        }
+      }
+    }
+  }
+}

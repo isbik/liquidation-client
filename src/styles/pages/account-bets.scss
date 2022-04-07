@@ -1,0 +1,105 @@
+.account-section {
+	.account-tab-list {
+		.list-detail {
+			display: flex;
+			a {
+    			margin-left: -1px;
+				width: 166px;
+				font-size: 16px;
+				line-height: 19px;
+				color: #000000;
+				padding: 18px;
+				text-align: center;
+				border: 1px solid #000000;
+				border-radius: 5px 5px 0px 0px;
+				display: inline-block;
+				text-decoration: none;
+				border-bottom: none;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+			a.active {
+				border-bottom: 1px solid #fff;
+    			margin-bottom: -1px;
+			}
+		}
+	}
+	.outgoing-bets {
+		td {
+			.time-delay {
+				background: #C9C9C9;
+				border-radius: 5px;
+				padding: 7px;
+				text-align: center;
+				width: 196px;
+			}
+			.complited {
+				width: 196px;
+			}
+		}
+	}
+	.account-inner.account-bets {
+		border-radius: 0 5px 5px 5px;
+		padding: 30px 35px;
+		position: relative;
+		z-index: 0;
+		margin-left: -1px;
+		.table-wrapper {
+			background: #E8E8E8;
+    		min-height: 342px;
+    		border: 1px solid #7B7B7B;
+		}
+		table {
+			background: #fff;
+			width: 100%;
+			th {
+				font-family: 'Inter';
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 19px;
+				color: #000000;
+				border: 1px solid #7B7B7B;
+				padding: 12px;
+				text-align: center;
+				width: 209px;
+				border-top: none;
+
+				&:first-child {
+					border-left: none;
+				}
+				&:last-child {
+					border-right: none;
+				}
+			}
+			td {
+				font-size: 16px;
+				line-height: 19px;
+				color: #000000;
+				border: 1px solid #7B7B7B;
+				text-align: center;
+				width: 209px;
+				&:first-child {
+					border-left: none;
+				}
+				&:last-child {
+					border-right: none;
+				}
+			}
+			.number {
+				padding: 12px;
+				width: 55px;
+				height: 43px;
+			}
+			.completed {
+				padding: 6px 12px;
+				span {
+					background: #5BB959;
+					border-radius: 5px;
+					padding: 6px;
+					color: #fff;
+				}
+			}
+		}
+	}
+}

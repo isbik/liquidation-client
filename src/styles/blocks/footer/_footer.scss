@@ -1,0 +1,126 @@
+.footer {
+  background: #022869;
+  padding-top: 50px;
+
+  .footer-upper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 50px;
+    flex-wrap: wrap;
+  }
+}
+.footer_nav-wrapper {
+  .footer-nav-item {
+    margin-right: 70px;
+  }
+  li {
+    margin-bottom: 10px;
+    a {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 17px;
+      color: #FFFFFF;
+    }
+  }
+}
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.footer_title {
+  font-family: "Inter-ExtraBold";
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.footer_nav-wrapper {
+  display: flex;
+}
+
+.footer_nav-item {
+  margin-right: 70px;
+}
+
+.footer_nav-item:last-child {
+  margin-right: 0;
+}
+
+.footer_nav-item a {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.follow_us-wrapper {
+  display: flex;
+  align-items: center;
+  a {
+    margin-right: 15px;
+  }
+}
+
+.partner {
+  text-align: center;
+}
+
+.partner a img {
+  width: 68px;
+  height: 68px;
+}
+
+/* Нижняя секция */
+
+.footer-logo {
+  padding: 15px 0;
+  background: #001f4d;
+}
+
+.partner {
+  position: relative;
+  top: -25px;
+  padding-left: 70px;
+}
+
+@media (max-width: 540px) {
+  .footer {
+    .footer_nav  {
+      margin-bottom: 40px;
+      margin-top: 10px;
+    }
+    .footer-upper {
+      flex-wrap: wrap;
+    }
+    .footer_nav-wrapper {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .footer-nav-item {
+        margin-right: 0;
+      }
+      li {
+        margin-bottom: 12px;
+      }
+    }
+    .follow_us {
+      margin-bottom: 15px;
+    }
+    .partner {
+      position: initial;
+      padding-left: 0;
+      text-align: left;
+    }  
+    .footer_title {
+      margin-bottom: 5px;
+    }
+  }
+  
+}

@@ -1,0 +1,531 @@
+.banner {
+  background-color: #022869;
+  padding: 95px 0 165px;
+}
+
+.banner .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url("/static/banner_img.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 320px;
+}
+
+.banner_left h1 {
+  max-width: 538px;
+  width: 100%;
+  font-family: "Inter-ExtraBold";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 48px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 125px;
+}
+
+.banner_left-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.banner_left-wrapper span {
+  font-family: "Inter-SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 77px;
+  color: #ffffff;
+}
+
+.banner_left-wrapper p {
+  max-width: 190px;
+  width: 100%;
+  margin-left: 28px;
+  font-family: "Inter-Medium";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.banner_center-wrapper {
+  margin-bottom: 245px;
+}
+
+.banner_center-wrapper a {
+  line-height: 19px;
+  color: #367af5;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+}
+
+.banner_center-wrapper a.sell {
+  margin-left: 43px;
+}
+
+.catalog-btn {
+  font-family: "Inter-Medium";
+  background-color: #367af5;
+  border-radius: 3px;
+  padding: 16px 48px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.banner_right {
+  position: relative;
+}
+
+.banner_right span {
+  font-family: "Merriweather-Bold";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 96px;
+  line-height: 20px;
+  color: #ffffff;
+  position: absolute;
+  bottom: -150px;
+  left: 15px;
+}
+
+/* Отрасли промышленности  */
+
+.industries {
+  margin: 120px 0;
+}
+
+.industries .title {
+  margin-bottom: 58px;
+}
+
+.industries_items {
+  display: flex;
+  margin-bottom: 72px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.industries_items.bottom {
+  justify-content: space-around;
+  width: 100%;
+}
+
+.industries_item {
+  max-width: 265px;
+  width: 100%;
+  padding: 30px;
+  background: #f4f5fa;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.industries_item:hover {
+  background: #367af5;
+}
+
+.industries_item:hover .item_title {
+  color: #fff;
+}
+
+.item_title {
+  max-width: 205px;
+  width: 100%;
+  font-family: "Inter-SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #022869;
+  transition: all 0.2s;
+  margin-bottom: 48px;
+}
+
+/* О нас */
+
+.about_us {
+  background: #f4f5fa;
+}
+
+.about_us .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about_us .container .title {
+  margin-bottom: 20px;
+}
+
+.about_us-left p {
+  max-width: 500px;
+  width: 100%;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+
+/* Купить легко */
+
+.buy_easy {
+  padding: 120px 0;
+}
+
+.buy_easy .title {
+  margin-bottom: 34px;
+}
+
+.subtitle {
+  max-width: 408px;
+  width: 100%;
+  font-family: "Inter-SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin-bottom: 60px;
+}
+
+.buy_easy-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.buy_easy-item {
+  max-width: 460px;
+  width: 100%;
+  background: #f4f5fa;
+  border-radius: 5px;
+  padding: 55px;
+  margin: 15px;
+}
+
+.buy_easy-item h5 {
+  font-family: "Inter-SemiBold";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  margin-bottom: 32px;
+}
+
+.buy_easy-item p {
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+
+/* Узнайте, как мы можем помочь вашему бизнесу */
+
+.help {
+  margin-bottom: 120px;
+}
+
+.help .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.help .container .title {
+  max-width: 509px;
+  width: 100%;
+}
+
+.help_form {
+  max-width: 362px;
+  width: 100%;
+}
+
+.help_form input {
+  width: 100%;
+  height: 72px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  margin-bottom: 30px;
+  padding: 24px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.help_form input::placeholder {
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.help_form input[type="submit"] {
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  color: #ffffff;
+  background: #367af5;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  padding: 16px 24px;
+  cursor: pointer;
+  max-width: 144px;
+  height: 52px;
+}
+
+/* Ответы на частые вопросы */
+
+.questions {
+  max-width: 754px;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 120px;
+}
+
+.questions .title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.accordion_item {
+  padding: 10px 0;
+  border-top: 1px solid #7b7b7b;
+  width: 100%;
+}
+
+.accordion_item:last-child {
+  border-bottom: 1px solid #7b7b7b;
+}
+
+.accordion_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion_header.active {
+  svg {
+    transform: rotate(45deg);
+    transition: all 0.2s;
+  }
+}
+
+.accordion_header span {
+  font-family: "Inter-Medium";
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+}
+
+.accordion_header svg {
+  transition: all 0.2s;
+  min-width: 36px;
+  height: 36px;
+}
+
+.accordion_content {
+  max-width: 669px;
+  width: 100%;
+  display: none;
+
+  p {
+    margin-bottom: 30px;
+    font-family: "Inter";
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+  }
+}
+
+.accordion_content p:first-child {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+@media (max-width: 390px) {
+  .banner {
+    .banner_right span {
+      left: 260px;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .banner {
+    position: relative;
+    .container {
+      background-position: 100% 62%;
+      background-size: 205px;
+    }
+    .banner_center-wrapper {
+      display: flex;
+      width: 100%;
+      order: 1;
+      margin-bottom: 40px;
+      a.sell {
+        margin-left: 18px;
+      }
+    }
+    .banner-center {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .banner_left {
+      margin-bottom: 28px;
+      .banner_left-wrapper {
+        span {
+          font-size: 40px;
+          line-height: 48px;
+        }
+        p {
+          font-size: 18px;
+          line-height: 22px;
+          margin-left: 6px;
+        }
+      }
+    }
+    .banner_right span {
+      font-size: 58px;
+      line-height: 12px;
+      left: 310px;
+      top: -50px;
+    }
+  }
+  .banner_left h1 {
+    margin-bottom: 12px;
+    font-size: 30px;
+    line-height: 36px;
+    max-width: 310px;
+  }
+  .industries {
+    margin: 50px 0;
+    .title {
+      text-align: center;
+    }
+  }
+  .industries_items {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 0;
+
+    .industries_item {
+      margin-bottom: 21px;
+      max-width: 218px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      padding: 26px 37px;
+      .item_title {
+        margin-bottom: 36px;
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+  }
+  .industries_items.bottom {
+    justify-content: center;
+  }
+
+  .about_us {
+    padding: 50px 0;
+    margin-bottom: 50px;
+
+    p {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  .buy_easy {
+    padding: 0;
+
+    .container {
+      padding: 0;
+    }
+
+    .title {
+      text-align: center;
+    }
+    .subtitle {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+      max-width: 270px;
+      margin: auto;
+    }
+    .buy_easy-wrapper {
+      margin-top: 20px;
+      .buy_easy-item {
+        padding: 40px 35px 40px 15px;
+        margin: 0 0 20px 0;
+
+        h5 {
+          font-size: 18px;
+          line-height: 22px;
+        }
+        p {
+          font-size: 18px;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+  .help {
+    margin-bottom: 50px;
+    .title {
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+  }
+  .help_form {
+    input {
+      height: 51px;
+      font-size: 20px;
+      line-height: 24px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      &::placeholder {
+        color: #808080;
+      }
+    }
+    input[type="submit"] {
+      height: 51px;
+      max-width: 100%;
+      font-size: 18px;
+      line-height: 20px;
+    }
+  }
+  .questions {
+    margin-bottom: 50px;
+    .title {
+      margin-bottom: 70px;
+    }
+    .accordion_header {
+      svg {
+        min-width: 30px;
+        height: 30px;
+      }
+      span {
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+    .accordion_content {
+      p {
+        font-size: 16px;
+        line-height: 19px;
+
+        &:first-child {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

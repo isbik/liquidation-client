@@ -1,0 +1,80 @@
+.popup-catalog {
+  padding: 30px!important;
+  background: #022869!important;
+  max-width: 754px;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  .links-list {
+    a {
+      font-family: "Inter";
+      font-size: 18px;
+      line-height: 25px;
+      color: #FFFFFF;
+      display: block;
+      width: 100%;
+
+      &:hover {
+        color: #367AF5;
+        text-decoration: underline;
+      }
+    }
+  }
+  .fancybox-close-small.fancybox-button {
+    color: #fff;
+    padding: 5px;
+    opacity: 1;
+    right: 15px;
+    top: 15px;
+  }
+}
+
+
+.contacts-popup.fancybox-content {
+  width: 558px;
+  background: #022869;
+  border-radius: 10px;
+  padding: 45px 95px;
+  .title {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  p {
+    font-family: 'Inter';
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+    margin-bottom: 30px;
+  }
+  button {
+    opacity: 1;
+    color: #FFFFFF;
+    padding: 6px;
+    top: 5px;
+    right: 5px;
+  }
+  a {
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    background: #367AF5;
+    border-radius: 10px;
+    padding: 12px 22px;
+    max-width: 105px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+  }
+}
+
+.reg-popup.contacts-popup.fancybox-content {
+
+}

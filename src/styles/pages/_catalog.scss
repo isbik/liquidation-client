@@ -1,0 +1,117 @@
+.catalog-page {
+  margin-bottom: 90px;
+  h1 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 60px;
+  }
+
+
+  .col-3 {
+    padding-right: 30px;
+  }
+
+  .catalog-item {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    height: 357px;
+    margin-bottom: 30px;
+    min-width: 264px;
+    overflow: hidden;
+
+    &:hover .catalog-links-list {
+      display: block;
+    }
+    &:hover  .img-wrapper {
+      display: none;
+    }
+    &:hover  .catalog-title {
+      display: none;
+    }
+
+
+    .catalog-links-list {
+      display: none;
+      transition: 0.5s;
+      padding: 20px 8px;
+
+      a {
+        font-family: "Inter";
+        font-size: 14px;
+        line-height: 20px;
+        color: #000000;
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid #808080;
+
+        &:hover {
+          color: #367AF5;
+          border-bottom: 1px solid #367AF5;
+        }
+      }
+      .catalog-more {
+        color: #777777;
+        display: inline;
+        border-bottom: 1px solid #777777;
+      }
+    }
+    .catalog-title {
+      font-family: "Inter";
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 29px;
+      text-align: center;
+      color: #000000;
+      margin-top: 12px;
+    }
+
+    .img-wrapper {
+      height: 223px;
+
+      img {
+        height: inherit;
+        width: 100%;
+        object-fit: cover;
+        padding: 20px 15px 0 15px;
+        border-radius: 25px;
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .catalog-page {
+    margin-bottom: 50px;
+    h1 {
+      margin-bottom: 20px;
+    }
+    .catalog {
+      .col-m-6 {
+        padding-right: 0;
+        &:nth-child(odd) .catalog-item{
+          margin-right: auto;
+        }
+        &:nth-child(even) .catalog-item{
+          margin-left: auto;
+        }
+      }
+    }
+    .catalog-item {
+      min-width: unset;
+      height: 220px;
+      max-width: 98%;
+      margin-bottom: 20px;
+
+      .img-wrapper {
+        height: 140px;
+        img {
+          padding: 12px 12px 26px 12px;
+        }
+      }
+      .catalog-title {
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+  }
+}
