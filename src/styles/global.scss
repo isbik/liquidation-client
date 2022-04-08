@@ -48,6 +48,14 @@
   font-family: $font-family;
 }
 
+html,
+body,
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 img {
   max-width: 100%;
 }
@@ -75,7 +83,7 @@ span {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .container-fluid {
@@ -84,7 +92,7 @@ span {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .title {

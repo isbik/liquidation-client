@@ -1,4 +1,5 @@
 .footer {
+  margin-top: auto;
   background: #022869;
   padding-top: 50px;
 
@@ -17,19 +18,18 @@
   li {
     margin-bottom: 10px;
     a {
-      font-family: 'Inter';
+      font-family: "Inter";
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
       line-height: 17px;
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 }
 .footer .container {
   display: flex;
   justify-content: space-between;
-
 }
 
 .footer_title {
@@ -93,7 +93,7 @@
 
 @media (max-width: 540px) {
   .footer {
-    .footer_nav  {
+    .footer_nav {
       margin-bottom: 40px;
       margin-top: 10px;
     }
@@ -117,10 +117,9 @@
       position: initial;
       padding-left: 0;
       text-align: left;
-    }  
+    }
     .footer_title {
       margin-bottom: 5px;
     }
   }
-  
 }
