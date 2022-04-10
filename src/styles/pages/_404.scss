@@ -35,3 +35,26 @@
   }
 }
 
+
+@media (max-width: 540px) {
+  .page_404 {
+    padding: 60px 0 50px 0;
+    h2 {
+      font-size: 28px;
+      line-height: 39px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    p {
+      font-size: 16px;
+      line-height: 22px;
+      text-align: center;
+    }
+    a {
+      padding: 14px 6px;
+      text-align: center;
+
+    }
+  }
+}

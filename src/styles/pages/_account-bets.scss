@@ -25,7 +25,12 @@
 			}
 		}
 	}
-	.outgoing-bets {
+	.account-inner.account-bets.outgoing-bets {
+		table {
+			.completed span {
+				width: 196px;
+			}
+		}
 		td {
 			.time-delay {
 				background: #C9C9C9;
@@ -37,6 +42,15 @@
 			.complited {
 				width: 196px;
 			}
+			&:nth-child(2) {
+				width: 213px;
+			}
+			&:nth-child(3) {
+				width: 166px;
+			}
+			&:nth-child(4) {
+				width: 260px;
+			}	
 		}
 	}
 	.account-inner.account-bets {
@@ -73,6 +87,8 @@
 				}
 			}
 			td {
+				padding: 7px;
+				vertical-align: middle;
 				font-size: 16px;
 				line-height: 19px;
 				color: #000000;
@@ -92,7 +108,7 @@
 				height: 43px;
 			}
 			.completed {
-				padding: 6px 12px;
+				padding: 7px;
 				span {
 					background: #5BB959;
 					border-radius: 5px;

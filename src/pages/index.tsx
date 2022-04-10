@@ -24,7 +24,7 @@ const Home: NextPage = () => {
                   Продать
                 </a>
               </div>
-              <a href="catalog.html" className="catalog-btn">
+              <a href="catalog" className="catalog-btn">
                 Каталог
               </a>
             </div>

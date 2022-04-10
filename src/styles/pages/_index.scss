@@ -346,14 +346,6 @@
   margin-top: 10px;
 }
 
-@media (max-width: 390px) {
-  .banner {
-    .banner_right span {
-      left: 260px;
-    }
-  }
-}
-
 @media (max-width: 540px) {
   .banner {
     position: relative;
@@ -526,6 +518,28 @@
           margin-top: 20px;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .banner {
+    .banner_right span {
+      left: 290px;
+    }
+  }
+}
+@media (max-width: 380px) {
+  .banner {
+    .banner_right span {
+      left: 280px;
+    }
+  }
+}
+@media (max-width: 360px) {
+  .banner {
+    .banner_right span {
+      left: 260px;
     }
   }
 }

@@ -9,6 +9,22 @@
     margin-bottom: 30px;
 }
 
-.similar-products {
+.catalog-inner.similar-products {
 	margin-bottom: 60px;
+
+	.items-wrapper {
+		padding: 0;
+		.item {
+			padding: 20px 8px;
+			min-width: 171px;
+			max-width: 100%;
+		}
+
+		.col-m-6:nth-child(odd) .item{
+			margin-right: 7px;
+		}
+		.col-m-6:nth-child(even) .item{
+			margin-left: 7px;
+		}
+	}
 }

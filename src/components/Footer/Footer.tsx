@@ -105,7 +105,7 @@ const Footer = (props: Props) => {
       </div>
       <div className="footer-logo">
         <div className="container">
-          <a href="index.html" className="logo">
+          <a href="index" className="logo">
             <img src="img/logo.png" alt="" />
           </a>
         </div>

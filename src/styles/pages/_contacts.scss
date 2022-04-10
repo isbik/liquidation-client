@@ -89,6 +89,20 @@
 
 .question_form-inner textarea {
   height: 130px;
+  resize: none
+}
+
+.question_form-inner {
+  input {
+    &::placeholder {
+      color: #fff;
+    }
+  }
+  textarea {
+    &::placeholder {
+      color: #fff;
+    }
+  }
 }
 
 .question_form a {
@@ -211,4 +225,93 @@
   color: #ffffff;
   cursor: pointer;
   border: none;
+}
+
+.contacts-title-mobile {
+  display: none;
+}
+
+
+@media (max-width: 540px) {
+  .contacts {
+    padding: 60px 0 50px 0;
+    .contacts_title {
+      font-size: 28px;
+      line-height: 34px;
+      margin-bottom: 30px;
+    }
+    .contacts_subtitle {
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  }
+  .contacts_content {
+    flex-wrap: wrap;
+
+    .contacts_item {
+      .mail-link {
+        font-size: 16px;
+        line-height: 19px;
+      }
+      h5 {
+        font-size: 16px;
+        line-height: 19px;
+      }
+      a {
+        font-size: 22px;
+        line-height: 27px;
+      }
+    }
+  }
+  .contacts_content-left {
+    margin-bottom: 50px;
+  }
+  .contacts-title-mobile {
+    text-align: center;
+    margin-bottom: 30px;
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+  }
+  .contacts_content-right {
+
+    .question_form {
+      background-color: transparent;
+      padding: 0;
+
+      a {
+        max-width: 100%;
+      }
+
+      .question_form-inner {
+        span {
+          display: none;
+        }
+        input {
+          border: 1px solid #000000;
+          padding: 16px 10px;
+
+          &::placeholder {
+            font-size: 16px;
+            line-height: 19px;
+            color: #808080;
+          }
+        }
+        textarea {
+          border: 1px solid #000000;
+          padding: 16px 10px;
+
+          &::placeholder {
+            font-size: 16px;
+            line-height: 19px;
+            color: #808080;
+          }
+        }
+      }
+    }
+  }
 }

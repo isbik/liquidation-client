@@ -7,7 +7,7 @@ const Header = (props: Props) => {
     <header>
       <div className="mobile-header">
         <div className="logo mobile-logo">
-          <a href="index.html">
+          <a href="index">
             <img src="static/logo.png" />
           </a>
         </div>
@@ -17,7 +17,7 @@ const Header = (props: Props) => {
         <div className="top-menu">
           <div className="container">
             <div className="logo">
-              <a href="index.html">
+              <a href="index">
                 <img src="static/logo.png" />
               </a>
             </div>
@@ -45,7 +45,7 @@ const Header = (props: Props) => {
                 Добро пожаловать
                 <span>!</span>
               </span>
-              <a href="autorization.html" className="enter_item">
+              <a href="autorization" className="enter_item">
                 Войти
               </a>
             </div>

@@ -1,14 +1,36 @@
-.politic h2 {
-  font-family: "Inter-Medium";
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 140.62%;
-  color: #000000;
-  margin-bottom: 30px;
+.politic {
+ 
+	h2 {
+		font-family: "Inter-Medium";
+  		font-weight: 500;
+  		font-size: 48px;
+  		line-height: 140.62%;
+  		color: #000000;
+ 		 margin-bottom: 30px;
+	}
+ 	p {
+ 		font-size: 24px;
+ 		line-height: 140.62%;
+ 		color: #000000;
+ 	}
 }
 
-.politic p {
-  font-size: 24px;
-  line-height: 140.62%;
-  color: #000000;
+
+
+@media (max-width: 540px) {
+
+	.politic {
+		padding: 60px 0 80px 0;
+		h2 {
+			font-size: 28px;
+			line-height: 39px;
+			text-align: center;
+		}
+
+ 		p {
+ 			font-size: 16px;
+			line-height: 22px;	
+ 		}
+	}
+
 }

@@ -391,3 +391,164 @@
     }
   }
 }
+.swiper-pagination {
+  display: none;
+}
+
+@media (max-width: 540px) {
+  .left-content {
+    height: unset;
+    padding-right: 0;
+  }
+  .mySwiper {
+    display: none;
+  }
+  .mySwiper2 {
+    .swiper-pagination {
+      bottom: 30px !important;
+    }
+    .swiper-slide {
+      height: 291px;
+    }
+  }
+  .swiper-pagination {
+    display: block;
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+      background: #808080;
+      opacity: 1;
+    }
+    .swiper-pagination-bullet-active {
+      background: #367af5;
+    }
+  }
+  .lot-info {
+    padding: 19px 0;
+
+    .lot-desc {
+      font-size: 16px;
+      line-height: 19px;
+    }
+    .lot-end {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+  .product-info {
+    border: 0;
+    .lot-item-wrapper {
+      flex-wrap: wrap;
+      p {
+        font-size: 16px;
+        line-height: 19px;
+        width: 100%;
+      }
+
+      .col-6 {
+        &:nth-child(2) p {
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+  .payment-methods {
+    max-width: 100%;
+    margin: 0 auto 15px auto;
+  }
+  .further-information {
+    display: block;
+    margin: initial;
+    text-align: left;
+
+    .item {
+      justify-content: flex-start;
+      font-size: 16px;
+      line-height: 19px;
+      align-items: center;
+      margin-bottom: 10px;
+
+      span {
+        width: initial;
+        display: inline-flex;
+        margin-left: 5px;
+        font-size: 16px;
+        line-height: 19px;
+
+        &:before {
+          content: ":";
+          display: inline-flex;
+          position: relative;
+          left: -5px;
+        }
+      }
+    }
+    .item-left {
+      border-right: 0;
+    }
+  }
+  .product-upper-content {
+    margin-bottom: 30px;
+  }
+  .product-subtitle {
+    font-size: 20px;
+    line-height: 24px;
+    align-items: center;
+    .img-wrapper {
+      max-width: 20px;
+      height: 20px;
+      margin-right: 4px;
+    }
+  }
+  .product-content {
+    .product-links {
+      margin-top: 20px;
+      li {
+        display: flex;
+        margin-right: 0;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 7px;
+        i {
+          margin-right: 5px;
+          top: 0;
+        }
+        a {
+          display: inline-flex;
+          text-align: center;
+          font-size: 16px;
+          line-height: 19px;
+        }
+      }
+    }
+    .product-desc {
+      p {
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+  }
+  .product-delivery {
+    margin-bottom: 0;
+    .product-info {
+      .lot-item-wrapper {
+        .col-m-5:nth-child(2) p {
+          justify-content: flex-end;
+        }
+        .col-m-12 {
+          p {
+            display: block;
+            width: 100%;
+            a {
+              display: block;
+              width: 100%;
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

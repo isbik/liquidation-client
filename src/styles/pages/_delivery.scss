@@ -2,16 +2,15 @@
   color: #000;
   font-family: "Roboto-Medium";
 }
-
-.delivery_wrapper-title {
-  font-size: 40px;
-  line-height: 47px;
-  font-weight: 500;
-  margin: 80px 0 30px;
-  text-align: center;
+.about_delivery  {
+  margin-top: 80px;
+  h1 {
+    margin-bottom: 30px;
+    text-align: center;
+  }
 }
 
-.delivery_wrapper-subtitle {
+h3 {
   font-size: 30px;
   line-height: 35px;
   margin-bottom: 15px;
@@ -72,6 +71,9 @@
   input {
     border: 1px solid rgba(0, 0, 0, 0.7);
   }
+  input[type='submit'] {
+    border: none;
+  }
 }
 .tech_support-title {
   font-family: "Roboto-Medium";
@@ -81,33 +83,94 @@
   margin-bottom: 15px;
 }
 
-.tech_support-tel-title {
+.tech_form-title {
   font-size: 24px;
   line-height: 29px;
   font-family: "Inter-SemiBold";
 }
-
-.tech_support-nummber a {
-  font-size: 28px;
-  line-height: 34px;
-  color: #000;
+.tech-form-subtitle {
   margin-bottom: 15px;
-  font-family: "Inter-Regular";
-}
-
-.tech_support-mail-title {
-  font-size: 24px;
-  line-height: 29px;
-  font-family: "Inter-SemiBold";
-}
-
-.tech_support-mail a {
-  font-size: 24px;
-  line-height: 29px;
-  font-family: "Inter-Regular";
-  color: #000;
+  a {
+    font-size: 28px;
+    line-height: 34px;
+    color: #000;
+    margin-bottom: 15px;
+    font-family: "Inter-Regular";
+  }
 }
 
 .tech_support_form {
   text-align: center;
+}
+
+
+@media (max-width: 540px) {
+
+  .about_delivery {
+    margin-bottom: 50px;
+     h1 {
+      text-align: left;
+     }
+     h3 {
+      font-size: 20px;
+      line-height: 24px;
+     }
+     p {
+      font-size: 16px;
+      line-height: 19px;
+      margin-bottom: 0;
+     }
+  }
+  .delivery_info-wrapper {
+    flex-wrap: wrap;
+    padding: 30px 0;
+  }
+  .delivery_info-img {
+    margin-right: 0;
+    display: flex;
+    order: 1;
+    padding: 17px 0 0 0;
+  }
+  .delivery_info {
+    h3 {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+  .deliver_info-material {
+    ul {
+      li {
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+  }
+  .tech_support-wrapper {
+    flex-wrap: wrap;
+    .tech_support-title {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+  .tech_form-title {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .tech-form-subtitle {
+    margin-bottom: 15px;
+    a {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+  .tech-form-mail a {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .tech_support_form {
+    input {
+      border: 1px solid #000000;
+      padding: 0 10px;
+    }
+  }
 }

@@ -1,0 +1,70 @@
+.account-section {
+	.account-inner.favorite-lots {
+		border-radius: 0 5px 5px 5px;
+    	padding: 30px 35px;
+    	position: relative;
+    	z-index: 0;
+    	margin-left: -1px;
+
+    	.catalog-wrapper {
+    		.catalog-item {
+    			.info-wrapper {
+    				.item-info-left {
+    					text-align: left;
+    				}
+    			}
+    		}
+    	}
+	}
+	.account-inner.favorites-organizations {
+		border-radius: 0 5px 5px 5px;
+    	padding: 30px 35px;
+    	position: relative;
+    	z-index: 0;
+    	margin-left: -1px;
+
+    	.organization-items {
+    		background: #e8e8e8;
+    		border: 1px solid #7b7b7b;
+    		margin-top: 17px;
+    		min-height: 335px;
+    		.organization-item {
+    			display: flex;
+    			align-items: center;
+    			background: #fff;
+    			padding: 5px 32px 5px 8px;
+    			border-bottom: 1px solid #7b7b7b;
+    			.img-wrapper {
+    				max-width: 54px;
+    				width: 100%;
+    				height: 33px;
+    				margin-right: 10px;
+   					overflow: hidden;
+   					border: 1px solid #000;
+   					border-radius: 4px;
+    				img {
+    					width: 100%;
+    					height: inherit;
+    					object-fit: cover;
+    				}
+    			}
+    			.info-wrapper {
+    				display: flex;
+    				justify-content: space-between;
+    				width: 100%;
+    				.item-title {
+						font-size: 16px;
+						line-height: 19px;
+						color: #000000;
+    					span.quantity {
+    						color: #367af5;
+    					}
+    				}
+    			}
+    		}
+    	}
+	}
+}
+
+
+    

@@ -105,12 +105,13 @@
       .img-wrapper {
         height: 140px;
         img {
-          padding: 12px 12px 26px 12px;
+          padding: 12px 12px 0px 12px;
         }
       }
       .catalog-title {
         font-size: 14px;
         line-height: 17px;
+        padding: 0 10px;
       }
     }
   }

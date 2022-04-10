@@ -20,7 +20,7 @@ const NotFound = (props: Props) => {
             </p>
           </div>
           <div className="col-12">
-            <a href="index.html">Перейти на главную страницу</a>
+            <a href="index">Перейти на главную страницу</a>
           </div>
         </div>
       </section>

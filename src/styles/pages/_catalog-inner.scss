@@ -104,18 +104,21 @@
       }
       .item-info {
         font-family: "Inter";
-        font-weight: 600;
         font-size: 18px;
         line-height: 20px;
         color: #000000;
         margin-bottom: 15px;
+        font-weight: 600;
 
         span {
+          font-weight: 400;
           display: block;
           width: 100%;
-          font-weight: 400;
           color: #000;
           margin-bottom: 5px;
+        }
+        .red-span {
+          color: #fb0000;
         }
       }
       .buy-btn {
@@ -126,7 +129,7 @@
         color: #ffffff;
         background: #367af5;
         border-radius: 10px;
-        max-width: 128px;
+        max-width: 170px;
         width: 100%;
         display: block;
         text-align: center;
@@ -143,24 +146,73 @@
 @media (max-width: 540px) {
   .catalog-inner {
     margin-bottom: 50px;
+    h1 {
+      padding: 0 15px;
+    }
+    .container {
+      padding: 0;
+    }
+    form.search-form {
+      flex-wrap: wrap;
+      margin-bottom: 80px;
+      padding: 0 15px;
+
+      .search-wrapper {
+        display: flex;
+        order: -1;
+        margin: 0 0 10px 0;
+        .search-input {
+          z-index: 0;
+          padding-left: 15px;
+        }
+
+        .search-ico-btn {
+          left: initial;
+          right: 0;
+          background-image: url(/static/icons/search-white.svg);
+          background-color: #367af5;
+          top: 0;
+          width: 46px;
+          height: 46px;
+          background-size: 20px;
+        }
+      }
+    }
     .items-wrapper {
+      padding: 0 15px;
       .col-4 {
         .item {
           margin-bottom: 20px;
           margin-left: 0;
           max-width: 100%;
-          padding: 20px 15px;
+          padding: 20px 8px;
+          min-width: 171px;
+
+          .item-info {
+            font-size: 16px;
+            line-height: 20px;
+            .red-span {
+              color: #000000;
+            }
+          }
           .buy-btn {
             max-width: 100%;
-            padding: 15px;
+            padding: 14px;
+            font-size: 16px;
             border-radius: 5px;
           }
+        }
+        &:nth-child(even) .item {
+          margin-left: auto;
+        }
+        &:nth-child(odd) .item {
+          margin-right: 5px;
         }
       }
     }
   }
   .mobile-btn-more {
-    margin-top: 10px;
+    margin: 10px 15px 0 15px;
     font-family: "Inter";
     font-weight: 500;
     font-size: 18px;
