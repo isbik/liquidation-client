@@ -11,7 +11,7 @@ const SimilarProducts = (props: Props) => {
           <div className="col-3 col-m-6">
             <div className="item">
               <div className="img-wrapper">
-                <img src="static/catalog-img1.png" alt="" />
+                <img src="/static/catalog-img1.png" alt="" />
               </div>
               <div className="item-info">KIA Rio седан, черный 1.6, Дизель</div>
               <div className="item-info">
@@ -29,7 +29,7 @@ const SimilarProducts = (props: Props) => {
           <div className="col-3 col-m-6">
             <div className="item">
               <div className="img-wrapper">
-                <img src="static/catalog-img1.png" alt="" />
+                <img src="/static/catalog-img1.png" alt="" />
               </div>
               <div className="item-info">KIA Rio седан, черный 1.6, Дизель</div>
               <div className="item-info">
@@ -47,7 +47,7 @@ const SimilarProducts = (props: Props) => {
           <div className="col-3 col-m-6">
             <div className="item">
               <div className="img-wrapper">
-                <img src="static/catalog-img1.png" alt="" />
+                <img src="/static/catalog-img1.png" alt="" />
               </div>
               <div className="item-info">KIA Rio седан, черный 1.6, Дизель</div>
               <div className="item-info">
@@ -65,7 +65,7 @@ const SimilarProducts = (props: Props) => {
           <div className="col-3 col-m-6">
             <div className="item">
               <div className="img-wrapper">
-                <img src="static/catalog-img1.png" alt="" />
+                <img src="/static/catalog-img1.png" alt="" />
               </div>
               <div className="item-info">KIA Rio седан, черный 1.6, Дизель</div>
               <div className="item-info">

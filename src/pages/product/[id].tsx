@@ -1,9 +1,23 @@
 import { Footer, Header } from "@/components";
+import { api } from "@/services";
 import React from "react";
 
-type Props = {};
+export async function getServerSideProps({ query }) {
+  const { id } = query;
+  const product = await api.get("/products/" + id);
 
-const ProductPage = (props: Props) => {
+  return {
+    props: {
+      product: product.data,
+    },
+  };
+}
+
+type Props = {
+  product: never;
+};
+
+const ProductPage = ({ product }: Props) => {
   return (
     <>
       <Header />
@@ -11,7 +25,7 @@ const ProductPage = (props: Props) => {
         <div className="container">
           <div className="col-12 product-upper-content">
             <div className="col-6 col-m-12 left-content">
-              <h1>IPHONE 12 PRO, 4 621 520 ₽</h1>
+              <h1>{product.name}</h1>
               <div className="swiper mySwiper2">
                 <div className="swiper-wrapper">
                   <div className="swiper-slide">
@@ -29,7 +43,7 @@ const ProductPage = (props: Props) => {
                   <div className="swiper-slide">
                     <div className="video-wrapper">
                       <div className="vid-btn"></div>
-                      <img src="static/video-slide1.png" />
+                      <img src="/static/video-slide1.png" />
                     </div>
                   </div>
                 </div>
@@ -52,7 +66,7 @@ const ProductPage = (props: Props) => {
                   <div className="swiper-slide">
                     <div className="video-wrapper">
                       <div className="vid-btn"></div>
-                      <img src="static/video-slide1.png" />
+                      <img src="/static/video-slide1.png" />
                     </div>
                   </div>
                 </div>
@@ -77,7 +91,9 @@ const ProductPage = (props: Props) => {
                         <p className="fw-b">Текущая ставка:</p>
                       </div>
                       <div className="col-6">
-                        <p className="fw-b">1.030.300 ₽</p>
+                        <p className="fw-b">
+                          {product.recommendedRetailPrice} ₽
+                        </p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -85,7 +101,7 @@ const ProductPage = (props: Props) => {
                         <p className="fw-b">Минимальная ставка:</p>
                       </div>
                       <div className="col-6">
-                        <p>550.000 ₽</p>
+                        <p>{product.minRate} ₽</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -93,7 +109,7 @@ const ProductPage = (props: Props) => {
                         <p>Номер лота:</p>
                       </div>
                       <div className="col-6">
-                        <p>55672</p>
+                        <p>{product.id}</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -101,7 +117,7 @@ const ProductPage = (props: Props) => {
                         <p>Продавец:</p>
                       </div>
                       <div className="col-6">
-                        <p>ООО “ЯнАвангард”</p>
+                        <p>{product.seller}</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -109,7 +125,7 @@ const ProductPage = (props: Props) => {
                         <p>Расположение:</p>
                       </div>
                       <div className="col-6">
-                        <p>Москва</p>
+                        <p>{product.location}</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -118,7 +134,8 @@ const ProductPage = (props: Props) => {
                       </div>
                       <div className="col-6">
                         <p>
-                          Новое<i className="help-quality"></i>
+                          {product.condition}
+                          <i className="help-quality"></i>
                         </p>
                         <div className="quality-info">
                           <div className="title">Новое</div>
@@ -135,7 +152,9 @@ const ProductPage = (props: Props) => {
                         <p>Вес лота:</p>
                       </div>
                       <div className="col-6">
-                        <p>5 килограмм</p>
+                        <p>
+                          {product.totalWeight} {product.unitType} килограмм
+                        </p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -143,7 +162,7 @@ const ProductPage = (props: Props) => {
                         <p>Колличество в лоте:</p>
                       </div>
                       <div className="col-6">
-                        <p>39</p>
+                        <p>{product.quantity}</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -151,7 +170,7 @@ const ProductPage = (props: Props) => {
                         <p>Тип аукциона:</p>
                       </div>
                       <div className="col-6">
-                        <p>Стандартный</p>
+                        <p>{product.auctionType}</p>
                       </div>
                     </div>
                   </div>
@@ -191,20 +210,8 @@ const ProductPage = (props: Props) => {
             </div>
             <div className="product-content">
               <div className="product-desc">
-                <p>
-                  Все телефоны включаются с исправным ЖК-дисплеем. Агрегаты
-                  прошли минимальные испытания. Возможен требуемый ремонт,
-                  включая экраны или другие компоненты. Смешанные размеры ГБ /
-                  хранилища.
-                </p>
-                <p>
-                  Разблокирован перевозчик и другие перевозчики. Никаких
-                  гарантий относительно блокировки паролем, пользовательской
-                  блокировки и т. Д. Для разблокировки устройств могут
-                  потребоваться сторонние услуги. Блокировки пользователей есть.
-                  В листинге представлены стоковые фотографии только для
-                  примера.
-                </p>
+                <p>{product.shortDescription}</p>
+                <p>{product.description}</p>
               </div>
               <div className="product-links">
                 <li>

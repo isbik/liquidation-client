@@ -125,3 +125,18 @@ h1 {
     line-height: 34px;
   }
 }
+
+body,
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}
+
+html {
+  overflow-y: scroll;
+}

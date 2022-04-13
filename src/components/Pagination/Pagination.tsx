@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 type Props = {
   total: number;
@@ -8,10 +8,14 @@ type Props = {
 };
 
 const Pagination = ({ total, perPage = 6, page = 1, onChange }: Props) => {
+  const pages = useMemo(() => {
+    return Math.ceil(total / perPage);
+  }, [perPage, total]);
+
   return (
     <div className="pagination">
       <div className="pagination-items">
-        {Array.from({ length: Math.floor(total / perPage) }).map((_, index) => (
+        {Array.from({ length: pages }).map((_, index) => (
           <span
             className={page === index ? "active" : ""}
             onClick={() => onChange(index)}
@@ -21,9 +25,13 @@ const Pagination = ({ total, perPage = 6, page = 1, onChange }: Props) => {
           </span>
         ))}
       </div>
-      <div onClick={() => onChange(page + 1)} className="pagination-next">
+      <button
+        disabled={page === pages - 1}
+        onClick={() => onChange(page + 1)}
+        className="pagination-next"
+      >
         Следующая страница
-      </div>
+      </button>
     </div>
   );
 };

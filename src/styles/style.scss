@@ -1,0 +1,40 @@
+/*main styles*/
+@import "reset.scss";
+@import "var.scss";
+@import "grid.scss";
+@import "fonts.scss";
+@import "main-styles.scss";
+
+/* blocks */
+@import "blocks/header/header.scss";
+@import "blocks/header/header_auth.scss";
+@import "blocks/header/header_categories.scss";
+@import "blocks/header/header_logo.scss";
+@import "blocks/header/header_menu.scss";
+@import "blocks/header/header_search.scss";
+@import "blocks/footer/footer.scss";
+@import "components/breadcrumb.scss";
+@import "components/popup.scss";
+@import "components/filter.scss";
+@import "blocks/similar-products.scss";
+@import "components/pagination.scss";
+
+/* pages */
+@import "pages/index.scss";
+@import "pages/404.scss";
+@import "pages/contacts.scss";
+@import "pages/catalog.scss";
+@import "pages/catalog-inner.scss";
+@import "pages/product.scss";
+@import "pages/order-page.scss";
+@import "pages/auth.scss";
+@import "pages/delivery.scss";
+@import "pages/politic.scss";
+@import "pages/reg.scss";
+@import "pages/account.scss";
+@import "pages/account-bets.scss";
+@import "pages/favorites.scss";
+@import "pages/notifications.scss";
+@import "pages/company-card.scss";
+@import "pages/cart.scss";
+@import "pages/add_advertisement.scss";

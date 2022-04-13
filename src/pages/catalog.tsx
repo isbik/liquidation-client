@@ -7,6 +7,7 @@ import {
   fetchProducts,
 } from "@/features/catalog/catalog.model";
 import { useStore } from "effector-react";
+import Link from "next/link";
 import React, { useEffect } from "react";
 
 type Props = {};
@@ -53,29 +54,31 @@ const CatalogInner = (props: Props) => {
           <div className="col-9 col-m-12">
             <div className="items-wrapper">
               {products.map((product) => (
-                <div key={product.id} className="col-4 col-m-6">
-                  <div className="item">
-                    <div className="img-wrapper">
-                      <img src="img/catalog-img1.png" alt="" />
+                <Link key={product.id} href={"/product/" + product.id}>
+                  <a href="" className="col-4 col-m-6">
+                    <div className="item">
+                      <div className="img-wrapper">
+                        <img src="img/catalog-img1.png" alt="" />
+                      </div>
+                      <div className="item-info">{product.name}</div>
+                      <div className="item-info">
+                        Текущая ставка
+                        <span>{product.price} Руб.</span>
+                      </div>
+                      <div className="item-info">
+                        Локация
+                        <span>{product.location}</span>
+                      </div>
+                      <div className="item-info">
+                        Заканчивается
+                        <span className="red-span">2 дня 16 часов</span>
+                      </div>
+                      <a className="buy-btn" href="#">
+                        Сделать ставку
+                      </a>
                     </div>
-                    <div className="item-info">{product.name}</div>
-                    <div className="item-info">
-                      Текущая ставка
-                      <span>{product.price} Руб.</span>
-                    </div>
-                    <div className="item-info">
-                      Локация
-                      <span>{product.location}</span>
-                    </div>
-                    <div className="item-info">
-                      Заканчивается
-                      <span className="red-span">2 дня 16 часов</span>
-                    </div>
-                    <a className="buy-btn" href="#">
-                      Сделать ставку
-                    </a>
-                  </div>
-                </div>
+                  </a>
+                </Link>
               ))}
             </div>
             <div className="mobile-btn-more">Показать ещё</div>

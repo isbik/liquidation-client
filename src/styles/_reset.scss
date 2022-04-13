@@ -1,5 +1,3 @@
-// Убрать или заменить стили в этом файле, и оставить комментарии, почему они были применены
-// Слишком много для того чтобы делать override
 html,
 body,
 div,
@@ -89,7 +87,6 @@ video {
   vertical-align: baseline;
   outline: none;
 }
-
 body {
   font-size: 62.5%;
   line-height: 1;
@@ -129,11 +126,14 @@ strong {
   font-weight: bold;
 }
 
+input {
+  outline: none;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
 img {
   border: 0;
   max-width: 100%;
@@ -142,7 +142,6 @@ img {
 a {
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }

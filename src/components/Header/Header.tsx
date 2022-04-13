@@ -1,15 +1,24 @@
-import React from "react";
+import { $user } from "@/features/user/user.model";
+import { useStore } from "effector-react";
+import Link from "next/link";
+import React, { useMemo } from "react";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const user = useStore($user);
+
+  const name = useMemo(() => user?.fio.split(" ")[1], [user]);
+
   return (
     <header>
       <div className="mobile-header">
         <div className="logo mobile-logo">
-          <a href="index">
-            <img src="static/logo.png" />
-          </a>
+          <Link href="/">
+            <a>
+              <img src="/static/logo.png" />
+            </a>
+          </Link>
         </div>
         <div className="mobile-btn"></div>
       </div>
@@ -17,9 +26,11 @@ const Header = (props: Props) => {
         <div className="top-menu">
           <div className="container">
             <div className="logo">
-              <a href="index">
-                <img src="static/logo.png" />
-              </a>
+              <Link href="/">
+                <a>
+                  <img src="/static/logo.png" />
+                </a>
+              </Link>
             </div>
             <nav className="menu">
               <ul>
@@ -36,19 +47,30 @@ const Header = (props: Props) => {
                   <a href="#">Помощь</a>
                 </li>
                 <li>
-                  <a href="#">Регистрация</a>
+                  <Link href="/registration">
+                    <a>Регистрация</a>
+                  </Link>
                 </li>
               </ul>
             </nav>
-            <div className="enter">
-              <span>
-                Добро пожаловать
-                <span>!</span>
-              </span>
-              <a href="autorization" className="enter_item">
-                Войти
-              </a>
-            </div>
+            {user ? (
+              <div className="enter">
+                <span>Добро пожаловать, </span>{" "}
+                <Link href="/account">
+                  <a className="enter_item">{name}</a>
+                </Link>
+              </div>
+            ) : (
+              <div className="enter">
+                <span>
+                  Добро пожаловать
+                  <span>!</span>
+                </span>
+                <Link href="/login">
+                  <a className="enter_item">Войти</a>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
         <div className="category_section">
