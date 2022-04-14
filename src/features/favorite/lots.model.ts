@@ -12,19 +12,23 @@ const PER_PAGE = 6;
 
 const fetchFavoriteLotsFx = createEffect<{ page: number }, Paginated<never>>({
   handler: async ({ page }) => {
-    const products = await api.get("/favorite/lots", {
+    const products = await api.get("/favorites/lots", {
       params: {
         limit: PER_PAGE,
         offset: PER_PAGE * page,
       },
     });
+
     return products.data;
   },
 });
 
 const fetchFavoriteLots = createEvent();
 
-const $favoriteLots = createStore([]);
+const $favoriteLots = createStore<never[]>([]).on(
+  fetchFavoriteLotsFx.doneData,
+  (_, data) => data.items
+);
 
 const $total = createStore<number>(0).on(
   fetchFavoriteLotsFx.doneData,
@@ -42,4 +46,4 @@ sample({
   target: fetchFavoriteLotsFx,
 });
 
-export { $favoriteLots, fetchFavoriteLots, $total };
+export { $favoriteLots, fetchFavoriteLots, $total, fetchFavoriteLotsFx };
