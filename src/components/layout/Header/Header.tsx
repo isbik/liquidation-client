@@ -41,7 +41,9 @@ const Header = (props: Props) => {
                   <a href="#">Продать</a>
                 </li>
                 <li>
-                  <a href="#">Контакты</a>
+                  <Link href={"/contacts"}>
+                    <a>Контакты</a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#">Помощь</a>

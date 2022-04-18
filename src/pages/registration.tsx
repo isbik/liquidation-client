@@ -1,9 +1,26 @@
 import { Footer, Header } from "@/components";
+import { useStore } from "effector-react";
 import React from "react";
+import {
+  $authForm,
+  changeAuthForm,
+  registerUser,
+} from "../features/auth/auth.model";
 
 type Props = {};
 
 const Registration = (props: Props) => {
+  const authForm = useStore($authForm);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    changeAuthForm({ key: event.target.name, value: event.target.value });
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    registerUser();
+  };
+
   return (
     <>
       <Header />
@@ -12,54 +29,100 @@ const Registration = (props: Props) => {
         <div className="container">
           <h1 className="reg_title">Регистрация</h1>
           <h3 className="reg_subtitle">Данные организации</h3>
-          <form action="" className="reg_form">
+          <form action="" className="reg_form" onSubmit={handleSubmit}>
             <div className="reg_form-inner">
               <div className="mob-step-1">
                 <div className="reg_form-item">
                   <span>Наименование организации*</span>
-                  <input type="text" name="org_name" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="organizationName"
+                    value={authForm.organizationName}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>ИНН организации*</span>
-                  <input type="text" name="INN" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="INN"
+                    value={authForm.INN}
+                  />
                 </div>
               </div>
               <div className="mob-step-2">
                 <div className="reg_form-item">
                   <span>ОГРН организации*</span>
-                  <input type="text" name="OQRN" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="ORGN"
+                    value={authForm.ORGN}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>КПП организации*</span>
-                  <input type="text" name="KPP" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="KPP"
+                    value={authForm.KPP}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>Город*</span>
-                  <input type="text" name="city" />
-                </div>
-                <div className="reg_form-item">
-                  <span>Наименование организации*</span>
-                  <input type="text" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="city"
+                    value={authForm.city}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>Фактический адрес*</span>
-                  <input type="text" name="fact_adress" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="factAddress"
+                    value={authForm.factAddress}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>Юридический адрес*</span>
-                  <input type="text" name="yur_adress" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="legalAddress"
+                    value={authForm.legalAddress}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>Почтовый индекс*</span>
-                  <input type="text" name="mail_index" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="postalCode"
+                    value={authForm.postalCode}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>Телефон*</span>
-                  <input type="text" name="phone" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="phone"
+                    value={authForm.phone}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>Email</span>
-                  <input type="text" name="e-mail" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="email"
+                    value={authForm.email}
+                  />
                 </div>
               </div>
             </div>
@@ -68,38 +131,55 @@ const Registration = (props: Props) => {
               <div className="mob-step-3">
                 <div className="reg_form-item">
                   <span>ФИО*</span>
-                  <input type="text" name="ФИО" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="fio"
+                    value={authForm.fio}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>Должность*</span>
-                  <input type="text" name="post" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="position"
+                    value={authForm.position}
+                  />
                 </div>
                 <div className="reg_form-item">
                   <span>Телефон*</span>
-                  <input type="text" name="phone" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="directorPhone"
+                    value={authForm.directorPhone}
+                  />
                 </div>
-                <div className="reg_form-item">
-                  <span>КПП организации*</span>
-                  <input type="text" name="KPP" />
-                </div>
+
                 <div className="reg_form-item">
                   <span>Email*</span>
-                  <input type="text" name="e-mail" />
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="directorEmail"
+                    value={authForm.directorEmail}
+                  />
                 </div>
               </div>
               <div className="mob-step-4">
                 <div className="reg_form-item">
                   <span>Придумайте пароль*</span>
-                  <input type="password" />
+                  <input onChange={handleChange} type="password" />
                 </div>
                 <div className="reg_form-item">
                   <span>Повторите пароль*</span>
-                  <input type="password" />
+                  <input onChange={handleChange} type="passwordAgain" />
                 </div>
               </div>
             </div>
             <a data-fancybox href="#hidden" className="reg_btn">
-              Зарегестрироваться
+              Зарегистрироваться
             </a>
             <p className="reg_text">
               Нажимая на кнопку, вы даете согласие на обработку персональных

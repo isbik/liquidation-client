@@ -1,9 +1,16 @@
 import { Footer, Header } from "@/components";
-import React from "react";
+import { useStore } from "effector-react";
+import Link from "next/link";
+import React, { useEffect } from "react";
+import { $cartItems, fetchCartItems } from "../features/cart/cart.model";
 
-type Props = {};
+const Cart = () => {
+  const cartItems = useStore($cartItems);
 
-const Cart = (props: Props) => {
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
+
   return (
     <>
       <Header />
@@ -37,66 +44,45 @@ const Cart = (props: Props) => {
                   </div>
                 </div>
                 <div className="cart-items">
-                  <div className="cart-item">
-                    <div className="col-3">
-                      <label className="custom-checkbox">
-                        <input type="checkbox" />
-                      </label>
-                      <div className="img-wrapper">
-                        <img src="img/cart-item.png" alt="" />
+                  {/* TODO: add when not cart items view */}
+                  {cartItems.map((cartItem) => (
+                    <div key={cartItem.id} className="cart-item">
+                      <div className="col-3">
+                        <label className="custom-checkbox">
+                          <input type="checkbox" />
+                        </label>
+                        <div className="img-wrapper">
+                          <img src="img/cart-item.png" alt="" />
+                        </div>
+                      </div>
+                      <div className="col-4">
+                        <div className="info">
+                          <div className="title">{cartItem.name}</div>
+                          <p>
+                            2020-2022 года, 64-256 гб, {cartItem.quantity} штук
+                          </p>
+                        </div>
+                      </div>
+                      <div className="col-2">
+                        <div className="item-info item-price">
+                          {cartItem.price} ₽
+                        </div>
+                      </div>
+                      <div className="col-2">
+                        <div className="item-info item-qty">1 лот</div>
+                      </div>
+                      <div className="col-1">
+                        <div className="icons-wrapper">
+                          <i className="add-favorite active"></i>
+                          <i className="remove-item"></i>
+                        </div>
                       </div>
                     </div>
-                    <div className="col-4">
-                      <div className="info">
-                        <div className="title">Iphone Xr уцененные</div>
-                        <p>2020-2022 года, 64-256 гб, 10 штук</p>
-                      </div>
-                    </div>
-                    <div className="col-2">
-                      <div className="item-info item-price">240 000 ₽</div>
-                    </div>
-                    <div className="col-2">
-                      <div className="item-info item-qty">1 лот</div>
-                    </div>
-                    <div className="col-1">
-                      <div className="icons-wrapper">
-                        <i className="add-favorite active"></i>
-                        <i className="remove-item"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="cart-item">
-                    <div className="col-3">
-                      <label className="custom-checkbox">
-                        <input type="checkbox" />
-                      </label>
-                      <div className="img-wrapper">
-                        <img src="img/cart-item1.png" alt="" />
-                      </div>
-                    </div>
-                    <div className="col-4">
-                      <div className="info">
-                        <div className="title">BMW 5 series седан</div>
-                        <p>Хорошее состояние240 л.с.</p>
-                      </div>
-                    </div>
-                    <div className="col-2">
-                      <div className="item-info item-price">4 290 000 ₽</div>
-                    </div>
-                    <div className="col-2">
-                      <div className="item-info item-qty">1 ед.</div>
-                    </div>
-                    <div className="col-1">
-                      <div className="icons-wrapper">
-                        <i className="add-favorite"></i>
-                        <i className="remove-item"></i>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-                <a className="continue-shop" href="#">
-                  Продолжить покупку
-                </a>
+                <Link href="/catalog">
+                  <a className="continue-shop">Продолжить покупку</a>
+                </Link>
               </div>
             </div>
             <div className="col-3 col-m-12">

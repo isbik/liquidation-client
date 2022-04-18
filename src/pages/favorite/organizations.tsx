@@ -1,9 +1,20 @@
 import { Footer, Header } from "@/components";
-import React from "react";
+import { useStore } from "effector-react";
+import React, { useEffect } from "react";
+import {
+  $favoriteOrganizations,
+  fetchFavoriteOrganizations,
+} from "../../features/favorite/organizations";
 
 type Props = {};
 
 const FavoriteOrganizations = (props: Props) => {
+  const organizations = useStore($favoriteOrganizations);
+
+  useEffect(() => {
+    fetchFavoriteOrganizations();
+  }, []);
+
   return (
     <>
       <Header />
@@ -24,67 +35,33 @@ const FavoriteOrganizations = (props: Props) => {
                 </a>
               </div>
             </div>
-
-            {/* Empty organizations */}
-            {/* <div className="account-inner favorites-organizations">
-              <div className="empty-content">
-                <p className="empty">Нет избранных организаций</p>
-                <p className="empty">
-                  Перейдите в <a href="catalog">каталог</a>, чтобы найти
-                  нужную организацию
-                </p>
+            {organizations.length === 0 && (
+              <div className="account-inner favorites-organizations">
+                <div className="empty-content">
+                  <p className="empty">Нет избранных организаций</p>
+                  <p className="empty">
+                    Перейдите в <a href="catalog">каталог</a>, чтобы найти
+                    нужную организацию
+                  </p>
+                </div>
               </div>
-            </div> */}
+            )}
             <div className="account-inner favorites-organizations">
               <div className="organization-items">
-                <div className="organization-item">
-                  <div className="img-wrapper">
-                    <img src="img/org1.png" alt="" />
-                  </div>
-                  <div className="info-wrapper">
-                    <div className="item-title">Группа НММК</div>
-                    <div className="item-title">
-                      Объявлений на продажу:
-                      <span className="quantity">72</span>
+                {organizations.map((organization) => (
+                  <div key={organization.id} className="organization-item">
+                    <div className="img-wrapper">
+                      <img src="img/org1.png" alt="" />
+                    </div>
+                    <div className="info-wrapper">
+                      <div className="item-title">{organization.name}</div>
+                      <div className="item-title">
+                        Объявлений на продажу:
+                        <span className="quantity">{organization.countLots}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="organization-item">
-                  <div className="img-wrapper">
-                    <img src="img/org1.png" alt="" />
-                  </div>
-                  <div className="info-wrapper">
-                    <div className="item-title">АО “Гайский КоП”</div>
-                    <div className="item-title">
-                      Объявлений на продажу:
-                      <span className="quantity">72</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="organization-item">
-                  <div className="img-wrapper">
-                    <img src="img/org1.png" alt="" />
-                  </div>
-                  <div className="info-wrapper">
-                    <div className="item-title">ПАО “КазаньМеталДиз”</div>
-                    <div className="item-title">
-                      Объявлений на продажу:
-                      <span className="quantity">3</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="organization-item">
-                  <div className="img-wrapper">
-                    <img src="img/org1.png" alt="" />
-                  </div>
-                  <div className="info-wrapper">
-                    <div className="item-title">ООО “Палис”</div>
-                    <div className="item-title">
-                      Объявлений на продажу:
-                      <span className="quantity">142</span>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

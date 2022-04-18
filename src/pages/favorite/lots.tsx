@@ -1,9 +1,19 @@
 import { Footer, Header } from "@/components";
-import React from "react";
+import { useStore } from "effector-react";
+import React, { useEffect } from "react";
+import {
+  $favoriteLots,
+  fetchFavoriteLots,
+} from "../../features/favorite/lots.model";
 
-type Props = {};
 
-const FavoriteLots = (props: Props) => {
+const FavoriteLots = () => {
+  const lots = useStore($favoriteLots);
+
+  useEffect(() => {
+    fetchFavoriteLots();
+  }, []);
+
   return (
     <>
       <Header />
@@ -23,80 +33,53 @@ const FavoriteLots = (props: Props) => {
                 <a href="favorites-organizations">Организации</a>
               </div>
             </div>
-            {/* Empty lots */}
-            {/* <div className="account-inner advertisement-inner favorite-lots">
-              <div className="empty-content">
-                <p className="empty">Нет избранных лотов</p>
-                <p className="empty">
-                  Перейдите в <a href="catalog">каталог</a>, чтобы найти
-                  нужный лот
-                </p>
+            {lots.length === 0 && (
+              <div className="account-inner advertisement-inner favorite-lots">
+                <div className="empty-content">
+                  <p className="empty">Нет избранных лотов</p>
+                  <p className="empty">
+                    Перейдите в <a href="catalog">каталог</a>, чтобы найти
+                    нужный лот
+                  </p>
+                </div>
               </div>
-            </div> */}
+            )}
+
             <div className="account-inner advertisement-inner favorite-lots">
               <div className="catalog-wrapper">
-                <div className="catalog-item">
-                  <div className="img-wrapper">
-                    <img src="img/delivery.png" alt="" />
-                  </div>
-                  <div className="info-wrapper">
-                    <div className="item-info item-info-left">
-                      <div className="item-title">
-                        Электролобзик WESTER
-                        <span>20 штук</span>
-                      </div>
-                      <p>
-                        Номер объявления:
-                        <span>55672</span>
-                      </p>
-                      <p>
-                        Создано:
-                        <span>5 янв. 16:07</span>
-                      </p>
+                {lots.map((lot) => (
+                  <div key={lot.id} className="catalog-item">
+                    <div className="img-wrapper">
+                      <img src="img/delivery.png" alt="" />
                     </div>
-                    <div className="item-info">
-                      <div className="item-title">
-                        Цена:
-                        <span>70 000 ₽</span>
+                    <div className="info-wrapper">
+                      <div className="item-info item-info-left">
+                        <div className="item-title">
+                          {lot.name}
+                          <span>{lot.quantity} штук</span>
+                        </div>
+                        <p>
+                          Номер объявления:
+                          <span>{lot.id}</span>
+                        </p>
+                        <p>
+                          Создано:
+                          <span>{lot.createdAt}</span>
+                        </p>
                       </div>
-                      <div className="item-title">
-                        Кол-во:
-                        <span className="quantity">11 шт</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="catalog-item">
-                  <div className="img-wrapper">
-                    <img src="img/delivery.png" alt="" />
-                  </div>
-                  <div className="info-wrapper">
-                    <div className="item-info item-info-left">
-                      <div className="item-title">
-                        Электролобзик WESTER
-                        <span>20 штук</span>
-                      </div>
-                      <p>
-                        Номер объявления:
-                        <span>55672</span>
-                      </p>
-                      <p>
-                        Создано:
-                        <span>5 янв. 16:07</span>
-                      </p>
-                    </div>
-                    <div className="item-info">
-                      <div className="item-title">
-                        Цена:
-                        <span>300 000 ₽</span>
-                      </div>
-                      <div className="item-title">
-                        Кол-во:
-                        <span className="quantity">Не указано</span>
+                      <div className="item-info">
+                        <div className="item-title">
+                          Цена:
+                          <span>{lot.recommendedRetailPrice} ₽</span>
+                        </div>
+                        <div className="item-title">
+                          Кол-во:
+                          <span className="quantity">{lot.quantity} шт</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

@@ -1,9 +1,26 @@
 import { Footer, Header } from "@/components";
+import { useStore } from "effector-react";
 import React from "react";
+import {
+  $contactApplicationForm,
+  changeContactForm,
+  sendContactForm,
+} from "../features/contact_application/contact_application.model";
 
-type Props = {};
+const Contacts = () => {
+  const contactApplication = useStore($contactApplicationForm);
 
-const Contacts = (props: Props) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    changeContactForm({ key: event.target.name, value: event.target.value });
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    sendContactForm();
+  };
+
   return (
     <>
       <Header />
@@ -46,23 +63,47 @@ const Contacts = (props: Props) => {
               </div>
               <div className="contacts_content-right">
                 <div className="contacts-title-mobile">Свяжитесь с нами</div>
-                <form action="" className="question_form">
+                <form
+                  action=""
+                  className="question_form"
+                  onSubmit={handleSubmit}
+                >
                   <div className="question_form-inner">
                     <span>Email</span>
-                    <input type="text" name="e-mail" placeholder="Email" />
+                    <input
+                      type="text"
+                      name="email"
+                      onChange={handleChange}
+                      value={contactApplication.email}
+                      placeholder="Email"
+                    />
                   </div>
                   <div className="question_form-inner">
                     <span>ФИО</span>
-                    <input type="text" name="ФИО" placeholder="ФИО" />
+                    <input
+                      type="text"
+                      name="fio"
+                      onChange={handleChange}
+                      value={contactApplication.fio}
+                      placeholder="ФИО"
+                    />
                   </div>
                   <div className="question_form-inner">
                     <span>Телефон</span>
-                    <input type="text" name="phone" placeholder="Телефон" />
+                    <input
+                      type="text"
+                      name="phone"
+                      onChange={handleChange}
+                      value={contactApplication.phone}
+                      placeholder="Телефон"
+                    />
                   </div>
                   <div className="question_form-inner">
                     <span>Комментарий</span>
                     <textarea
                       name="comment"
+                      onChange={handleChange}
+                      value={contactApplication.comment}
                       id=""
                       cols={30}
                       rows={10}

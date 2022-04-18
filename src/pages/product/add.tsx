@@ -1,12 +1,34 @@
 import { Footer, Header } from "@/components";
-import React from "react";
+import { useStore } from "effector-react";
+import React, { useCallback } from "react";
+import { CategorySelect } from "../../components/inputs/CategorySelect";
+import {
+  $createProductForm,
+  changeCreateProductForm,
+} from "../../features/product/product.create.model";
+import { Supplier, UnitType } from "../../features/product/product.types";
 
-type Props = {};
+const AddAdvertisement = () => {
+  const productForm = useStore($createProductForm);
 
-const AddAdvertisement = (props: Props) => {
+  const handleChange = useCallback(
+    (
+      event: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >
+    ) => {
+      changeCreateProductForm({
+        key: event.target.name,
+        value: event.target.value,
+      });
+    },
+    []
+  );
+
   return (
     <>
       <Header />
+      <pre>{JSON.stringify(productForm, null, 3)}</pre>
       <section className="add-advertisement">
         <form action="">
           <div className="container">
@@ -16,24 +38,55 @@ const AddAdvertisement = (props: Props) => {
             <div className="col-12">
               <div className="item-wrapper">
                 <div className="title">Наименование</div>
-                <input type="text" />
+                <input
+                  onChange={handleChange}
+                  value={productForm.name}
+                  name="name"
+                  type="text"
+                />
               </div>
             </div>
             <div className="col-12">
               <div className="item-wrapper">
                 <div className="title">Краткое описание</div>
-                <textarea rows={3}></textarea>
+                <textarea
+                  onChange={handleChange}
+                  name="shortDescription"
+                  value={productForm.shortDescription}
+                  rows={3}
+                ></textarea>
               </div>
             </div>
             <div className="col-12">
               <div className="items-wrapper">
                 <div className="item-wrapper custom-item">
                   <div className="title">Категория товара</div>
-                  <select name="" id=""></select>
+                  <CategorySelect
+                    name="categoryId"
+                    value={productForm.categoryId || ""}
+                    onChange={(event) => {
+                      changeCreateProductForm({
+                        key: "categoryId",
+                        value: event.target.value,
+                      });
+                    }}
+                  />
                 </div>
+
                 <div className="item-wrapper custom-item">
                   <div className="title">Подкатегория</div>
-                  <select name="" id=""></select>
+                  <CategorySelect
+                    value={productForm.subCategoryId || ""}
+                    parentCategoryId={productForm.categoryId || null}
+                    name="subCategoryId"
+                    disabled={productForm.categoryId === null}
+                    onChange={(event) => {
+                      changeCreateProductForm({
+                        key: "subCategoryId",
+                        value: event.target.value,
+                      });
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -41,11 +94,26 @@ const AddAdvertisement = (props: Props) => {
               <div className="items-wrapper">
                 <div className="item-wrapper custom-item">
                   <div className="title">Продавец</div>
-                  <input type="text" />
+                  <input
+                    value={productForm.seller}
+                    onChange={handleChange}
+                    type="text"
+                    name="seller"
+                  />
                 </div>
                 <div className="item-wrapper custom-item">
                   <div className="title">Состояние</div>
-                  <select name="" id=""></select>
+                  <select
+                    value={productForm.condition}
+                    name="condition"
+                    onChange={handleChange}
+                  >
+                    <option value="new">Новое</option>
+                    <option value="as_new">Как новое</option>
+                    <option value="good">Хорошее</option>
+                    <option value="acceptable">Допустимое</option>
+                    <option value="bad">Плохое</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -53,53 +121,86 @@ const AddAdvertisement = (props: Props) => {
               <div className="items-wrapper">
                 <div className="item-wrapper custom-item">
                   <div className="title">Цена</div>
-                  <input type="text" />
+                  <input
+                    value={productForm.price || ""}
+                    name="price"
+                    type="number"
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="item-wrapper custom-item">
                   <div className="title">Минимальная ставка</div>
-                  <input type="text" />
+                  <input
+                    value={productForm.minRate || ""}
+                    name="minRate"
+                    type="number"
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
             <div className="col-12">
               <div className="item-wrapper">
                 <div className="title">Рекомендованная розничная цена</div>
-                <input type="text" />
+                <input
+                  type="number"
+                  name="recommendedRetailPrice"
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className="col-12">
               <div className="items-wrapper">
                 <div className="item-wrapper custom-item">
-                  <div className="title">Колличество единиц</div>
-                  <input type="text" />
+                  <div className="title">Количество единиц</div>
+                  <input
+                    type="number"
+                    name="quantity"
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="item-wrapper custom-item">
                   <div className="title">Общий вес</div>
-                  <input type="text" />
+                  <input
+                    value={productForm.totalWeight || ""}
+                    type="number"
+                    name="totalWeight"
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
             <div className="col-12">
               <div className="item-wrapper">
                 <div className="title">Единицы измерения</div>
-                <select name="" id=""></select>
+                <select
+                  value={productForm.unitType}
+                  name="unitType"
+                  onChange={handleChange}
+                >
+                  <option value={UnitType.kg}>Килограммы</option>
+                  <option value={UnitType.tone}>Тонны</option>
+                </select>
               </div>
             </div>
             <div className="col-12">
               <div className="item-wrapper">
                 <div className="title">Расположение товара</div>
-                <input type="text" />
+                <input name="location" type="text" onChange={handleChange} />
               </div>
             </div>
             <div className="col-12">
               <div className="items-wrapper">
                 <div className="item-wrapper custom-item">
                   <div className="title">Кто осуществляет доставку</div>
-                  <select name="" id=""></select>
+                  <select name="supplier" onChange={handleChange}>
+                    <option value={Supplier.owner}>Владелец</option>
+                    <option value={Supplier.customer}>Заказчик</option>
+                  </select>
                 </div>
                 <div className="item-wrapper custom-item">
                   <div className="title">Способ доставки</div>
-                  <select name="" id=""></select>
+                  <select name="" id="" disabled></select>
                 </div>
               </div>
             </div>
@@ -107,18 +208,18 @@ const AddAdvertisement = (props: Props) => {
               <div className="items-wrapper">
                 <div className="item-wrapper custom-item">
                   <div className="title">Размер доставки</div>
-                  <select name="" id=""></select>
+                  <select name="" id="" disabled></select>
                 </div>
                 <div className="item-wrapper custom-item">
                   <div className="title">Предпочитаемый способ оплаты</div>
-                  <select name="" id=""></select>
+                  <select name="" id="" disabled></select>
                 </div>
               </div>
             </div>
             <div className="col-12">
               <div className="item-wrapper">
                 <div className="title">Описание</div>
-                <textarea rows={8}>
+                <textarea name="description" rows={8} onChange={handleChange}>
                   Полное описание товара, характеристики, размеры, детали
                   состояния...
                 </textarea>

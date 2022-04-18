@@ -1,12 +1,8 @@
-import { createStore, forward } from "effector";
-import { makeAuthFx, persistUserFx } from "../auth/auth.model";
+import { createEvent, restore } from "effector";
 import { User } from "./user.types";
 
-const $user = createStore<User | null>(null);
+const setUser = createEvent<User | null>();
 
-forward({
-  from: [persistUserFx.doneData, makeAuthFx.doneData],
-  to: $user,
-});
+const $user = restore<User | null>(setUser, null);
 
-export { $user };
+export { $user, setUser };
