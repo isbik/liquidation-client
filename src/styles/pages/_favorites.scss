@@ -68,3 +68,57 @@
 
 
     
+@media (max-width: 540px) {
+    .account-section {
+        .account-inner.favorites-organizations, .account-inner.favorite-lots {
+            background: #E8E8E8;
+            border-radius: 0 0 5px 5px;
+            margin-left: 0; 
+            padding: 15px 5px;
+            .catalog-wrapper {
+                min-height: unset;
+                margin-top: 0;
+                .catalog-item {
+                    .info-wrapper {
+                        .item-info {
+                            display: flex;
+                            justify-content: space-between;
+                            width: 100%;
+                            .item-title {
+                                &:first-child {
+                                    justify-content: flex-start;
+                                }
+                                &:nth-child(2) {
+                                    justify-content: flex-end;
+                                }
+                                span {
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                        .item-info-left {
+                            justify-content: flex-start;
+                            flex-wrap: wrap;
+                        }
+                    }
+                }
+            }
+            .organization-items {
+                margin-top: 0;
+                min-height: unset;
+
+                .organization-item {
+                    .img-wrapper {
+                        display: none;
+                    }
+                    .info-wrapper {
+                        flex-wrap: wrap;
+                    }
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}

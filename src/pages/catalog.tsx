@@ -58,7 +58,7 @@ const CatalogInner = (props: Props) => {
                   <a href="" className="col-4 col-m-6">
                     <div className="item">
                       <div className="img-wrapper">
-                        <img src="img/catalog-img1.png" alt="" />
+                        <img src="/static/catalog-img1.png" alt="" />
                       </div>
                       <div className="item-info">{product.name}</div>
                       <div className="item-info">

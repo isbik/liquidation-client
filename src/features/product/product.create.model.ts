@@ -1,30 +1,74 @@
-import { createEvent, createStore } from "effector";
-import { Condition, CreateProductForm, Supplier, UnitType } from "./product.types";
+import { PRODUCT_CREATE } from "@/lib";
+import { api } from "@/services";
+import {
+  createEffect,
+  createEvent,
+  createStore,
+  restore,
+  sample,
+} from "effector";
+import { toast } from "react-toastify";
+import { CreateProductForm } from "./product.types";
+
+const createProduct = createEvent<void>();
+
+const createProductFx = createEffect<CreateProductForm, void>({
+  handler: (data) => {
+    return new Promise<void>((resolve, reject) => {
+      api
+        .post("/products", data)
+        .then(() => {
+          toast.success("Объявление было успешно создано");
+          resolve();
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            toast.error("Введенные данные не соответствуют формату");
+          } else {
+            toast.error("При создание произошла ошибка, попробуйте позже");
+          }
+          reject();
+        });
+    });
+  },
+});
 
 const changeCreateProductForm = createEvent<{ key: string; value: string }>();
 
-const $createProductForm = createStore<CreateProductForm>({
-  name: "",
-  shortDescription: "",
-  description: "",
-  categoryId: null,
-  subCategoryId: null,
-  seller: "",
-  condition: Condition.new,
-  price: null,
-  minRate: null,
-  recommendedRetailPrice: null,
-  quantity: 1,
-  totalWeight: null,
-  unitType: UnitType.kg,
+const $createProductForm = createStore<CreateProductForm>(PRODUCT_CREATE)
+  .on(changeCreateProductForm, (state, { key, value }) => ({
+    ...state,
+    [key]: value,
+  }))
+  .reset(createProductFx.doneData);
 
-  location: "",
-  supplier: Supplier.owner,
-  imageIds: [],
-  manifestoFileId: null,
-}).on(changeCreateProductForm, (state, { key, value }) => ({
-  ...state,
-  [key]: value,
-}));
+sample({
+  // @ts-ignore
+  clock: createProduct,
+  source: $createProductForm,
+  fn: (payload) => {
+    const { images, manifestoFile, ...rest } = payload;
 
-export { $createProductForm, changeCreateProductForm };
+    return {
+      ...rest,
+      imageIds: images.map(({ id }) => id),
+      manifestoFileId: manifestoFile?.id || null,
+    };
+  },
+  target: createProductFx,
+});
+
+const changeIsPreview = createEvent<boolean>();
+
+const $isPreview = restore(changeIsPreview, false).reset(
+  createProductFx.doneData
+);
+
+export {
+  $createProductForm,
+  changeCreateProductForm,
+  $isPreview,
+  changeIsPreview,
+  createProduct,
+  createProductFx,
+};

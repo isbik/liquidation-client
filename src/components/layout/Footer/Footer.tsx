@@ -98,7 +98,7 @@ const Footer = (props: Props) => {
           <div className="partner col-3 col-m-12">
             <h4 className="footer_title">Партнер маркетплейс</h4>
             <a href="">
-              <img src="img/dopdox.png" alt="" />
+              <img src="/static/dopdox.png" alt="" />
             </a>
           </div>
         </div>
@@ -106,7 +106,7 @@ const Footer = (props: Props) => {
       <div className="footer-logo">
         <div className="container">
           <a href="index" className="logo">
-            <img src="img/logo.png" alt="" />
+            <img src="/static/logo.png" alt="" />
           </a>
         </div>
       </div>

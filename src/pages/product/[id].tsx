@@ -29,16 +29,16 @@ const ProductPage = ({ product }: Props) => {
               <div className="swiper mySwiper2">
                 <div className="swiper-wrapper">
                   <div className="swiper-slide">
-                    <img src="img/product-slide1.png" />
+                    <img src="/static/product-slide1.png" />
                   </div>
                   <div className="swiper-slide">
-                    <img src="img/product-slide1.png" />
+                    <img src="/static/product-slide1.png" />
                   </div>
                   <div className="swiper-slide">
-                    <img src="img/product-slide1.png" />
+                    <img src="/static/product-slide1.png" />
                   </div>
                   <div className="swiper-slide">
-                    <img src="img/product-slide1.png" />
+                    <img src="/static/product-slide1.png" />
                   </div>
                   <div className="swiper-slide">
                     <div className="video-wrapper">
@@ -52,16 +52,16 @@ const ProductPage = ({ product }: Props) => {
               <div className="swiper mySwiper">
                 <div className="swiper-wrapper">
                   <div className="swiper-slide">
-                    <img src="img/product-slide1.png" />
+                    <img src="/static/product-slide1.png" />
                   </div>
                   <div className="swiper-slide">
-                    <img src="img/product-slide1.png" />
+                    <img src="/static/product-slide1.png" />
                   </div>
                   <div className="swiper-slide">
-                    <img src="img/product-slide1.png" />
+                    <img src="/static/product-slide1.png" />
                   </div>
                   <div className="swiper-slide">
-                    <img src="img/product-slide1.png" />
+                    <img src="/static/product-slide1.png" />
                   </div>
                   <div className="swiper-slide">
                     <div className="video-wrapper">
@@ -176,9 +176,9 @@ const ProductPage = ({ product }: Props) => {
                   </div>
                   <div className="col-12">
                     <div className="payment-methods">
-                      <img src="img/icons/visa.svg" alt="" />
-                      <img src="img/icons/visa.svg" alt="" />
-                      <img src="img/icons/visa.svg" alt="" />
+                      <img src="/static/icons/visa.svg" alt="" />
+                      <img src="/static/icons/visa.svg" alt="" />
+                      <img src="/static/icons/visa.svg" alt="" />
                     </div>
                     <div className="further-information">
                       <div className="item item-left">
@@ -204,7 +204,7 @@ const ProductPage = ({ product }: Props) => {
           <div className="col-12 product-data">
             <div className="product-subtitle">
               <div className="img-wrapper">
-                <img src="img/icons/prod-desc.svg" alt="" />
+                <img src="/static/icons/prod-desc.svg" alt="" />
               </div>
               Описание
             </div>
@@ -236,7 +236,7 @@ const ProductPage = ({ product }: Props) => {
           <div className="col-12 product-data">
             <div className="product-subtitle">
               <div className="img-wrapper">
-                <img src="img/icons/truck.svg" alt="" />
+                <img src="/static/icons/truck.svg" alt="" />
               </div>
               Доставка
             </div>

@@ -2,6 +2,8 @@ import { $authenticating, persistUser } from "@/features/auth/auth.model";
 import { useStore } from "effector-react";
 import type { AppProps } from "next/app";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/style.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -13,7 +15,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   if (loading) return "Загрузка ...";
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+      <ToastContainer position="bottom-right" />
+    </>
+  );
 }
 
 export default MyApp;

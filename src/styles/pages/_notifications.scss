@@ -57,3 +57,24 @@
     }
   }
 }
+
+@media (max-width: 540px) {
+  .account-section {
+    .account-inner.account-notifications {
+      padding: 15px 8px;
+      .items-wrapper {
+        margin-bottom: 0;
+        .item {
+          flex-wrap: wrap;
+          .title {
+            max-width: 100%;
+          }
+        }
+      }
+      input[type="submit"] {
+        max-width: 100%;
+        height: 50px;
+      }
+    }
+  }
+}

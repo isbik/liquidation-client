@@ -25,7 +25,7 @@ const Delivery = (props: Props) => {
         <div className="container">
           <div className="delivery_info-wrapper">
             <div className="delivery_info-img">
-              <img src="img/delivery.png" alt="" />
+              <img src="/static/delivery.png" alt="" />
             </div>
             <div className="delivery_info-inner">
               <h3 className="delivery_info-inner-title">Размеры доставки</h3>

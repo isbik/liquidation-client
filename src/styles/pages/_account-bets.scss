@@ -119,3 +119,78 @@
 		}
 	}
 }
+
+
+@media (max-width: 540px) {
+	.account-section {
+		.account-inner.account-bets {
+			margin-left: 0;
+			padding: 15px 5px;
+			border-radius: 0 0 5px 5px;
+			background: #E8E8E8;
+			.table-wrapper {
+				display: none;
+			}
+			.mobile-bets {
+				background: #fff;	
+				border: 1px solid #7B7B7B;
+				.item-wrapper {
+					padding: 10px 5px 6px;
+					display: flex;
+    				align-items: center;
+					margin-bottom: 0;
+					border-bottom: 1px solid #7B7B7B;
+					.right-content p {
+						text-align: right;
+					}
+					&:last-child {
+						border-bottom: none;
+					}
+					.item-title {
+						font-weight: 500;
+						font-size: 16px;
+						line-height: 19px;
+						color: #000000;
+					}
+					p {
+						margin-top: 5px;
+						font-size: 16px;
+						line-height: 19px;
+						color: #000000;
+					}
+					.time-delay {
+						background: #DDDDDD;
+						font-size: 14px;
+						line-height: 17px;
+						color: #000000;
+						border-radius: 5px;
+						padding: 5px;
+					}
+					.time-delay.delay-end {
+						color: #fff;
+						background: #5BB959;
+						font-size: 16px;
+						line-height: 19px;
+					}
+				}
+			}
+		}
+		.account-tab-list {
+            .list-detail {
+                a {
+                    width: 100%;
+                    margin-left: 0;
+                }
+                a.active {
+                    background: #E8E8E8;
+                    border-bottom: none;
+                }
+            }
+        }
+		.account-inner.favorite-lots {
+			margin-left: 0;
+			background: #E8E8E8;
+			border-radius: 0 0px 5px 5px;
+		}
+	}
+}

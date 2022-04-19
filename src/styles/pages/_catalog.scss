@@ -6,7 +6,6 @@
     margin-bottom: 60px;
   }
 
-
   .col-3 {
     padding-right: 30px;
   }
@@ -22,13 +21,12 @@
     &:hover .catalog-links-list {
       display: block;
     }
-    &:hover  .img-wrapper {
+    &:hover .img-wrapper {
       display: none;
     }
-    &:hover  .catalog-title {
+    &:hover .catalog-title {
       display: none;
     }
-
 
     .catalog-links-list {
       display: none;
@@ -36,7 +34,6 @@
       padding: 20px 8px;
 
       a {
-        font-family: "Inter";
         font-size: 14px;
         line-height: 20px;
         color: #000000;
@@ -45,8 +42,8 @@
         border-bottom: 1px solid #808080;
 
         &:hover {
-          color: #367AF5;
-          border-bottom: 1px solid #367AF5;
+          color: #367af5;
+          border-bottom: 1px solid #367af5;
         }
       }
       .catalog-more {
@@ -56,7 +53,6 @@
       }
     }
     .catalog-title {
-      font-family: "Inter";
       font-weight: 500;
       font-size: 24px;
       line-height: 29px;
@@ -88,10 +84,10 @@
     .catalog {
       .col-m-6 {
         padding-right: 0;
-        &:nth-child(odd) .catalog-item{
+        &:nth-child(odd) .catalog-item {
           margin-right: auto;
         }
-        &:nth-child(even) .catalog-item{
+        &:nth-child(even) .catalog-item {
           margin-left: auto;
         }
       }

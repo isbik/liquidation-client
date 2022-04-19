@@ -52,7 +52,7 @@ const Cart = () => {
                           <input type="checkbox" />
                         </label>
                         <div className="img-wrapper">
-                          <img src="img/cart-item.png" alt="" />
+                          <img src="/static/cart-item.png" alt="" />
                         </div>
                       </div>
                       <div className="col-4">

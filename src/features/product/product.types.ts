@@ -1,3 +1,5 @@
+import { CloudFile } from "@/types";
+
 export type CreateProductForm = {
   name: string;
   shortDescription: string;
@@ -14,8 +16,8 @@ export type CreateProductForm = {
   unitType: UnitType;
   location: string;
   supplier: Supplier;
-  imageIds: number[];
-  manifestoFileId: number | null;
+  images: CloudFile[];
+  manifestoFile: CloudFile | null;
 };
 
 export enum Condition {

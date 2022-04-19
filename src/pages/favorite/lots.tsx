@@ -6,7 +6,6 @@ import {
   fetchFavoriteLots,
 } from "../../features/favorite/lots.model";
 
-
 const FavoriteLots = () => {
   const lots = useStore($favoriteLots);
 
@@ -22,7 +21,7 @@ const FavoriteLots = () => {
         <div className="container">
           <div className="col-12">
             <h1>Личный кабинет</h1>
-            <h2>Мои ставки</h2>
+            <h2>Мои объявления</h2>
           </div>
           <div className="col-8 col-m-12">
             <div className="account-tab-list">
@@ -50,7 +49,7 @@ const FavoriteLots = () => {
                 {lots.map((lot) => (
                   <div key={lot.id} className="catalog-item">
                     <div className="img-wrapper">
-                      <img src="img/delivery.png" alt="" />
+                      <img src="/static/delivery.png" alt="" />
                     </div>
                     <div className="info-wrapper">
                       <div className="item-info item-info-left">
@@ -81,31 +80,6 @@ const FavoriteLots = () => {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-          <div className="col-4 col-m-12">
-            <div className="navigation">
-              <a href="#" className="nav-item">
-                Сведения о компании
-              </a>
-              <a href="#" className="nav-item">
-                Настройка аккаунта
-              </a>
-              <a href="#" className="nav-item">
-                Мои ставки
-              </a>
-              <a href="#" className="nav-item">
-                Мои объявления
-              </a>
-              <a href="#" className="nav-item active">
-                Избранное
-              </a>
-              <a href="#" className="nav-item">
-                Уведомления
-              </a>
-              <a href="#" className="nav-item">
-                Корзина
-              </a>
             </div>
           </div>
         </div>

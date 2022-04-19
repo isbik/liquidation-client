@@ -33,13 +33,18 @@
 }
 
 .category_section-right {
-  max-width: 497px;
-  width: 100%;
+  display: flex;
+  margin-right: 20px;
 }
 
 @media (max-width: 540px) {
   .category_section {
     background: transparent;
+  }
+  .category_section-right {
+    margin-right: 0;
+    width: 100%;
+    flex-wrap: wrap;
   }
    .header-inner.show {
     .category_section-left {

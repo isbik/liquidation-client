@@ -1,13 +1,18 @@
 import { Footer, Header } from "@/components";
-import { makeAuth } from "@/features/auth/auth.model";
+import { $authenticated, makeAuth } from "@/features/auth/auth.model";
+import { useStore } from "effector-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 type Props = {};
 
 const Authorization = (props: Props) => {
-  const [phoneOrEmail, setPhoneOrEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [phoneOrEmail, setPhoneOrEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("password");
+  const authenticated = useStore($authenticated);
+
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,12 +23,20 @@ const Authorization = (props: Props) => {
     });
   };
 
+  useEffect(() => {
+    if (authenticated) router.push("/account");
+  }, [authenticated, router]);
+
   return (
     <>
       <Header />
       <section className="auth">
         <div className="auth_wrapper">
-          <form action="" className="enter_form" onSubmit={handleSubmit}>
+          <form
+            autoComplete="false"
+            className="enter_form"
+            onSubmit={handleSubmit}
+          >
             <h3>Вход</h3>
             <div className="enter_form-wrapper">
               <h5>Телефон или Email:</h5>
@@ -40,10 +53,12 @@ const Authorization = (props: Props) => {
                 placeholder="Пароль:"
                 type="password"
                 name="password"
+                autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <input type="submit" value="Войти" />
+
             <a href="">Забыли пароль?</a>
           </form>
           <div className="auth_reg">

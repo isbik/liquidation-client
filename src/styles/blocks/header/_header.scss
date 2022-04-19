@@ -16,6 +16,9 @@ header .container {
 @media (max-width: 540px) {
   header {
     padding: 15px 0;
+    .pc-hidden {
+      width: auto;
+    }
   }
   .header-inner.show {
     background: #fff;
@@ -41,5 +44,33 @@ header .container {
   }
   .header-inner {
     display: none;
+  }
+}
+.cart-wrapper {
+  position: relative;
+  margin-left: 40px;
+  display: flex;
+  .cart-ico {
+    display: block;
+    background-image: url(/static/icons/cart-header.svg);
+    width: 39px;
+    height: 39px;
+    background-repeat: no-repeat;
+  }
+  span {
+    position: absolute;
+    display: flex;
+    background: #ffffff;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    right: -9px;
+    top: -6px;
   }
 }

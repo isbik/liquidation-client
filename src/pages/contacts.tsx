@@ -1,14 +1,25 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, Modal } from "@/components";
 import { useStore } from "effector-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   $contactApplicationForm,
+  $isSendedForm,
   changeContactForm,
+  resetSendedForm,
   sendContactForm,
 } from "../features/contact_application/contact_application.model";
 
 const Contacts = () => {
+  const [open, setOpen] = useState(false);
   const contactApplication = useStore($contactApplicationForm);
+  const isSendedForm = useStore($isSendedForm);
+
+  useEffect(() => {
+    if (isSendedForm) {
+      setOpen(true);
+      resetSendedForm();
+    }
+  }, [isSendedForm]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -24,6 +35,14 @@ const Contacts = () => {
   return (
     <>
       <Header />
+      <Modal
+        title="Вопрос успешно отправлен!"
+        isOpen={open}
+        setIsOpen={setOpen}
+      >
+        Ваш вопрос был отправлен к нам в тех. поддержку. Ожидайте получения
+        письма на почту, которую вы указывали в заявке.
+      </Modal>
       <section className="contacts">
         <div className="container">
           <div className="contacts_wrapper">
@@ -110,9 +129,7 @@ const Contacts = () => {
                       placeholder="Комментарий"
                     ></textarea>
                   </div>
-                  <a data-fancybox href="#hidden">
-                    Задать вопрос
-                  </a>
+                  <button type="submit">Задать вопрос</button>
                 </form>
               </div>
             </div>

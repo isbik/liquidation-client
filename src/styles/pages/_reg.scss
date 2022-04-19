@@ -3,17 +3,23 @@
   font-weight: bold;
   font-size: 24px;
   line-height: 29px;
-  color: #000000;
+  color: #fff;
   text-align: center;
   margin-bottom: 20px;
 }
-
+.reg {
+  padding: 50px 0 80px;
+  .mobile-hidden {
+    width: 100%;
+    text-align: center;
+  }
+}
 .reg_subtitle {
   font-family: "Inter-Medium";
   font-weight: 500;
   font-size: 22px;
   line-height: 27px;
-  color: #000000;
+  color: #fff;
   margin-bottom: 10px;
   text-align: center;
   display: block;
@@ -41,6 +47,24 @@
   margin-bottom: 25px;
 }
 
+ input[type='submit'].submit-btn {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  background: #367AF5;
+  border-radius: 10px;
+  padding: 17px;
+  max-width: 362px;
+  width: 100%;
+  margin: auto;
+  height: 53px;
+  padding: 17px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 
 .reg_form-item span {
   max-width: 170px;
@@ -58,6 +82,10 @@
   height: 45px;
   border-radius: 5px;
   padding: 5px;
+
+  &::placeholder {
+    color: #fff;
+  }
 }
 
 .reg_btn {
@@ -86,4 +114,70 @@
   line-height: 15px;
   text-align: center;
   color: #000000;
+}
+
+.reg_subtitle.reg_subtitle-color {
+  color: #000;
+}
+@media (max-width: 540px) {
+  .reg {
+    padding: 0;
+;    h1{
+      font-family: 'Inter';
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 34px;
+      color: #000;
+    }
+    .container {
+      padding: 0;
+    }
+    .reg_subtitle {
+      display: none;
+    }
+    .reg_text {
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+    .reg_form-inner {
+      padding: 0;
+      background: transparent;
+    }
+    .reg_form-item {
+      margin-bottom: 0;
+      padding: 0 16px;
+      span {
+        display: none;
+      }
+      input {
+        margin-bottom: 15px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        height: 51px;
+        padding: 16px 10px;
+        max-width: 100%;
+        &::placeholder {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 19px;
+          color: #808080;
+        }
+      }
+    }
+  }
+  .reg-desc {
+    padding: 0 16px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    p {
+      font-size: 16px;
+      line-height: 19px;
+      color: #000000;
+      margin-bottom: 15px;
+      a {
+        color: #367AF5;
+      }
+    }
+  }
 }

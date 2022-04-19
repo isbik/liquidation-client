@@ -9,27 +9,24 @@ header .container .menu ul li {
 }
 
 header .container .menu ul li a {
-  font-family: $font-family;
   font-weight: 500;
   line-height: 20px;
   font-size: 16px;
 }
 .enter {
-	span {
-		font-family: "Inter";
-		font-weight: 500;
-		font-size: 16px;
-		line-height: 19px;
-		display: inline-flex;
+  span {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: inline-flex;
     color: #fff;
-	}
-	.enter_item {
-		font-family: $font-family;
-  		font-weight: 500;
-  		line-height: 20px;
-  		font-size: 16px;
-  		color: #367AF5;
-	}
+  }
+  .enter_item {
+    font-weight: 500;
+    line-height: 20px;
+    font-size: 16px;
+    color: #367af5;
+  }
 }
 
 @media (max-width: 540px) {
@@ -40,12 +37,12 @@ header .container .menu ul li a {
     .header-inner {
       .menu ul {
         flex-wrap: wrap;
-  
+
         li {
           width: 100%;
           text-align: center;
           padding-left: 0;
-  
+
           a {
             color: #000;
           }
@@ -55,7 +52,7 @@ header .container .menu ul li a {
         display: flex;
         justify-content: center;
         width: 100%;
-  
+
         span {
           color: #000;
         }

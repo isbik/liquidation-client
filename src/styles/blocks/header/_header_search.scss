@@ -1,5 +1,6 @@
 .search_form {
   display: flex;
+  width: 497px;
 }
 
 .search_form input {
@@ -30,6 +31,7 @@
 
 @media (max-width: 540px) {
   .search_form  {
+    width: 100%;
     input {
       border: 1px solid #000;
       border-right: none;

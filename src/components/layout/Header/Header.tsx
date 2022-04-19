@@ -1,14 +1,31 @@
+import { $authenticated } from "@/features/auth/auth.model";
 import { $user } from "@/features/user/user.model";
 import { useStore } from "effector-react";
 import Link from "next/link";
-import React, { useMemo } from "react";
+import { useRouter } from "next/router";
+import React, { useMemo, useState } from "react";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const [search, setSearch] = useState("");
+
+  const router = useRouter();
+
   const user = useStore($user);
+  const authenticated = useStore($authenticated);
 
   const name = useMemo(() => user?.fio.split(" ")[1], [user]);
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    router.push("/catalog", {
+      query: {
+        q: search,
+      },
+    });
+  };
 
   return (
     <header>
@@ -35,10 +52,14 @@ const Header = (props: Props) => {
             <nav className="menu">
               <ul>
                 <li>
-                  <a href="#">Купить</a>
+                  <Link href="/catalog">
+                    <a>Купить</a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Продать</a>
+                  <Link href={"/account/advertisements"}>
+                    <a>Продать</a>
+                  </Link>
                 </li>
                 <li>
                   <Link href={"/contacts"}>
@@ -46,13 +67,17 @@ const Header = (props: Props) => {
                   </Link>
                 </li>
                 <li>
-                  <a href="#">Помощь</a>
-                </li>
-                <li>
-                  <Link href="/registration">
-                    <a>Регистрация</a>
+                  <Link href="/">
+                    <a>Помощь</a>
                   </Link>
                 </li>
+                {!authenticated && (
+                  <li>
+                    <Link href="/registration">
+                      <a>Регистрация</a>
+                    </Link>
+                  </li>
+                )}
               </ul>
             </nav>
             {user ? (
@@ -78,22 +103,32 @@ const Header = (props: Props) => {
         <div className="category_section">
           <div className="container">
             <div className="category_section-left">
-              <svg
-                width="14"
-                height="13"
-                viewBox="0 0 14 13"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="14" height="3" rx="1" fill="white" />
-                <rect y="5" width="14" height="3" rx="1" fill="white" />
-                <rect y="10" width="14" height="3" rx="1" fill="white" />
-              </svg>
-              <span>Категории</span>
+              <Link href={"/categories"}>
+                <a>
+                  <svg
+                    width="14"
+                    height="13"
+                    viewBox="0 0 14 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="14" height="3" rx="1" fill="white" />
+                    <rect y="5" width="14" height="3" rx="1" fill="white" />
+                    <rect y="10" width="14" height="3" rx="1" fill="white" />
+                  </svg>
+                  <span>Категории</span>
+                </a>
+              </Link>
             </div>
             <div className="category_section-right">
-              <form action="" className="search_form">
-                <input type="text" name="search" placeholder="Найти..." />
+              <form onSubmit={handleSubmit} action="" className="search_form">
+                <input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  type="text"
+                  name="search"
+                  placeholder="Найти..."
+                />
                 <button type="submit">Найти</button>
               </form>
             </div>

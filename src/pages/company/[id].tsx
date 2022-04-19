@@ -13,7 +13,7 @@ const Company = (props: Props) => {
           <div className="company-card">
             <div className="col-4 col-m-12">
               <div className="img-wrapper">
-                <img src="img/company-card1.png" alt="" />
+                <img src="/static/company-card1.png" alt="" />
               </div>
             </div>
             <div className="col-7 col-m-12">
@@ -68,7 +68,7 @@ const Company = (props: Props) => {
             </div>
             <div className="col-1 company-star col-m-12">
               <div className="star-wrapper">
-                <img src="img/icons/star.svg" alt="" />
+                <img src="/static/icons/star.svg" alt="" />
               </div>
             </div>
           </div>

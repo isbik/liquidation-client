@@ -1,8 +1,12 @@
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+
 /*main styles*/
+@import "fonts.scss";
 @import "reset.scss";
 @import "var.scss";
 @import "grid.scss";
-@import "fonts.scss";
 @import "main-styles.scss";
 
 /* blocks */
@@ -37,4 +41,5 @@
 @import "pages/notifications.scss";
 @import "pages/company-card.scss";
 @import "pages/cart.scss";
-@import "pages/add_advertisement.scss";
+@import "pages/add-advertisement.scss";
+@import "pages/advertisiment-preview.scss";

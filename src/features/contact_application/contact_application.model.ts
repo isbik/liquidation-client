@@ -1,4 +1,5 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
+import { toast } from "react-toastify";
 import { api } from "../../services";
 
 type ContactFormData = {
@@ -11,8 +12,22 @@ type ContactFormData = {
 const sendContactForm = createEvent();
 
 const sendContactFormFx = createEffect<ContactFormData, void>({
-  handler: async (data) => {
-    await api.post("/contact-application", data);
+  handler: (data) => {
+    return new Promise((resolve, reject) => {
+      api
+        .post("/contact-application", data)
+        .then(() => resolve())
+        .catch((error) => {
+          if (error.response.status === 400) {
+            toast.warn("Заполните все данные правильно");
+          } else {
+            toast.error(
+              "Не удалось отправить обращение попробуйте в другой раз"
+            );
+          }
+          reject();
+        });
+    });
   },
 });
 
@@ -36,4 +51,16 @@ sample({
   target: sendContactFormFx,
 });
 
-export { $contactApplicationForm, changeContactForm, sendContactForm };
+const resetSendedForm = createEvent();
+
+const $isSendedForm = createStore(false)
+  .on(sendContactFormFx.doneData, () => true)
+  .reset(resetSendedForm);
+
+export {
+  $contactApplicationForm,
+  $isSendedForm,
+  changeContactForm,
+  sendContactForm,
+  resetSendedForm,
+};

@@ -8,7 +8,7 @@ const FeaturedLots = (props: Props) => {
     <>
       <div className="account-inner favorites-organizations">
         <div className="empty-content">
-          <p className="empty">Нет избранных организаций</p>
+          <p className="empty">Нет избранных лотов</p>
           <p className="empty">
             Перейдите в{" "}
             <Link href="/catalog">

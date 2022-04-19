@@ -14,7 +14,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     .ordering-title {
-      font-family: "Inter";
       font-weight: 500;
       font-size: 20px;
       line-height: 24px;
@@ -33,18 +32,17 @@
         margin-bottom: 10px;
         display: flex;
 
-        &:nth-child(1n+3) {
+        &:nth-child(1n + 3) {
           justify-content: flex-end;
         }
-        &:nth-child(2n+2) {
+        &:nth-child(2n + 2) {
           justify-content: center;
         }
-        &:nth-child(3n+1) {
+        &:nth-child(3n + 1) {
           justify-content: flex-start;
         }
       }
-      label{
-        font-family: "Inter";
+      label {
         font-size: 18px;
         line-height: 22px;
         color: #000000;
@@ -56,14 +54,14 @@
         opacity: 0;
       }
       /* для элемента label связанного с .custom-radio */
-      .custom-radio+label {
+      .custom-radio + label {
         display: inline-flex;
         align-items: center;
         user-select: none;
       }
       /* создание в label псевдоэлемента  before со следующими стилями */
-      .custom-radio+label::before {
-        content: '';
+      .custom-radio + label::before {
+        content: "";
         display: inline-block;
         width: 1em;
         height: 1em;
@@ -75,28 +73,27 @@
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 50% 50%;
-
       }
       /* стили при наведении курсора на радио */
-      .custom-radio:not(:disabled):not(:checked)+label:hover::before {
+      .custom-radio:not(:disabled):not(:checked) + label:hover::before {
         border-color: #b3d7ff;
       }
       /* стили для активной радиокнопки (при нажатии на неё) */
-      .custom-radio:not(:disabled):active+label::before {
+      .custom-radio:not(:disabled):active + label::before {
         background-color: #b3d7ff;
         border-color: #b3d7ff;
       }
       /* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
-      .custom-radio:focus:not(:checked)+label::before {
+      .custom-radio:focus:not(:checked) + label::before {
         border-color: #80bdff;
       }
       /* стили для радиокнопки, находящейся в состоянии checked */
-      .custom-radio:checked+label::before {
-        border-color: #367AF5;
-        background-color: #367AF5;
+      .custom-radio:checked + label::before {
+        border-color: #367af5;
+        background-color: #367af5;
       }
       /* стили для радиокнопки, находящейся в состоянии disabled */
-      .custom-radio:disabled+label::before {
+      .custom-radio:disabled + label::before {
         background-color: #e9ecef;
       }
     }
@@ -105,7 +102,6 @@
       max-width: 354px;
       margin-bottom: 10px;
       .input-title {
-        font-family: "Inter";
         font-size: 18px;
         line-height: 22px;
         color: #000000;
@@ -117,6 +113,10 @@
         height: 34px;
         border-radius: 5px;
         border: 1px solid #000000;
+
+        &::placeholder {
+          color: #fff;
+        }
       }
     }
     .ordering-item.wide {
@@ -142,13 +142,13 @@
         margin-bottom: 10px;
         display: flex;
 
-        &:nth-child(1n+3) {
+        &:nth-child(1n + 3) {
           justify-content: flex-end;
         }
-        &:nth-child(2n+2) {
+        &:nth-child(2n + 2) {
           justify-content: flex-end;
         }
-        &:nth-child(3n+1) {
+        &:nth-child(3n + 1) {
           justify-content: flex-start;
         }
         &:nth-child(4) {
@@ -158,7 +158,8 @@
     }
   }
   .ordering-total {
-    font-family: "Inter";
+    margin-top: 60px;
+
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
@@ -169,12 +170,11 @@
     }
   }
   .btn-blue {
-    font-family: "Inter";
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
-    color: #FFFFFF;
-    background: #367AF5;
+    color: #ffffff;
+    background: #367af5;
     border-radius: 10px;
     max-width: 226px;
     width: 100%;
@@ -190,12 +190,43 @@
 
 @media (max-width: 540px) {
   .ordering {
+    padding: 30px 0 50px;
+    .container {
+      padding: 0;
+    }
+    .ordering-total {
+      font-size: 18px;
+      line-height: 22px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
     .ordering-items {
+      margin-bottom: 0;
+      padding: 0 16px;
+      .ordering-item {
+        .input-title {
+          display: none;
+        }
+        input {
+          padding: 10px;
+          height: 51px;
+          &::placeholder {
+            color: #808080;
+            font-size: 16px;
+            line-height: 19px;
+            font-weight: 500;
+          }
+        }
+      }
       .ordering-checkboxes {
+        margin: 20px 0;
         .checkbox {
           width: 100%;
-          justify-content: flex-start!important;
+          justify-content: flex-start !important;
         }
+      }
+      input[type="submit"] {
+        max-width: 100%;
       }
     }
   }
