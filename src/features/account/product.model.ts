@@ -12,7 +12,7 @@ const PER_PAGE = 6;
 
 const fetchProductsFx = createEffect<{ page: number }, Paginated<never>>({
   handler: async ({ page }) => {
-    const products = await api.get("/products/search", {
+    const products = await api.get("/products", {
       params: {
         limit: PER_PAGE,
         offset: PER_PAGE * page,

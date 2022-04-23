@@ -196,3 +196,13 @@ h1 {
     width: 100%;
   }
 }
+
+.btn-blue {
+  border: none;
+  color: #ffffff;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}

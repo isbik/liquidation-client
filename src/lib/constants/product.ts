@@ -44,13 +44,21 @@ export const PRODUCT_CREATE = {
   location: "Москва дом ленина",
   supplier: Supplier.owner,
   images: [],
-  manifestoFile: {
-    id: 1,
-    filename: "test",
-    url: "asdf",
-    mimetype: "jpeg",
-    key: "3",
-    owner: 5,
-    active: true,
-  },
+  manifestoFile: null,
 };
+
+export const CONDITION = [
+  { value: "new", text: "Новое" },
+  { value: "as_new", text: "Как новое" },
+  { value: "good", text: "Хорошее" },
+  { value: "acceptable", text: "Допустимое" },
+  { value: "bad", text: "Плохое" },
+];
+
+export const UNIT_TYPES = [
+  { value: "kg", text: "Килограммы" },
+  {
+    value: "tone",
+    text: "Тонны",
+  },
+];

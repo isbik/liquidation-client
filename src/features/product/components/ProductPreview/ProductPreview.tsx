@@ -1,10 +1,18 @@
 import { useStore } from "effector-react";
+import { useRouter } from "next/router";
 import React from "react";
-import { $createProductForm, createProduct } from "../../product.create.model";
+import {
+  $createProductForm,
+  changeIsPreview,
+  createProduct,
+} from "../../product.create.model";
+import { getConditionText, getUnitTypeText } from "../../product.utils";
 
 type Props = {};
 
 const ProductPreview = (props: Props) => {
+  const router = useRouter();
+
   const productForm = useStore($createProductForm);
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -69,7 +77,7 @@ const ProductPreview = (props: Props) => {
             </div>
             <div className="preview-block">
               <h3>Единицы измерения</h3>
-              <p className="desc">{productForm.unitType}</p>
+              <p className="desc">{getUnitTypeText(productForm.unitType)}</p>
             </div>
             <div className="preview-block">
               <h3>Расположение товара</h3>
@@ -95,7 +103,7 @@ const ProductPreview = (props: Props) => {
             </div>
             <div className="preview-block">
               <h3>Состояние</h3>
-              <p className="desc">{productForm.condition}</p>
+              <p className="desc">{getConditionText(productForm.condition)}</p>
             </div>
             <div className="preview-block">
               <h3>Минимальная ставка</h3>
@@ -116,9 +124,12 @@ const ProductPreview = (props: Props) => {
           </div>
           <div className="col-12 order-m-1">
             <div className="col-12">
-              <a href="#" className="edit-btn">
+              <button
+                onClick={() => changeIsPreview(false)}
+                className="edit-btn"
+              >
                 Редактировать
-              </a>
+              </button>
             </div>
             <div className="col-12">
               <div className="desc-for-input">

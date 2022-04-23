@@ -3,4 +3,7 @@ export type User = {
   fio: string;
   email: string;
   phone: string;
+  position: string;
+  directorPhone: string;
+  directorEmail: string;
 };

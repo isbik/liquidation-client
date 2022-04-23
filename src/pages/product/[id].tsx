@@ -1,23 +1,43 @@
 import { Footer, Header } from "@/components";
+import { EndTimerAuction } from "@/features/product/components";
+import {
+  getAuctionType,
+  getConditionText,
+  getUnitTypeText,
+} from "@/features/product/product.utils";
+import { $user } from "@/features/user/user.model";
 import { api } from "@/services";
-import React from "react";
+import dayjs from "dayjs";
+import { useStore } from "effector-react";
+import { GetServerSideProps } from "next";
+import React, { useState } from "react";
+import { FreeMode, Navigation, Thumbs } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-export async function getServerSideProps({ query }) {
+export const getServerSideProps = async ({
+  query,
+  req,
+}: GetServerSideProps) => {
   const { id } = query;
-  const product = await api.get("/products/" + id);
+  const product = await api.get("/products/" + id, {
+    headers: req ? { cookie: req.headers.cookie } : undefined,
+  });
 
   return {
     props: {
       product: product.data,
     },
   };
-}
+};
 
 type Props = {
   product: never;
 };
 
 const ProductPage = ({ product }: Props) => {
+  const user = useStore($user);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
   return (
     <>
       <Header />
@@ -26,63 +46,62 @@ const ProductPage = ({ product }: Props) => {
           <div className="col-12 product-upper-content">
             <div className="col-6 col-m-12 left-content">
               <h1>{product.name}</h1>
-              <div className="swiper mySwiper2">
-                <div className="swiper-wrapper">
-                  <div className="swiper-slide">
-                    <img src="/static/product-slide1.png" />
+              <Swiper
+                thumbs={{ swiper: thumbsSwiper }}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper2"
+              >
+                <SwiperSlide>
+                  <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="video-wrapper">
+                    <div className="vid-btn"></div>
+                    <img src="/static/video-slide1.png" />
                   </div>
-                  <div className="swiper-slide">
-                    <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+              </Swiper>
+
+              <Swiper
+                spaceBetween={10}
+                slidesPerView={4}
+                freeMode={true}
+                watchSlidesProgress={true}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper"
+              >
+                <SwiperSlide>
+                  <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <img src="/static/product-slide1.png" />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="video-wrapper">
+                    <div className="vid-btn"></div>
+                    <img src="/static/video-slide1.png" />
                   </div>
-                  <div className="swiper-slide">
-                    <img src="/static/product-slide1.png" />
-                  </div>
-                  <div className="swiper-slide">
-                    <img src="/static/product-slide1.png" />
-                  </div>
-                  <div className="swiper-slide">
-                    <div className="video-wrapper">
-                      <div className="vid-btn"></div>
-                      <img src="/static/video-slide1.png" />
-                    </div>
-                  </div>
-                </div>
-                <div className="swiper-pagination"></div>
-              </div>
-              <div className="swiper mySwiper">
-                <div className="swiper-wrapper">
-                  <div className="swiper-slide">
-                    <img src="/static/product-slide1.png" />
-                  </div>
-                  <div className="swiper-slide">
-                    <img src="/static/product-slide1.png" />
-                  </div>
-                  <div className="swiper-slide">
-                    <img src="/static/product-slide1.png" />
-                  </div>
-                  <div className="swiper-slide">
-                    <img src="/static/product-slide1.png" />
-                  </div>
-                  <div className="swiper-slide">
-                    <div className="video-wrapper">
-                      <div className="vid-btn"></div>
-                      <img src="/static/video-slide1.png" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </SwiperSlide>
+              </Swiper>
             </div>
             <div className="col-6 col-m-12">
-              <div className="lot-info">
-                <div className="lot-desc fw-b">
-                  Конец лота через:
-                  <span className="blue">2 дня 12 часов 32 минуты</span>
-                </div>
-                <div className="lot-desc lot-end">
-                  (Лот закрывается
-                  <span> 30 декабря в 12:00</span>)
-                </div>
-              </div>
+              <EndTimerAuction finishAt={product.finishAuctionAt} />
+
               <form className="lot-form" action="">
                 <div className="lot-info product-info">
                   <div className="products-info-wrapper">
@@ -91,9 +110,7 @@ const ProductPage = ({ product }: Props) => {
                         <p className="fw-b">Текущая ставка:</p>
                       </div>
                       <div className="col-6">
-                        <p className="fw-b">
-                          {product.recommendedRetailPrice} ₽
-                        </p>
+                        <p className="fw-b">{product.bet.count} ₽</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -101,7 +118,7 @@ const ProductPage = ({ product }: Props) => {
                         <p className="fw-b">Минимальная ставка:</p>
                       </div>
                       <div className="col-6">
-                        <p>{product.minRate} ₽</p>
+                        <p>{product.bet.count + 1} ₽</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -134,7 +151,7 @@ const ProductPage = ({ product }: Props) => {
                       </div>
                       <div className="col-6">
                         <p>
-                          {product.condition}
+                          {getConditionText(product.condition)}
                           <i className="help-quality"></i>
                         </p>
                         <div className="quality-info">
@@ -153,13 +170,14 @@ const ProductPage = ({ product }: Props) => {
                       </div>
                       <div className="col-6">
                         <p>
-                          {product.totalWeight} {product.unitType} килограмм
+                          {product.totalWeight}{" "}
+                          {getUnitTypeText(product.unitType)}
                         </p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
                       <div className="col-6">
-                        <p>Колличество в лоте:</p>
+                        <p>Количество в лоте:</p>
                       </div>
                       <div className="col-6">
                         <p>{product.quantity}</p>
@@ -170,7 +188,7 @@ const ProductPage = ({ product }: Props) => {
                         <p>Тип аукциона:</p>
                       </div>
                       <div className="col-6">
-                        <p>{product.auctionType}</p>
+                        <p>{getAuctionType(product.auctionType)}</p>
                       </div>
                     </div>
                   </div>
@@ -183,19 +201,31 @@ const ProductPage = ({ product }: Props) => {
                     <div className="further-information">
                       <div className="item item-left">
                         Просмотров
-                        <span>264</span>
+                        <span>{product.viewsCount}</span>
                       </div>
                       <div className="item">
                         В списке товаров
-                        <span>21</span>
+                        <span>{product.favoritesCount}</span>
                       </div>
                     </div>
-                    <div className="input-wrapper">
-                      <input type="text" placeholder="Введите ставку" />
-                    </div>
-                    <div className="input-wrapper">
-                      <input type="submit" value="Сделать ставку" />
-                    </div>
+                    {product.finishAuctionAt &&
+                      dayjs(product.finishAuctionAt).isAfter(new Date()) &&
+                      product.bet.userId !== user.id && (
+                        <>
+                          <div className="input-wrapper">
+                            <input type="text" placeholder="Введите ставку" />
+                          </div>
+                          <div className="input-wrapper">
+                            <input type="submit" value="Сделать ставку" />
+                          </div>
+                        </>
+                      )}
+
+                    {product.bet.userId === user.id && (
+                      <p className="w-full font-bold text-center">
+                        Вы сделали ставку
+                      </p>
+                    )}
                   </div>
                 </div>
               </form>

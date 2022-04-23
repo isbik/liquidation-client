@@ -60,6 +60,12 @@ sample({
 
 const changeIsPreview = createEvent<boolean>();
 
+const resetCreatedProduct = createEvent();
+
+const $isCreatedProduct = createStore(false)
+  .on(createProductFx.doneData, () => true)
+  .reset(resetCreatedProduct);
+
 const $isPreview = restore(changeIsPreview, false).reset(
   createProductFx.doneData
 );
@@ -71,4 +77,6 @@ export {
   changeIsPreview,
   createProduct,
   createProductFx,
+  resetCreatedProduct,
+  $isCreatedProduct,
 };

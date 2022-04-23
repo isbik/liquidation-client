@@ -1,16 +1,22 @@
 import { CategorySelect } from "@/components/inputs/CategorySelect";
+import { CONDITION, UNIT_TYPES } from "@/lib";
 import { useStore } from "effector-react";
-import React, { useCallback } from "react";
+import { useRouter } from "next/router";
+import React, { useCallback, useEffect } from "react";
 import { toast } from "react-toastify";
 import {
   $createProductForm,
+  $isCreatedProduct,
   changeCreateProductForm,
   changeIsPreview,
+  resetCreatedProduct,
 } from "../../product.create.model";
-import { Supplier, UnitType } from "../../product.types";
+import { Supplier } from "../../product.types";
 
 const ProductCreateForm = () => {
+  const router = useRouter();
   const productForm = useStore($createProductForm);
+  const isCreatedProduct = useStore($isCreatedProduct);
 
   const handleChange = useCallback(
     (
@@ -29,11 +35,20 @@ const ProductCreateForm = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const isAllFilled = Object.values(productForm).every(Boolean);
+    const { manifestoFile, ...data } = productForm;
+
+    const isAllFilled = Object.values(data).every(Boolean);
 
     if (isAllFilled) changeIsPreview(true);
     else toast.warn("Заполните все поля");
   };
+
+  useEffect(() => {
+    if (isCreatedProduct) {
+      resetCreatedProduct();
+      router.push("/account/advertisements");
+    }
+  }, [isCreatedProduct]);
 
   return (
     <>
@@ -116,11 +131,11 @@ const ProductCreateForm = () => {
                     name="condition"
                     onChange={handleChange}
                   >
-                    <option value="new">Новое</option>
-                    <option value="as_new">Как новое</option>
-                    <option value="good">Хорошее</option>
-                    <option value="acceptable">Допустимое</option>
-                    <option value="bad">Плохое</option>
+                    {CONDITION.map(({ value, text }) => (
+                      <option key={value} value={value}>
+                        {text}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -186,8 +201,11 @@ const ProductCreateForm = () => {
                   name="unitType"
                   onChange={handleChange}
                 >
-                  <option value={UnitType.kg}>Килограммы</option>
-                  <option value={UnitType.tone}>Тонны</option>
+                  {UNIT_TYPES.map(({ value, text }) => (
+                    <option value={value} key={value}>
+                      {text}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

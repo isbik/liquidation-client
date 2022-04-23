@@ -4,6 +4,10 @@ import type { AppProps } from "next/app";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
 import "../styles/style.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
