@@ -1,196 +1,198 @@
 .account-section {
-	.account-tab-list {
-		.list-detail {
-			display: flex;
-			a {
-    			margin-left: -1px;
-				width: 166px;
-				font-size: 16px;
-				line-height: 19px;
-				color: #000000;
-				padding: 18px;
-				text-align: center;
-				border: 1px solid #000000;
-				border-radius: 5px 5px 0px 0px;
-				display: inline-block;
-				text-decoration: none;
-				border-bottom: none;
-				&:hover {
-					text-decoration: none;
-				}
-			}
-			a.active {
-				border-bottom: 1px solid #fff;
-    			margin-bottom: -1px;
-			}
-		}
-	}
-	.account-inner.account-bets.outgoing-bets {
-		table {
-			.completed span {
-				width: 196px;
-			}
-		}
-		td {
-			.time-delay {
-				background: #C9C9C9;
-				border-radius: 5px;
-				padding: 7px;
-				text-align: center;
-				width: 196px;
-			}
-			.complited {
-				width: 196px;
-			}
-			&:nth-child(2) {
-				width: 213px;
-			}
-			&:nth-child(3) {
-				width: 166px;
-			}
-			&:nth-child(4) {
-				width: 260px;
-			}	
-		}
-	}
-	.account-inner.account-bets {
-		border-radius: 0 5px 5px 5px;
-		padding: 30px 35px;
-		position: relative;
-		z-index: 0;
-		margin-left: -1px;
-		.table-wrapper {
-			background: #E8E8E8;
-    		min-height: 342px;
-    		border: 1px solid #7B7B7B;
-		}
-		table {
-			background: #fff;
-			width: 100%;
-			th {
-				font-family: 'Inter';
-				font-weight: 500;
-				font-size: 16px;
-				line-height: 19px;
-				color: #000000;
-				border: 1px solid #7B7B7B;
-				padding: 12px;
-				text-align: center;
-				width: 209px;
-				border-top: none;
+  .account-tab-list {
+    .list-detail {
+      display: flex;
+      a {
+        margin-left: -1px;
+        width: 166px;
+        font-size: 16px;
+        line-height: 19px;
+        color: #000000;
+        padding: 18px;
+        text-align: center;
+        border: 1px solid #000000;
+        border-radius: 5px 5px 0px 0px;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: none;
+        &:hover {
+          text-decoration: none;
+        }
+      }
 
-				&:first-child {
-					border-left: none;
-				}
-				&:last-child {
-					border-right: none;
-				}
-			}
-			td {
-				padding: 7px;
-				vertical-align: middle;
-				font-size: 16px;
-				line-height: 19px;
-				color: #000000;
-				border: 1px solid #7B7B7B;
-				text-align: center;
-				width: 209px;
-				&:first-child {
-					border-left: none;
-				}
-				&:last-child {
-					border-right: none;
-				}
-			}
-			.number {
-				padding: 12px;
-				width: 55px;
-				height: 43px;
-			}
-			.completed {
-				padding: 7px;
-				span {
-					background: #5BB959;
-					border-radius: 5px;
-					padding: 6px;
-					color: #fff;
-				}
-			}
-		}
-	}
+      a.active {
+        position: relative;
+        border-bottom: 1px solid #fff;
+        margin-bottom: -1px;
+        z-index: 1;
+      }
+    }
+  }
+  .account-inner.account-bets.outgoing-bets {
+    table {
+      .completed span {
+        width: 196px;
+      }
+    }
+    td {
+      .time-delay {
+        background: #c9c9c9;
+        border-radius: 5px;
+        padding: 7px;
+        text-align: center;
+        width: 196px;
+      }
+      .complited {
+        width: 196px;
+      }
+      &:nth-child(2) {
+        width: 213px;
+      }
+      &:nth-child(3) {
+        width: 166px;
+      }
+      &:nth-child(4) {
+        width: 260px;
+      }
+    }
+  }
+  .account-inner.account-bets {
+    border-radius: 0 5px 5px 5px;
+    padding: 30px 35px;
+    position: relative;
+    z-index: 0;
+    margin-left: -1px;
+    .table-wrapper {
+      background: #e8e8e8;
+      min-height: 342px;
+      border: 1px solid #7b7b7b;
+    }
+    table {
+      background: #fff;
+      width: 100%;
+      th {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #000000;
+        border: 1px solid #7b7b7b;
+        padding: 12px;
+        text-align: center;
+        width: 209px;
+        border-top: none;
+
+        &:first-child {
+          border-left: none;
+        }
+        &:last-child {
+          border-right: none;
+        }
+      }
+      td {
+        padding: 7px;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: 19px;
+        color: #000000;
+        border: 1px solid #7b7b7b;
+        text-align: center;
+        width: 209px;
+        &:first-child {
+          border-left: none;
+        }
+        &:last-child {
+          border-right: none;
+        }
+      }
+      .number {
+        padding: 12px;
+        width: 55px;
+        height: 43px;
+      }
+      .completed {
+        padding: 7px;
+        span {
+          background: #5bb959;
+          border-radius: 5px;
+          padding: 6px;
+          color: #fff;
+        }
+      }
+    }
+  }
 }
 
-
 @media (max-width: 540px) {
-	.account-section {
-		.account-inner.account-bets {
-			margin-left: 0;
-			padding: 15px 5px;
-			border-radius: 0 0 5px 5px;
-			background: #E8E8E8;
-			.table-wrapper {
-				display: none;
-			}
-			.mobile-bets {
-				background: #fff;	
-				border: 1px solid #7B7B7B;
-				.item-wrapper {
-					padding: 10px 5px 6px;
-					display: flex;
-    				align-items: center;
-					margin-bottom: 0;
-					border-bottom: 1px solid #7B7B7B;
-					.right-content p {
-						text-align: right;
-					}
-					&:last-child {
-						border-bottom: none;
-					}
-					.item-title {
-						font-weight: 500;
-						font-size: 16px;
-						line-height: 19px;
-						color: #000000;
-					}
-					p {
-						margin-top: 5px;
-						font-size: 16px;
-						line-height: 19px;
-						color: #000000;
-					}
-					.time-delay {
-						background: #DDDDDD;
-						font-size: 14px;
-						line-height: 17px;
-						color: #000000;
-						border-radius: 5px;
-						padding: 5px;
-					}
-					.time-delay.delay-end {
-						color: #fff;
-						background: #5BB959;
-						font-size: 16px;
-						line-height: 19px;
-					}
-				}
-			}
-		}
-		.account-tab-list {
-            .list-detail {
-                a {
-                    width: 100%;
-                    margin-left: 0;
-                }
-                a.active {
-                    background: #E8E8E8;
-                    border-bottom: none;
-                }
-            }
+  .account-section {
+    .account-inner.account-bets {
+      margin-left: 0;
+      padding: 15px 5px;
+      border-radius: 0 0 5px 5px;
+      background: #e8e8e8;
+      .table-wrapper {
+        display: none;
+      }
+      .mobile-bets {
+        background: #fff;
+        border: 1px solid #7b7b7b;
+        .item-wrapper {
+          padding: 10px 5px 6px;
+          display: flex;
+          align-items: center;
+          margin-bottom: 0;
+          border-bottom: 1px solid #7b7b7b;
+          .right-content p {
+            text-align: right;
+          }
+          &:last-child {
+            border-bottom: none;
+          }
+          .item-title {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            color: #000000;
+          }
+          p {
+            margin-top: 5px;
+            font-size: 16px;
+            line-height: 19px;
+            color: #000000;
+          }
+          .time-delay {
+            background: #dddddd;
+            font-size: 14px;
+            line-height: 17px;
+            color: #000000;
+            border-radius: 5px;
+            padding: 5px;
+          }
+          .time-delay.delay-end {
+            color: #fff;
+            background: #5bb959;
+            font-size: 16px;
+            line-height: 19px;
+          }
         }
-		.account-inner.favorite-lots {
-			margin-left: 0;
-			background: #E8E8E8;
-			border-radius: 0 0px 5px 5px;
-		}
-	}
+      }
+    }
+    .account-tab-list {
+      .list-detail {
+        a {
+          width: 100%;
+          margin-left: 0;
+        }
+        a.active {
+          background: #e8e8e8;
+          border-bottom: none;
+        }
+      }
+    }
+    .account-inner.favorite-lots {
+      margin-left: 0;
+      background: #e8e8e8;
+      border-radius: 0 0px 5px 5px;
+    }
+  }
 }

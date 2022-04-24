@@ -8,6 +8,7 @@ import {
 } from "@/features/catalog/catalog.model";
 import { ProductCatalogItem } from "@/features/product/components";
 import { api } from "@/services";
+import { Category } from "@/types";
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -19,7 +20,7 @@ const CatalogInner = () => {
   const products = useStore($products);
   const total = useStore($total);
   const page = useStore($page);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState<Category | null>(null);
 
   useEffect(() => {
     fetchProducts();

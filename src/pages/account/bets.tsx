@@ -1,16 +1,14 @@
 import { AccountWrapper } from "@/features/account/components";
+import { IncomingBets, OutgoingBets } from "@/features/product_bets/components";
 import clsx from "clsx";
 import React, { useState } from "react";
-
-type Props = {};
 
 enum BetTab {
   "incoming",
   "outgoing",
 }
 
-const AccountBetsPage = (props: Props) => {
-  const [bets] = useState([]);
+const AccountBetsPage = () => {
   const [tab, setTab] = useState<BetTab>(BetTab.incoming);
 
   const changeTab = (
@@ -47,33 +45,8 @@ const AccountBetsPage = (props: Props) => {
           </nav>
         </div>
       </div>
-      <div className="account-inner account-bets">
-        {bets.length === 0 && (
-          <div className="empty-content">
-            <p className="empty">Ничего не найдено</p>
-          </div>
-        )}
-        {bets.length !== 0 && (
-          <div className="table-wrapper">
-            <table>
-              <tr>
-                <th className="number">№</th>
-                <th>Покупатель</th>
-                <th>Сумма</th>
-                <th>Статус</th>
-              </tr>
-              {bets.map((bet) => (
-                <tr key={bet.id}>
-                  <td className="number">1</td>
-                  <td>Андрей Румянцев</td>
-                  <td>800 000 ₽</td>
-                  <td>Ожидает</td>
-                </tr>
-              ))}
-            </table>
-          </div>
-        )}
-      </div>
+      {tab === BetTab.incoming && <IncomingBets />}
+      {tab === BetTab.outgoing && <OutgoingBets />}
     </AccountWrapper>
   );
 };

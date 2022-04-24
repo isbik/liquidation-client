@@ -62,3 +62,10 @@ export const UNIT_TYPES = [
     text: "Тонны",
   },
 ];
+
+export const PRODUCT_STATUSES = [
+  { value: "draft", text: "Черновик" },
+  { value: "active", text: "Активный" },
+  { value: "finished", text: "Закончен" },
+  { value: "sold", text: "Продан" },
+];

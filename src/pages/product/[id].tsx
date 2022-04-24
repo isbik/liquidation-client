@@ -1,5 +1,9 @@
 import { Footer, Header } from "@/components";
-import { EndTimerAuction } from "@/features/product/components";
+import {
+  EndTimerAuction,
+  ProductCatalogItem,
+} from "@/features/product/components";
+import { Product } from "@/features/product/product.types";
 import {
   getAuctionType,
   getConditionText,
@@ -14,29 +18,43 @@ import React, { useState } from "react";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-export const getServerSideProps = async ({
+export const getServerSideProps: GetServerSideProps = async ({
   query,
   req,
-}: GetServerSideProps) => {
+}) => {
   const { id } = query;
-  const product = await api.get("/products/" + id, {
-    headers: req ? { cookie: req.headers.cookie } : undefined,
-  });
+
+  const headers: any = req ? { cookie: req.headers.cookie } : {};
+
+  const [product, similarProducts] = await Promise.all([
+    api.get("/products/" + id, {
+      headers,
+    }),
+    api.get("/products/" + id + "/similar", {
+      headers,
+    }),
+  ]);
 
   return {
     props: {
       product: product.data,
+      similarProducts: similarProducts.data,
     },
   };
 };
 
 type Props = {
-  product: never;
+  product: Product;
+  similarProducts: Product[];
 };
 
-const ProductPage = ({ product }: Props) => {
+const ProductPage = ({ product, similarProducts }: Props) => {
   const user = useStore($user);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  const handleSubmitBet = (event: React.FormEvent) => {
+    event.preventDefault();
+  };
 
   return (
     <>
@@ -102,7 +120,7 @@ const ProductPage = ({ product }: Props) => {
             <div className="col-6 col-m-12">
               <EndTimerAuction finishAt={product.finishAuctionAt} />
 
-              <form className="lot-form" action="">
+              <form className="lot-form" action="" onSubmit={handleSubmitBet}>
                 <div className="lot-info product-info">
                   <div className="products-info-wrapper">
                     <div className="lot-item-wrapper">
@@ -110,7 +128,7 @@ const ProductPage = ({ product }: Props) => {
                         <p className="fw-b">Текущая ставка:</p>
                       </div>
                       <div className="col-6">
-                        <p className="fw-b">{product.bet.count} ₽</p>
+                        <p className="fw-b">{product.bet?.count} ₽</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -118,7 +136,12 @@ const ProductPage = ({ product }: Props) => {
                         <p className="fw-b">Минимальная ставка:</p>
                       </div>
                       <div className="col-6">
-                        <p>{product.bet.count + 1} ₽</p>
+                        <p>
+                          {product.bet
+                            ? product.bet?.count + 1
+                            : product.minRate}{" "}
+                          ₽
+                        </p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -210,10 +233,10 @@ const ProductPage = ({ product }: Props) => {
                     </div>
                     {product.finishAuctionAt &&
                       dayjs(product.finishAuctionAt).isAfter(new Date()) &&
-                      product.bet.userId !== user.id && (
+                      product.bet?.userId !== user?.id && (
                         <>
                           <div className="input-wrapper">
-                            <input type="text" placeholder="Введите ставку" />
+                            <input type="number" placeholder="Введите ставку" />
                           </div>
                           <div className="input-wrapper">
                             <input type="submit" value="Сделать ставку" />
@@ -221,7 +244,7 @@ const ProductPage = ({ product }: Props) => {
                         </>
                       )}
 
-                    {product.bet.userId === user.id && (
+                    {product.bet?.userId === user?.id && (
                       <p className="w-full font-bold text-center">
                         Вы сделали ставку
                       </p>
@@ -330,6 +353,19 @@ const ProductPage = ({ product }: Props) => {
           </div>
         </div>
       </section>
+      {similarProducts.length !== 0 && (
+        <div className="container">
+          <div className="col-12 catalog-inner similar-products">
+            <div className="similar-title">Похожие товары</div>
+            <div className="items-wrapper">
+              {similarProducts.map((product) => (
+                <ProductCatalogItem key={product.id} product={product} />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   );

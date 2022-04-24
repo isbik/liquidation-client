@@ -1,20 +1,21 @@
 import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+
+dayjs.extend(duration);
 
 const getFinishAuction = (date: string) => {
   if (!date) {
     return { days: 0, hours: 0, minutes: 0, isFinish: true };
   }
 
-  const days = dayjs(date).diff(new Date(), "d");
+  const now = dayjs(new Date());
+  const end = dayjs(date);
 
-  const hours = dayjs(date)
-    .set("date", new Date().getDate())
-    .diff(new Date(), "h");
+  const days = dayjs.duration(end.diff(now)).days();
 
-  const minutes = dayjs(date)
-    .set("date", new Date().getDate())
-    .set("hours", new Date().getHours())
-    .diff(new Date(), "m");
+  const hours = dayjs.duration(end.diff(now)).hours();
+
+  const minutes = dayjs.duration(end.diff(now)).minutes();
 
   return { days, hours, minutes };
 };

@@ -1,4 +1,4 @@
-import { CONDITION, UNIT_TYPES } from "@/lib";
+import { CONDITION, PRODUCT_STATUSES, UNIT_TYPES } from "@/lib";
 
 export const getConditionText = (value: string) => {
   return CONDITION.find(({ value: v }) => v === value)?.text;
@@ -10,4 +10,8 @@ export const getUnitTypeText = (value: string) => {
 
 export const getAuctionType = (value: string) => {
   return "Стандартный"; // TODO
+};
+
+export const getStatusText = (value: string) => {
+  return PRODUCT_STATUSES.find(({ value: v }) => v === value)?.text;
 };

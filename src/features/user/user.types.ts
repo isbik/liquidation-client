@@ -6,4 +6,9 @@ export type User = {
   position: string;
   directorPhone: string;
   directorEmail: string;
+  settings: {
+    isSendNews: boolean;
+    isSendNewBets: boolean;
+    isSendNewCompetitorBets: boolean;
+  };
 };

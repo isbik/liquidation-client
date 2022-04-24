@@ -5,9 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useMemo, useState } from "react";
 
-type Props = {};
-
-const Header = (props: Props) => {
+const Header: React.FC = () => {
   const [search, setSearch] = useState("");
 
   const router = useRouter();
@@ -15,7 +13,7 @@ const Header = (props: Props) => {
   const user = useStore($user);
   const authenticated = useStore($authenticated);
 
-  const name = useMemo(() => user?.fio.split(" ")[1], [user]);
+  const name = useMemo(() => user?.fio.split(" ")[1] || user?.fio, [user]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

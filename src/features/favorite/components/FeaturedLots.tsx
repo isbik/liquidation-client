@@ -15,7 +15,7 @@ const FeaturedLots = () => {
     fetchFavoriteLots();
   }, []);
 
-  if (loading) return "Загрузка ...";
+  if (loading) return <>Загрузка ...</>;
 
   if (lots.length === 0)
     return (

@@ -6,7 +6,7 @@ import {
   createStore,
   forward,
   sample,
-} from "effector";
+} from "effector-next";
 import { setUser } from "../user/user.model";
 import { User } from "../user/user.types";
 import { AuthData } from "./auth.types";
@@ -55,9 +55,10 @@ sample({
 
 const changeAuthForm = createEvent<{ key: string; value: string }>();
 
-const registerUser = createEvent<unknown>();
+const registerUser = createEvent();
 
-const registerUserFx = createEffect<User, unknown, void>({
+// TODO
+const registerUserFx = createEffect<unknown, User, void>({
   handler: async (data) => {
     const response = await api.post<User>("/auth/register", data);
     return response.data;
@@ -89,7 +90,7 @@ sample({
 
 sample({
   clock: registerUser,
-  source: [$authForm],
+  source: $authForm,
   target: registerUserFx,
 });
 

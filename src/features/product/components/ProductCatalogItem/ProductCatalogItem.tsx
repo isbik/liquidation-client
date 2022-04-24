@@ -7,6 +7,8 @@ type Props = {
 };
 
 const ProductCatalogItem = ({ product }: Props) => {
+  if (!product) return null;
+
   const { hours, days, isFinish } = getFinishAuction(product.finishAuctionAt);
 
   return (

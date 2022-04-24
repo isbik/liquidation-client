@@ -1,5 +1,39 @@
 import { CloudFile } from "@/types";
 
+export type Product = {
+  id: number;
+  name: string;
+  shortDescription: string;
+  description: string;
+  category: number | { id: number; name: string };
+  subCategory: number;
+  owner: number;
+  seller: string;
+  condition: string;
+  price: number;
+  currency: string;
+  minRate: number;
+  recommendedRetailPrice: number;
+  quantity: number;
+  totalWeight: number;
+  unitType: UnitType;
+  location: string;
+  manifesto?: any;
+  supplier: Supplier;
+  // TODO
+  auctionType: "standard";
+  createdAt: string;
+  finishAuctionAt: string;
+  updatedAt: string;
+  status: ProductStatus;
+  bet?: {
+    userId: number;
+    count: number;
+  };
+  viewsCount?: number;
+  favoritesCount?: number;
+};
+
 export type CreateProductForm = {
   name: string;
   shortDescription: string;
@@ -36,4 +70,11 @@ export enum UnitType {
 export enum Supplier {
   owner = "owner",
   customer = "customer",
+}
+
+export enum ProductStatus {
+  draft = "draft",
+  active = "active",
+  finished = "finished",
+  sold = "sold",
 }
