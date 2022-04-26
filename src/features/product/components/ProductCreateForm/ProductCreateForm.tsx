@@ -12,6 +12,7 @@ import {
   resetCreatedProduct,
 } from "../../product.create.model";
 import { Supplier } from "../../product.types";
+import { ImageUploader } from "../ImageUploader";
 
 const ProductCreateForm = () => {
   const router = useRouter();
@@ -38,6 +39,8 @@ const ProductCreateForm = () => {
     const { manifestoFile, ...data } = productForm;
 
     const isAllFilled = Object.values(data).every(Boolean);
+
+    console.log("call");
 
     if (isAllFilled) changeIsPreview(true);
     else toast.warn("Заполните все поля");
@@ -255,22 +258,8 @@ const ProductCreateForm = () => {
                 ></textarea>
               </div>
             </div>
-            <div className="col-12">
-              <div className="container">
-                <div className="row">
-                  <label>Мультизагрузка файлов:</label>
-                  <input
-                    type="file"
-                    id="fileMulti"
-                    name="fileMulti[]"
-                    multiple
-                  />
-                </div>
-                <div className="row">
-                  <span id="outputMulti"></span>
-                </div>
-              </div>
-            </div>
+
+            <ImageUploader />
           </div>
           <div className="mobile-hidden">
             <input

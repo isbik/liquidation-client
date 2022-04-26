@@ -1,5 +1,6 @@
 import { PRODUCT_CREATE } from "@/lib";
 import { api } from "@/services";
+import { CloudFile } from "@/types";
 import {
   createEffect,
   createEvent,
@@ -42,12 +43,18 @@ const $createProductForm = createStore<CreateProductForm>(PRODUCT_CREATE)
   }))
   .reset(createProductFx.doneData);
 
+const setImages = createEvent<CloudFile[]>();
+
+const $images = createStore<CloudFile[]>([])
+  .on(setImages, (_, payload) => payload)
+  .reset(createProductFx.doneData);
+
 sample({
   // @ts-ignore
   clock: createProduct,
-  source: $createProductForm,
-  fn: (payload) => {
-    const { images, manifestoFile, ...rest } = payload;
+  source: [$createProductForm, $images],
+  fn: ([form, images]: [CreateProductForm, CloudFile[]]) => {
+    const { manifestoFile, ...rest } = form;
 
     return {
       ...rest,
@@ -79,4 +86,6 @@ export {
   createProductFx,
   resetCreatedProduct,
   $isCreatedProduct,
+  $images,
+  setImages,
 };

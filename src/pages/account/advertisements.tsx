@@ -39,7 +39,7 @@ const AccountAdvertisementsPage = () => {
             {products.map((product) => (
               <div key={product.id} className="catalog-item">
                 <div className="img-wrapper">
-                  <img src="/static/delivery.png" alt="" />
+                  <img src={product.images[0].url} alt="" />
                 </div>
                 <div className="info-wrapper">
                   <div className="item-info">
@@ -71,7 +71,12 @@ const AccountAdvertisementsPage = () => {
             ))}
           </div>
         )}
-        <Pagination page={page} total={total} onChange={changePage} hideNextButton />
+        <Pagination
+          page={page}
+          total={total}
+          onChange={changePage}
+          hideNextButton
+        />
 
         <a href="#" className="pc-hidden btn-blue">
           Добавить объявление

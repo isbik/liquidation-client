@@ -7,6 +7,7 @@ import {
   restore,
   sample,
 } from "effector";
+import { Product } from "../product/product.types";
 
 const PER_PAGE = 6;
 
@@ -24,7 +25,7 @@ const fetchProductsFx = createEffect<{ page: number }, Paginated<never>>({
 
 const fetchProducts = createEvent();
 
-const $products = createStore<never[]>([]).on(
+const $products = createStore<Product[]>([]).on(
   fetchProductsFx.doneData,
   (_, data) => data.items
 );

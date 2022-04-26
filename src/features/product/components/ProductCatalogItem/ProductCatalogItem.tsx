@@ -1,9 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import { Product } from "../../product.types";
 import { getFinishAuction } from "../../utils";
 
 type Props = {
-  product: unknown;
+  product: Product;
 };
 
 const ProductCatalogItem = ({ product }: Props) => {
@@ -16,7 +17,7 @@ const ProductCatalogItem = ({ product }: Props) => {
       <a href="" className="col-4 col-m-6">
         <div className="item">
           <div className="img-wrapper">
-            <img src="/static/catalog-img1.png" alt="" />
+            <img src={product.images[0]?.url} alt="" />
           </div>
           <div className="item-info">{product.name}</div>
           <div className="item-info">

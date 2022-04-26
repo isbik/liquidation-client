@@ -8,6 +8,7 @@ export type Product = {
   category: number | { id: number; name: string };
   subCategory: number;
   owner: number;
+  images: CloudFile[];
   seller: string;
   condition: string;
   price: number;

@@ -69,24 +69,11 @@ const ProductPage = ({ product, similarProducts }: Props) => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper2"
               >
-                <SwiperSlide>
-                  <img src="/static/product-slide1.png" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/static/product-slide1.png" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/static/product-slide1.png" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/static/product-slide1.png" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="video-wrapper">
-                    <div className="vid-btn"></div>
-                    <img src="/static/video-slide1.png" />
-                  </div>
-                </SwiperSlide>
+                {product.images.map((image) => (
+                  <SwiperSlide key={image.id}>
+                    <img src={image.url} />
+                  </SwiperSlide>
+                ))}
               </Swiper>
 
               <Swiper
@@ -97,24 +84,11 @@ const ProductPage = ({ product, similarProducts }: Props) => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper"
               >
-                <SwiperSlide>
-                  <img src="/static/product-slide1.png" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/static/product-slide1.png" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/static/product-slide1.png" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <img src="/static/product-slide1.png" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="video-wrapper">
-                    <div className="vid-btn"></div>
-                    <img src="/static/video-slide1.png" />
-                  </div>
-                </SwiperSlide>
+                {product.images.map((image) => (
+                  <SwiperSlide key={image.id}>
+                    <img src={image.url} />
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
             <div className="col-6 col-m-12">

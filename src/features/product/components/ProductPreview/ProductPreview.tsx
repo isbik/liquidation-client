@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import {
   $createProductForm,
+  $images,
   changeIsPreview,
   createProduct,
 } from "../../product.create.model";
@@ -14,6 +15,8 @@ const ProductPreview = (props: Props) => {
   const router = useRouter();
 
   const productForm = useStore($createProductForm);
+  const images = useStore($images);
+  console.log("images: ", images);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -32,21 +35,11 @@ const ProductPreview = (props: Props) => {
             <div className="preview-block">
               <h3>Изображения</h3>
               <div className="imgs-wrapper">
-                <div className="thumb">
-                  <img src="/static/preview-item.png" alt="" />
-                </div>
-                <div className="thumb">
-                  <img src="/static/preview-item.png" alt="" />
-                </div>
-                <div className="thumb">
-                  <img src="/static/preview-item.png" alt="" />
-                </div>
-                <div className="thumb">
-                  <img src="/static/preview-item.png" alt="" />
-                </div>
-                <div className="thumb">
-                  <img src="/static/preview-item.png" alt="" />
-                </div>
+                {images.map((image) => (
+                  <div key={image.id} className="thumb">
+                    <img src={image.url} alt="" />
+                  </div>
+                ))}
               </div>
             </div>
             <div className="preview-block">
