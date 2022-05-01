@@ -1,4 +1,4 @@
-import { CallbackForm, Header } from "@/components";
+import { CallbackForm, Header, PageHead } from "@/components";
 import { Accordion } from "@/ui";
 import type { NextPage } from "next";
 
@@ -35,6 +35,8 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <PageHead title="Главная страница" />
+
       <Header />
       <section className="banner">
         <div className="container">

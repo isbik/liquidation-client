@@ -1,30 +1,35 @@
-import { Filter, Footer, Header, Pagination } from "@/components";
+import { Filter, Footer, Header, PageHead, Pagination } from "@/components";
 import {
+  $filters,
   $page,
   $products,
   $total,
   changePage,
-  fetchProducts,
+  setFilters,
 } from "@/features/catalog/catalog.model";
 import { ProductCatalogItem } from "@/features/product/components";
 import { api } from "@/services";
 import { Category } from "@/types";
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 
 const CatalogInner = () => {
+  const [searchName, setSearchName] = useState("");
   const router = useRouter();
   const { categoryId } = router.query;
 
   const products = useStore($products);
+  const filters = useStore($filters);
   const total = useStore($total);
   const page = useStore($page);
   const [category, setCategory] = useState<Category | null>(null);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    setFilters(router.query as Record<string, string | number | null>);
+
+    setSearchName((router.query.name as string) || "");
+  }, [router]);
 
   useEffect(() => {
     if (categoryId) {
@@ -34,21 +39,31 @@ const CatalogInner = () => {
     }
   }, [categoryId]);
 
+  const handleSubmitSearch = (event: FormEvent) => {
+    event.preventDefault();
+    setFilters({ ...filters, name: searchName });
+  };
+
   return (
     <>
+      <PageHead title="Каталог" />
+
       <Header />
       <section className="catalog-inner">
         <div className="container">
           <div className="col-12">
-            <form className="search-form" action="">
-              <select name="" id="">
-                <option value="Везде" selected>
-                  Везде
-                </option>
+            <form
+              onSubmit={handleSubmitSearch}
+              className="search-form"
+              action=""
+            >
+              <select defaultValue={"all"} name="" id="">
+                <option value="all">Везде</option>
               </select>
               <div className="search-wrapper">
                 <i className="search-ico-btn"></i>
                 <input
+                  onChange={(event) => setSearchName(event.target.value)}
                   className="search-input"
                   placeholder="Наименованию лота, название"
                   type="search"

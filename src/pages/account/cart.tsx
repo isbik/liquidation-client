@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, PageHead } from "@/components";
 import Link from "next/link";
 import React from "react";
 
@@ -7,6 +7,8 @@ type Props = {};
 const CartPage = (props: Props) => {
   return (
     <>
+      <PageHead title="Корзина" />
+
       <Header />
       <section className="account-section cart-section">
         <div className="container">

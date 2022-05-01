@@ -1,11 +1,12 @@
 import React from "react";
-import { Footer, Header } from "../components";
+import { Footer, Header, PageHead } from "../components";
 
 type Props = {};
 
 const NotFound = (props: Props) => {
   return (
     <>
+      <PageHead title="Страница не найдена" />
       <Header />
       <section className="page_404">
         <div className="container">

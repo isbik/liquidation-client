@@ -1,3 +1,4 @@
+import { PageHead } from "@/components";
 import { AccountWrapper } from "@/features/account/components";
 import { $user } from "@/features/user/user.model";
 import { useStore } from "effector-react";
@@ -12,6 +13,8 @@ const Account = (props: Props) => {
 
   return (
     <>
+      <PageHead title="Профиль" />
+
       <AccountWrapper title="Сведения о компании">
         <div className="account-inner company-info">
           <div className="img-wrapper">

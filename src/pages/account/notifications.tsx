@@ -1,3 +1,4 @@
+import { PageHead } from "@/components";
 import { AccountWrapper } from "@/features/account/components";
 import {
   $notificationSettingsForm,
@@ -37,48 +38,52 @@ const AccountNotificationsPage = (props: Props) => {
   };
 
   return (
-    <AccountWrapper title="Настройки уведомлений">
-      <div className="account-inner account-notifications">
-        <form action="" onSubmit={handleSubmit}>
-          <div className="items-wrapper">
-            <div className="item">
-              <div className="title">Рассылка новостей</div>
-              <select
-                onChange={handleChange}
-                value={settingsForm.isSendNews ? "1" : "0"}
-                name="isSendNews"
-              >
-                <option value="1">Присылать оповещения</option>
-                <option value="0">Не присылать оповещения</option>
-              </select>
+    <>
+      <PageHead title="Настройка уведомлений" />
+
+      <AccountWrapper title="Настройки уведомлений">
+        <div className="account-inner account-notifications">
+          <form action="" onSubmit={handleSubmit}>
+            <div className="items-wrapper">
+              <div className="item">
+                <div className="title">Рассылка новостей</div>
+                <select
+                  onChange={handleChange}
+                  value={settingsForm.isSendNews ? "1" : "0"}
+                  name="isSendNews"
+                >
+                  <option value="1">Присылать оповещения</option>
+                  <option value="0">Не присылать оповещения</option>
+                </select>
+              </div>
+              <div className="item">
+                <div className="title">Новые ставки</div>
+                <select
+                  onChange={handleChange}
+                  value={settingsForm.isSendNewBets ? "1" : "0"}
+                  name="isSendNewBets"
+                >
+                  <option value="1">Присылать оповещения</option>
+                  <option value="0">Не присылать оповещения</option>
+                </select>
+              </div>
+              <div className="item">
+                <div className="title">Новые ставки конкурентов</div>
+                <select
+                  onChange={handleChange}
+                  value={settingsForm.isSendNewCompetitorBets ? "1" : "0"}
+                  name="isSendNewCompetitorBets"
+                >
+                  <option value="1">Присылать оповещения</option>
+                  <option value="0">Не присылать оповещения</option>
+                </select>
+              </div>
             </div>
-            <div className="item">
-              <div className="title">Новые ставки</div>
-              <select
-                onChange={handleChange}
-                value={settingsForm.isSendNewBets ? "1" : "0"}
-                name="isSendNewBets"
-              >
-                <option value="1">Присылать оповещения</option>
-                <option value="0">Не присылать оповещения</option>
-              </select>
-            </div>
-            <div className="item">
-              <div className="title">Новые ставки конкурентов</div>
-              <select
-                onChange={handleChange}
-                value={settingsForm.isSendNewCompetitorBets ? "1" : "0"}
-                name="isSendNewCompetitorBets"
-              >
-                <option value="1">Присылать оповещения</option>
-                <option value="0">Не присылать оповещения</option>
-              </select>
-            </div>
-          </div>
-          <input type="submit" />
-        </form>
-      </div>
-    </AccountWrapper>
+            <input type="submit" />
+          </form>
+        </div>
+      </AccountWrapper>
+    </>
   );
 };
 

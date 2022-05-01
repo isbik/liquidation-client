@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, PageHead } from "@/components";
 import { $authenticated, makeAuth } from "@/features/auth/auth.model";
 import { useStore } from "effector-react";
 import Link from "next/link";
@@ -29,6 +29,8 @@ const Authorization = (props: Props) => {
 
   return (
     <>
+      <PageHead title="Вход" />
+
       <Header />
       <section className="auth">
         <div className="auth_wrapper">

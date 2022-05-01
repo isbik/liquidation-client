@@ -1,22 +1,20 @@
 import { useStore } from "effector-react";
-import { useRouter } from "next/router";
 import React from "react";
 import {
   $createProductForm,
   $images,
+  $manifestFile,
   changeIsPreview,
   createProduct,
 } from "../../product.create.model";
-import { getConditionText, getUnitTypeText } from "../../product.utils";
+import { getConditionText, getSupplierText, getUnitTypeText } from "../../product.utils";
 
 type Props = {};
 
 const ProductPreview = (props: Props) => {
-  const router = useRouter();
-
   const productForm = useStore($createProductForm);
   const images = useStore($images);
-  console.log("images: ", images);
+  const manifistFile = useStore($manifestFile);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -44,7 +42,9 @@ const ProductPreview = (props: Props) => {
             </div>
             <div className="preview-block">
               <h3>Манифест</h3>
-              <p className="desc">Не загружен</p>
+              <p className="desc">
+                {manifistFile ? manifistFile.filename : "Не загружен"}
+              </p>
             </div>
           </div>
           <div className="col-4 col-m-12">
@@ -108,7 +108,7 @@ const ProductPreview = (props: Props) => {
             </div>
             <div className="preview-block">
               <h3>Кто осуществляет доставку</h3>
-              <p className="desc">{productForm.supplier}</p>
+              <p className="desc">{getSupplierText(productForm.supplier)}</p>
             </div>
             <div className="preview-block">
               <h3>Предпочитаемый способ оплаты</h3>

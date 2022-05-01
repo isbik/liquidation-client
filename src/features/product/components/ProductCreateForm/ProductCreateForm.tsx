@@ -6,6 +6,7 @@ import React, { useCallback, useEffect } from "react";
 import { toast } from "react-toastify";
 import {
   $createProductForm,
+  $images,
   $isCreatedProduct,
   changeCreateProductForm,
   changeIsPreview,
@@ -13,10 +14,12 @@ import {
 } from "../../product.create.model";
 import { Supplier } from "../../product.types";
 import { ImageUploader } from "../ImageUploader";
+import { ManifiestUploader } from "../ManifiestUploader";
 
 const ProductCreateForm = () => {
   const router = useRouter();
   const productForm = useStore($createProductForm);
+  const images = useStore($images);
   const isCreatedProduct = useStore($isCreatedProduct);
 
   const handleChange = useCallback(
@@ -40,7 +43,9 @@ const ProductCreateForm = () => {
 
     const isAllFilled = Object.values(data).every(Boolean);
 
-    console.log("call");
+    if (images.length === 0) {
+      return toast.warn("Загрузить хотя бы одно изображение");
+    }
 
     if (isAllFilled) changeIsPreview(true);
     else toast.warn("Заполните все поля");
@@ -57,7 +62,7 @@ const ProductCreateForm = () => {
     <>
       <section className="add-advertisement">
         <form action="" id="formSteps" onSubmit={handleSubmit}>
-          <div className="container">
+          <div className="container mb-4">
             <div className="col-12">
               <h1>Добавление объявления</h1>
             </div>
@@ -260,6 +265,7 @@ const ProductCreateForm = () => {
             </div>
 
             <ImageUploader />
+            <ManifiestUploader />
           </div>
           <div className="mobile-hidden">
             <input

@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, PageHead } from "@/components";
 import React from "react";
 
 type Props = {};
@@ -6,6 +6,8 @@ type Props = {};
 const Policy = (props: Props) => {
   return (
     <>
+      <PageHead title="Политика конфиденциальности" />
+
       <Header />
       <section className="politic">
         <div className="container">

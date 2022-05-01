@@ -1,3 +1,4 @@
+import { PageHead } from "@/components";
 import { AccountWrapper } from "@/features/account/components";
 import {
   FeaturedLots,
@@ -26,29 +27,33 @@ const AccountFavoritePage = (props: Props) => {
   };
 
   return (
-    <AccountWrapper title="Избранное">
-      <div className="account-inner advertisement-inner favorite-lots">
-        <div className="account-tab-list">
-          <div className="list-detail">
-            <a
-              onClick={(e) => changeTab(e, BetTab.lots)}
-              className={clsx({ active: BetTab.lots === tab })}
-            >
-              Лоты
-            </a>
-            <a
-              onClick={(e) => changeTab(e, BetTab.organizations)}
-              className={clsx({ active: BetTab.organizations === tab })}
-            >
-              Организации
-            </a>
-          </div>
-        </div>
+    <>
+      <PageHead title="Избранное" />
 
-        {tab === BetTab.lots && <FeaturedLots />}
-        {tab === BetTab.organizations && <FeaturedOrganizations />}
-      </div>
-    </AccountWrapper>
+      <AccountWrapper title="Избранное">
+        <div className="account-inner advertisement-inner favorite-lots">
+          <div className="account-tab-list">
+            <div className="list-detail">
+              <a
+                onClick={(e) => changeTab(e, BetTab.lots)}
+                className={clsx({ active: BetTab.lots === tab })}
+              >
+                Лоты
+              </a>
+              <a
+                onClick={(e) => changeTab(e, BetTab.organizations)}
+                className={clsx({ active: BetTab.organizations === tab })}
+              >
+                Организации
+              </a>
+            </div>
+          </div>
+
+          {tab === BetTab.lots && <FeaturedLots />}
+          {tab === BetTab.organizations && <FeaturedOrganizations />}
+        </div>
+      </AccountWrapper>
+    </>
   );
 };
 

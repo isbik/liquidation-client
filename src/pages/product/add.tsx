@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, PageHead } from "@/components";
 import { ProductCreateForm } from "@/features/product/components/ProductCreateForm";
 import { ProductPreview } from "@/features/product/components/ProductPreview";
 import { useStore } from "effector-react";
@@ -10,8 +10,9 @@ const AddAdvertisement = () => {
 
   return (
     <>
+      <PageHead title="Создание продукта" />
+
       <Header />
-      {/* <pre>{JSON.stringify(productForm, null, 3)}</pre> */}
       {isPreview ? <ProductPreview /> : <ProductCreateForm />}
       <Footer />
     </>

@@ -6,6 +6,13 @@ export type User = {
   position: string;
   directorPhone: string;
   directorEmail: string;
+  organizationName: string;
+  city: string;
+  legalAddress: string;
+  postalCode: string;
+  INN: string;
+  ORGN: string;
+  KPP: string;
   settings: {
     isSendNews: boolean;
     isSendNewBets: boolean;

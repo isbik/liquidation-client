@@ -3,7 +3,7 @@ import { $user } from "@/features/user/user.model";
 import { useStore } from "effector-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const Header: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -14,6 +14,10 @@ const Header: React.FC = () => {
   const authenticated = useStore($authenticated);
 
   const name = useMemo(() => user?.fio.split(" ")[1] || user?.fio, [user]);
+
+  useEffect(() => {
+    setSearch((router.query.q as string) || "");
+  }, [router]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

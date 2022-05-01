@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, PageHead } from "@/components";
 import React from "react";
 
 type Props = {};
@@ -6,6 +6,8 @@ type Props = {};
 const Order = (props: Props) => {
   return (
     <>
+      <PageHead title="Оформление заказа" />
+
       <Header />
 
       <form action="" className="ordering">

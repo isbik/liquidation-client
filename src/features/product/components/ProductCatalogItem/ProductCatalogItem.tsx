@@ -22,7 +22,9 @@ const ProductCatalogItem = ({ product }: Props) => {
           <div className="item-info">{product.name}</div>
           <div className="item-info">
             Текущая ставка
-            <span>{product.price} Руб.</span>
+            <span>
+              {product.bet ? product.bet.count : product.minRate} Руб.
+            </span>
           </div>
           <div className="item-info">
             Локация

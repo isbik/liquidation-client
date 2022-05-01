@@ -1,9 +1,23 @@
+import { $filters } from "@/features/catalog/catalog.model";
 import { CONDITION } from "@/lib";
-import React from "react";
+import { useStore } from "effector-react";
+import React, { useState } from "react";
 
 type Props = {};
 
-const Filter = (props: Props) => {
+const Filter = () => {
+  const [priceFrom, setPriceFrom] = useState("");
+  const [priceTo, setPriceTo] = useState("");
+  const [condition, setCondition] = useState("");
+
+  const handleChangeCondition = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    console.log(event.target.value);
+  };
+
+  const filters = useStore($filters);
+
   return (
     <form className="filter-catalog" action="">
       <div className="filter--box show">
@@ -13,12 +27,22 @@ const Filter = (props: Props) => {
           <div className="filter-drop-item">
             <div className="filter-value-wrapper">
               <div className="filter-value">
-                От
-                <span className="lower" id="lower"></span>
+                <input
+                  onChange={(event) => setPriceFrom(event.target.value)}
+                  value={priceFrom}
+                  className="w-full h-full p-2"
+                  type="number"
+                  placeholder="От"
+                />
               </div>
               <div className="filter-value">
-                До
-                <span className="upper" id="upper"></span>
+                <input
+                  onChange={(event) => setPriceTo(event.target.value)}
+                  value={priceTo}
+                  className="w-full h-full p-2"
+                  type="number"
+                  placeholder="До"
+                />
               </div>
             </div>
             <div id="price-filter"></div>
@@ -35,7 +59,11 @@ const Filter = (props: Props) => {
             {CONDITION.map(({ value, text }) => (
               <div key={value} className="checkbox-inner">
                 <label className="custom-checkbox">
-                  <input type="checkbox" />
+                  <input
+                    value={value}
+                    onChange={handleChangeCondition}
+                    type="checkbox"
+                  />
                   <span>{text}</span>
                 </label>
               </div>

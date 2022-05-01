@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, PageHead } from "@/components";
 import React from "react";
 
 type Props = {};
@@ -6,6 +6,8 @@ type Props = {};
 const Delivery = (props: Props) => {
   return (
     <>
+      <PageHead title="Доставка" />
+
       <Header />
 
       <section className="about_delivery">

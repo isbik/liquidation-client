@@ -17,8 +17,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     persistUser();
   }, []);
 
-  if (loading) return "Загрузка ...";
-
   return (
     <>
       <Component {...pageProps} />

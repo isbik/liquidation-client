@@ -49,17 +49,28 @@ const $images = createStore<CloudFile[]>([])
   .on(setImages, (_, payload) => payload)
   .reset(createProductFx.doneData);
 
+const setManifestFile = createEvent<CloudFile | null>();
+const $manifestFile = restore<CloudFile | null>(setManifestFile, null).reset(
+  createProductFx.doneData
+);
+
 sample({
   // @ts-ignore
   clock: createProduct,
-  source: [$createProductForm, $images],
-  fn: ([form, images]: [CreateProductForm, CloudFile[]]) => {
-    const { manifestoFile, ...rest } = form;
+  source: [$createProductForm, $images, $manifestFile],
+  fn: ([form, images, manifestFile]: [
+    CreateProductForm,
+    CloudFile[],
+    CloudFile
+  ]) => {
+    const { categoryId, subCategoryId, ...rest } = form;
 
     return {
       ...rest,
+      categoryId: Number(categoryId),
+      subCategoryId: Number(subCategoryId),
       imageIds: images.map(({ id }) => id),
-      manifestoFileId: manifestoFile?.id || null,
+      manifestoFileId: manifestFile?.id || null,
     };
   },
   target: createProductFx,
@@ -88,4 +99,6 @@ export {
   $isCreatedProduct,
   $images,
   setImages,
+  $manifestFile,
+  setManifestFile,
 };

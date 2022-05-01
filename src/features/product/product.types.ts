@@ -7,7 +7,7 @@ export type Product = {
   description: string;
   category: number | { id: number; name: string };
   subCategory: number;
-  owner: number;
+  owner: number | { id: number };
   images: CloudFile[];
   seller: string;
   condition: string;
@@ -19,7 +19,7 @@ export type Product = {
   totalWeight: number;
   unitType: UnitType;
   location: string;
-  manifesto?: any;
+  manifesto?: CloudFile;
   supplier: Supplier;
   // TODO
   auctionType: "standard";

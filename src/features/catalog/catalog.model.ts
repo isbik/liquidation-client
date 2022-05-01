@@ -1,27 +1,31 @@
 import { api } from "@/services";
 import { Paginated } from "@/types";
-import {
-  createEffect,
-  createEvent,
-  createStore,
-  restore,
-  sample,
-} from "effector";
+import { createEffect, createEvent, createStore, guard } from "effector";
 import { Product } from "../product/product.types";
 
 const PER_PAGE = 6;
 
-const fetchProductsFx = createEffect<{ page: number }, Paginated<never>>({
-  handler: async ({ page }) => {
+const fetchProductsFx = createEffect<
+  [page: number, filters: Record<string, string | number | null>],
+  Paginated<never>
+>({
+  handler: async ([page, filters]) => {
     const products = await api.get("/products/search", {
       params: {
         limit: PER_PAGE,
         offset: PER_PAGE * page,
+        ...filters,
       },
     });
     return products.data;
   },
 });
+
+const $isNotLoading = fetchProductsFx.pending.map((pending) => !pending);
+
+const setFilters = createEvent<Record<string, string | number | null>>();
+
+const $filters = createStore({}).on(setFilters, (_, payload) => payload);
 
 const fetchProducts = createEvent();
 
@@ -37,13 +41,21 @@ const $total = createStore<number>(0).on(
 
 const changePage = createEvent<number>();
 
-const $page = restore<number>(changePage, 0);
+const $page = createStore<number>(0).on(changePage, (_, payload) => payload);
 
-sample({
-  clock: [fetchProducts, changePage],
-  source: [$page],
-  fn: ([page]) => ({ page }),
+guard({
+  clock: [fetchProducts, changePage, setFilters],
+  source: [$page, $filters],
+  filter: $isNotLoading,
   target: fetchProductsFx,
 });
 
-export { $products, fetchProducts, $total, $page, changePage };
+export {
+  $products,
+  fetchProducts,
+  $total,
+  $page,
+  changePage,
+  $filters,
+  setFilters,
+};

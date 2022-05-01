@@ -1,3 +1,4 @@
+import { messageResponseToErrorsArray } from "@/lib/errors";
 import { api } from "@/services";
 import {
   combine,
@@ -7,6 +8,7 @@ import {
   forward,
   sample,
 } from "effector-next";
+import { toast } from "react-toastify";
 import { setUser } from "../user/user.model";
 import { User } from "../user/user.types";
 import { AuthData } from "./auth.types";
@@ -15,7 +17,9 @@ const makeAuth = createEvent<AuthData>();
 
 const makeAuthFx = createEffect<AuthData, User, void>({
   handler: async (data) => {
-    const response = await api.post("/auth/login", data);
+    const response = await api.post("/auth/login", data).catch((error) => {
+      toast.error(error.response.data.message);
+    });
 
     return response.data;
   },
@@ -57,11 +61,20 @@ const changeAuthForm = createEvent<{ key: string; value: string }>();
 
 const registerUser = createEvent();
 
-// TODO
-const registerUserFx = createEffect<unknown, User, void>({
+const registerUserFx = createEffect<unknown, User | undefined, void>({
   handler: async (data) => {
-    const response = await api.post<User>("/auth/register", data);
-    return response.data;
+    try {
+      const response = await api.post<User>("/auth/register", data);
+      return response.data;
+    } catch (error: any) {
+      if (error.response.status === 400) {
+        const { message } = error.response.data;
+
+        const errors = messageResponseToErrorsArray(message);
+
+        errors.forEach((m) => toast.warn(m));
+      }
+    }
   },
 });
 

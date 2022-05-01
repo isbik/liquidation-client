@@ -1,3 +1,4 @@
+import { PageHead } from "@/components";
 import { AccountWrapper } from "@/features/account/components";
 import { $user } from "@/features/user/user.model";
 import { useStore } from "effector-react";
@@ -70,89 +71,93 @@ const AccountSettingsPage = () => {
   };
 
   return (
-    <AccountWrapper title="Настройки аккаунта">
-      <div className="account-inner account-settings">
-        <div className="items-wrapper">
-          <h3>Информация о руководителе</h3>
-          <form action="" onSubmit={handleSubmitAccountSettings}>
-            <div className="item-wrapper">
-              <div className="item-title">ФИО</div>
-              <input
-                value={accountSettingsForm.fio}
-                name="fio"
-                onChange={handleAccountSettingsChange}
-                type="text"
-              />
-            </div>
-            <div className="item-wrapper">
-              <div className="item-title">Должность</div>
-              <input
-                value={accountSettingsForm.position}
-                name="position"
-                onChange={handleAccountSettingsChange}
-                type="text"
-              />
-            </div>
-            <div className="item-wrapper">
-              <div className="item-title">Телефон</div>
-              <input
-                value={accountSettingsForm.directorPhone}
-                name="directorPhone"
-                onChange={handleAccountSettingsChange}
-                type="text"
-              />
-            </div>
-            <div className="item-wrapper">
-              <div className="item-title">Email</div>
-              <input
-                value={accountSettingsForm.directorEmail}
-                name="directorEmail"
-                onChange={handleAccountSettingsChange}
-                type="text"
-              />
-            </div>
-            <button type="submit" className="btn-blue">
-              Изменить данные
-            </button>
-          </form>
+    <>
+      <PageHead title="Настройка аккаунта" />
+
+      <AccountWrapper title="Настройки аккаунта">
+        <div className="account-inner account-settings">
+          <div className="items-wrapper">
+            <h3>Информация о руководителе</h3>
+            <form action="" onSubmit={handleSubmitAccountSettings}>
+              <div className="item-wrapper">
+                <div className="item-title">ФИО</div>
+                <input
+                  value={accountSettingsForm.fio}
+                  name="fio"
+                  onChange={handleAccountSettingsChange}
+                  type="text"
+                />
+              </div>
+              <div className="item-wrapper">
+                <div className="item-title">Должность</div>
+                <input
+                  value={accountSettingsForm.position}
+                  name="position"
+                  onChange={handleAccountSettingsChange}
+                  type="text"
+                />
+              </div>
+              <div className="item-wrapper">
+                <div className="item-title">Телефон</div>
+                <input
+                  value={accountSettingsForm.directorPhone}
+                  name="directorPhone"
+                  onChange={handleAccountSettingsChange}
+                  type="text"
+                />
+              </div>
+              <div className="item-wrapper">
+                <div className="item-title">Email</div>
+                <input
+                  value={accountSettingsForm.directorEmail}
+                  name="directorEmail"
+                  onChange={handleAccountSettingsChange}
+                  type="text"
+                />
+              </div>
+              <button type="submit" className="btn-blue">
+                Изменить данные
+              </button>
+            </form>
+          </div>
+          <div className="items-wrapper">
+            <h3>Пароль</h3>
+            <form action="" onSubmit={handleSubmitChangePassword}>
+              <div className="item-wrapper">
+                <div className="item-title">Текущий пароль</div>
+                <input
+                  name="password"
+                  value={changingPasswordForm.password}
+                  onChange={handlePasswordChange}
+                  type="password"
+                />
+              </div>
+              <div className="item-wrapper">
+                <div className="item-title">Новый пароль</div>
+                <input
+                  name="newPassword"
+                  value={changingPasswordForm.newPassword}
+                  onChange={handlePasswordChange}
+                  type="password"
+                />
+              </div>
+              <div className="item-wrapper">
+                <div className="item-title">Новый пароль подтверждение</div>
+                <input
+                  name="newPasswordConfirmation"
+                  value={changingPasswordForm.newPasswordConfirmation}
+                  onChange={handlePasswordChange}
+                  type="password"
+                />
+              </div>
+              <button type="submit" className="btn-blue">
+                Изменить пароль
+              </button>
+            </form>
+          </div>
         </div>
-        <div className="items-wrapper">
-          <h3>Пароль</h3>
-          <form action="" onSubmit={handleSubmitChangePassword}>
-            <div className="item-wrapper">
-              <div className="item-title">Текущий пароль</div>
-              <input
-                name="password"
-                value={changingPasswordForm.password}
-                onChange={handlePasswordChange}
-                type="password"
-              />
-            </div>
-            <div className="item-wrapper">
-              <div className="item-title">Новый пароль</div>
-              <input
-                name="newPassword"
-                value={changingPasswordForm.newPassword}
-                onChange={handlePasswordChange}
-                type="password"
-              />
-            </div>
-            <div className="item-wrapper">
-              <div className="item-title">Новый пароль подтверждение</div>
-              <input
-                name="newPasswordConfirmation"
-                value={changingPasswordForm.newPasswordConfirmation}
-                onChange={handlePasswordChange}
-                type="password"
-              />
-            </div>
-            <button type="submit" className="btn-blue">
-              Изменить пароль
-            </button>
-          </form>
-        </div>
-      </div>
-    </AccountWrapper>
+      </AccountWrapper>
+    </>
   );
 };
 

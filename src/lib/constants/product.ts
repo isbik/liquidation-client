@@ -69,3 +69,8 @@ export const PRODUCT_STATUSES = [
   { value: "finished", text: "Закончен" },
   { value: "sold", text: "Продан" },
 ];
+
+export const SUPPLIER_VALUES = [
+  { value: "owner", text: "Владелец" },
+  { value: "seller", text: "Покупатель" },
+];

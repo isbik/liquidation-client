@@ -2,13 +2,12 @@ import { api } from "@/services";
 import { CloudFile } from "@/types";
 import { useStore } from "effector-react";
 import React, { useRef } from "react";
-import { toast } from "react-toastify";
-import { $images, setImages } from "../../product.create.model";
+import { $manifestFile, setManifestFile } from "../../product.create.model";
 
 type Props = {};
 
-const ImageUploader = (props: Props) => {
-  const images = useStore($images);
+const ManifiestUploader = (props: Props) => {
+  const manifestFile = useStore($manifestFile);
   const fileInputField = useRef<HTMLInputElement>(null);
 
   const handleDrop = (event: React.DragEvent) => {
@@ -21,36 +20,31 @@ const ImageUploader = (props: Props) => {
   };
 
   const uploadFiles = (files: FileList | null) => {
-    if (!files) return;
+    if (!files || manifestFile) return;
 
     for (let i = 0; i < files.length; i++) {
       const formData = new FormData();
 
       formData.append("file", files[0]);
 
-      api.post<CloudFile>("/upload/image", formData).then((response) => {
-        if (images.length >= 8) {
-          return toast.warn("Нельзя загрузить больше 8 файлов");
-        }
-        setImages([...images, response.data]);
+      api.post<CloudFile>("/upload/file", formData).then((response) => {
+        setManifestFile(response.data);
       });
     }
   };
 
-  const handleDeleteImage = (event: React.MouseEvent, id: number) => {
+  const handleDeleteFile = (event: React.MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();
 
-    api.delete("/upload/delete/" + id).then(() => {
-      setImages(images.filter(({ id: _id }) => id !== _id));
+    api.delete("/upload/delete/" + manifestFile?.id).then(() => {
+      setManifestFile(null);
     });
   };
 
   return (
     <div className="mb-4 col-12">
       <div className="item-wrapper">
-        <div className="title">Изображения</div>
-        <p className="mb-1">Не более 8 изображений</p>
         <div
           onDragOver={(event) => {
             event.preventDefault();
@@ -59,22 +53,22 @@ const ImageUploader = (props: Props) => {
           onDrop={handleDrop}
           className="flex w-full h-32 gap-2 overflow-hidden overflow-x-auto border border-dashed rounded cursor-pointer"
         >
-          {images.length === 0 && (
+          {manifestFile === null && (
             <p className="flex items-center justify-center w-full h-full text-center">
-              Перенесите изображения в поле или нажмите на кнопку “добавить”
+              Перенесите манифест в поле и нажмите на кнопку “добавить”
             </p>
           )}
-          {images.map((image) => (
-            <div className="relative w-32 h-32 aspect-square" key={image.id}>
+          {manifestFile && (
+            <div className="flex flex-col items-center justify-center w-full text-center">
+              <p className="mb-1">{manifestFile.filename}</p>
               <button
-                onClick={(event) => handleDeleteImage(event, image.id)}
-                className="absolute top-1 right-1"
+                onClick={(event) => handleDeleteFile(event)}
+                className="px-2 py-2 text-white bg-blue-500 rounded"
               >
-                x
+                Удалить файл
               </button>
-              <img className="w-full h-full" src={image.url} />
             </div>
-          ))}
+          )}
         </div>
       </div>
       <input
@@ -93,10 +87,10 @@ const ImageUploader = (props: Props) => {
         }}
         className="px-8 py-4 ml-auto text-white bg-blue-500 border-none rounded"
       >
-        Добавить изображения
+        Добавить манифест
       </button>
     </div>
   );
 };
 
-export { ImageUploader };
+export { ManifiestUploader };

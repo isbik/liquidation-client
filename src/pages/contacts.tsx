@@ -1,4 +1,4 @@
-import { Footer, Header, Modal } from "@/components";
+import { Footer, Header, Modal, PageHead } from "@/components";
 import { useStore } from "effector-react";
 import React, { useEffect, useState } from "react";
 import {
@@ -34,6 +34,8 @@ const Contacts = () => {
 
   return (
     <>
+      <PageHead title="Контакты" />
+
       <Header />
       <Modal
         title="Вопрос успешно отправлен!"

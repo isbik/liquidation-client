@@ -1,4 +1,4 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, PageHead } from "@/components";
 import {
   EndTimerAuction,
   ProductCatalogItem,
@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import { useStore } from "effector-react";
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -48,7 +49,8 @@ type Props = {
   similarProducts: Product[];
 };
 
-const ProductPage = ({ product, similarProducts }: Props) => {
+const ProductPage = ({ similarProducts, ...props }: Props) => {
+  const [product, setProduct] = useState(props.product);
   const user = useStore($user);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -56,8 +58,30 @@ const ProductPage = ({ product, similarProducts }: Props) => {
     event.preventDefault();
   };
 
+  const [bet, setBet] = useState(0);
+
+  const handleSendBet = (event: React.MouseEvent<HTMLInputElement>) => {
+    event.preventDefault();
+
+    api
+      .post("/product-bets", { bet: Number(bet), productId: product.id })
+      .then((response) => {
+        setProduct((product) => ({
+          ...product,
+          bet: response.data,
+        }));
+      })
+      .catch((error) => {
+        if (error.response.status === 400) {
+          toast.error(error.response.data.message);
+        }
+      });
+  };
+
   return (
     <>
+      <PageHead title={product.name} />
+
       <Header />
       <section className="product-inner">
         <div className="container">
@@ -102,7 +126,11 @@ const ProductPage = ({ product, similarProducts }: Props) => {
                         <p className="fw-b">Текущая ставка:</p>
                       </div>
                       <div className="col-6">
-                        <p className="fw-b">{product.bet?.count} ₽</p>
+                        <p className="fw-b">
+                          {product.bet?.count
+                            ? `${product.bet?.count}₽`
+                            : "Отсутствует"}
+                        </p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -111,8 +139,8 @@ const ProductPage = ({ product, similarProducts }: Props) => {
                       </div>
                       <div className="col-6">
                         <p>
-                          {product.bet
-                            ? product.bet?.count + 1
+                          {product.bet?.count
+                            ? product.bet.count + 1
                             : product.minRate}{" "}
                           ₽
                         </p>
@@ -207,13 +235,23 @@ const ProductPage = ({ product, similarProducts }: Props) => {
                     </div>
                     {product.finishAuctionAt &&
                       dayjs(product.finishAuctionAt).isAfter(new Date()) &&
-                      product.bet?.userId !== user?.id && (
+                      product.bet?.userId !== user?.id &&
+                      typeof product.owner !== "number" &&
+                      product.owner?.id !== user?.id && (
                         <>
                           <div className="input-wrapper">
-                            <input type="number" placeholder="Введите ставку" />
+                            <input
+                              onChange={(e) => setBet(Number(e.target.value))}
+                              type="number"
+                              placeholder="Введите ставку"
+                            />
                           </div>
                           <div className="input-wrapper">
-                            <input type="submit" value="Сделать ставку" />
+                            <input
+                              onClick={handleSendBet}
+                              type="submit"
+                              value="Сделать ставку"
+                            />
                           </div>
                         </>
                       )}
@@ -240,24 +278,34 @@ const ProductPage = ({ product, similarProducts }: Props) => {
                 <p>{product.shortDescription}</p>
                 <p>{product.description}</p>
               </div>
-              <div className="product-links">
-                <li>
-                  <i
-                    style={{
-                      backgroundImage: "url(static/icons/icon-eye.svg)",
-                    }}
-                  ></i>
-                  <a href="#">Посмотреть манифест </a>
-                </li>
-                <li>
-                  <i
-                    style={{
-                      backgroundImage: "url(static/icons/icon-download.svg)",
-                    }}
-                  ></i>
-                  <a href="#">Скачать манифест</a>
-                </li>
-              </div>
+              {product.manifesto && (
+                <div className="product-links">
+                  <li>
+                    <i
+                      style={{
+                        backgroundImage: "url(/static/icons/icon-eye.svg)",
+                      }}
+                    ></i>
+                    <a
+                      target={"_blank"}
+                      href={product.manifesto.url}
+                      rel="noreferrer"
+                    >
+                      Посмотреть манифест{" "}
+                    </a>
+                  </li>
+                  <li>
+                    <i
+                      style={{
+                        backgroundImage: "url(/static/icons/icon-download.svg)",
+                      }}
+                    ></i>
+                    <a download href={product.manifesto.url}>
+                      Скачать манифест
+                    </a>
+                  </li>
+                </div>
+              )}
             </div>
           </div>
           <div className="col-12 product-data">

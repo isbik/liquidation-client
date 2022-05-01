@@ -1,6 +1,8 @@
-import { Footer, Header } from "@/components";
+import { Footer, Header, PageHead } from "@/components";
+import { $user } from "@/features/user/user.model";
 import { useStore } from "effector-react";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 import {
   $authForm,
   changeAuthForm,
@@ -10,6 +12,8 @@ import {
 type Props = {};
 
 const Registration = (props: Props) => {
+  const router = useRouter();
+  const user = useStore($user);
   const authForm = useStore($authForm);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,8 +25,14 @@ const Registration = (props: Props) => {
     registerUser();
   };
 
+  useEffect(() => {
+    if (user) router.replace("/account");
+  }, [router, user]);
+
   return (
     <>
+      <PageHead title="Регистрация" />
+
       <Header />
 
       <section className="reg">
@@ -174,13 +184,13 @@ const Registration = (props: Props) => {
                 </div>
                 <div className="reg_form-item">
                   <span>Повторите пароль*</span>
-                  <input onChange={handleChange} type="passwordAgain" />
+                  <input onChange={handleChange} type="password" />
                 </div>
               </div>
             </div>
-            <a data-fancybox href="#hidden" className="reg_btn">
+            <button type="submit" className="reg_btn">
               Зарегистрироваться
-            </a>
+            </button>
             <p className="reg_text">
               Нажимая на кнопку, вы даете согласие на обработку персональных
               данных и соглашаетесь c политикой конфиденциальности
