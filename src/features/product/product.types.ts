@@ -1,5 +1,26 @@
 import { CloudFile } from "@/types";
 
+export enum DeliveryMethod {
+  RUSSIA_POST = "RUSSIA_POST",
+  PERSONAL_COURIER = "PERSONAL_COURIER",
+  PICKUP = "PICKUP",
+}
+
+export enum DeliverySize {
+  BOX = "BOX",
+  PALLET = "PALLET",
+  PALLET_SMALL = "PALLET_SMALL",
+  EUROPALLET = "EUROPALLET",
+  TRUCK_1_5 = "TRUCK_1_5",
+  TRUCK_3_5 = "TRUCK_3_5",
+  TRUCK_5 = "TRUCK_5",
+  TRUCK_10 = "TRUCK_10",
+  EUROFURA = "EUROFURA",
+  CONTAINER_22 = "CONTAINER_22",
+  CONTAINER_26 = "CONTAINER_26",
+  CONTAINER_30 = "CONTAINER_30",
+}
+
 export type Product = {
   id: number;
   name: string;
@@ -53,6 +74,8 @@ export type CreateProductForm = {
   supplier: Supplier;
   images: CloudFile[];
   manifestoFile: CloudFile | null;
+  deliveryMethod: DeliveryMethod;
+  deliverySize: DeliverySize;
 };
 
 export enum Condition {

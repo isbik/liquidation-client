@@ -42,7 +42,7 @@ const AccountAdvertisementsPage = () => {
               {products.map((product) => (
                 <div key={product.id} className="catalog-item">
                   <div className="img-wrapper">
-                    <img src={product.images[0].url} alt="" />
+                    <img src={product.images[0]?.url} alt="" />
                   </div>
                   <div className="info-wrapper">
                     <div className="item-info">

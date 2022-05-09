@@ -1,4 +1,5 @@
 import { $authenticated } from "@/features/auth/auth.model";
+import { $cartItemsLength, fetchCartItems } from "@/features/cart/cart.model";
 import { $user } from "@/features/user/user.model";
 import { useStore } from "effector-react";
 import Link from "next/link";
@@ -12,12 +13,17 @@ const Header: React.FC = () => {
 
   const user = useStore($user);
   const authenticated = useStore($authenticated);
+  const cartItemsLength = useStore($cartItemsLength);
 
   const name = useMemo(() => user?.fio.split(" ")[1] || user?.fio, [user]);
 
   useEffect(() => {
     setSearch((router.query.q as string) || "");
   }, [router]);
+
+  useEffect(() => {
+    if (user?.id) fetchCartItems();
+  }, [user?.id]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -92,9 +98,8 @@ const Header: React.FC = () => {
             ) : (
               <div className="enter">
                 <span>
-                  Добро пожаловать
-                  <span>!</span>
-                </span>
+                  Добро пожаловать <span>!</span>
+                </span>{" "}
                 <Link href="/login">
                   <a className="enter_item">Войти</a>
                 </Link>
@@ -133,6 +138,14 @@ const Header: React.FC = () => {
                 />
                 <button type="submit">Найти</button>
               </form>
+              <div className="mobile-hidden">
+                <Link href="/account/cart">
+                  <a className="cart-wrapper" href="">
+                    <i className="cart-ico"></i>
+                    <span>{cartItemsLength}</span>
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -1,10 +1,46 @@
 import { Footer, Header, PageHead } from "@/components";
+import {
+  $cartItems,
+  $cartItemsLength,
+  $coupon,
+  $selectedCartItems,
+  $selectedCartItemsLength,
+  $totalPrice,
+  $totalWeight,
+  resetSelectedCartItems,
+  selectAllCartItems,
+  setCoupon,
+  toggleSelectCartItem,
+} from "@/features/cart/cart.model";
+import { useStore } from "effector-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
-type Props = {};
+const CartPage = () => {
+  const router = useRouter();
+  const coupon = useStore($coupon);
+  const cartItems = useStore($cartItems);
+  const cartItemsLength = useStore($cartItemsLength);
+  const selectedCartItems = useStore($selectedCartItems);
+  const selectedCartItemsLength = useStore($selectedCartItemsLength);
+  const totalWeight = useStore($totalWeight);
+  const totalPrice = useStore($totalPrice);
 
-const CartPage = (props: Props) => {
+  const handleSelectAll = () => {
+    if (cartItemsLength === selectedCartItemsLength) {
+      resetSelectedCartItems();
+    } else {
+      selectAllCartItems();
+    }
+  };
+
+  const handleSubmitMakeOrder = (event: React.MouseEvent) => {
+    event.preventDefault();
+
+    router.push("/order");
+  };
+
   return (
     <>
       <PageHead title="Корзина" />
@@ -15,13 +51,14 @@ const CartPage = (props: Props) => {
           <form action="">
             <div className="col-12 cart-title">
               <h1>Корзина</h1>
-              <span className="cart-id">
-                <span>№</span>xxxx-xxxx-xxxx
-              </span>
             </div>
             <div className="col-12 cart-checkbox">
               <label className="custom-checkbox">
-                <input type="checkbox" />
+                <input
+                  onChange={handleSelectAll}
+                  checked={selectedCartItemsLength === cartItemsLength}
+                  type="checkbox"
+                />
                 <span>Выделить все</span>
               </label>
             </div>
@@ -39,62 +76,43 @@ const CartPage = (props: Props) => {
                   </div>
                 </div>
                 <div className="cart-items">
-                  <div className="cart-item">
-                    <div className="col-3">
-                      <label className="custom-checkbox">
-                        <input type="checkbox" />
-                      </label>
-                      <div className="img-wrapper">
-                        <img src="/static/cart-item.png" alt="" />
+                  {cartItems.map((cartItem) => (
+                    <div key={cartItem.id} className="cart-item">
+                      <div className="col-3">
+                        <label className="custom-checkbox">
+                          <input
+                            checked={selectedCartItems
+                              .map(({ id }) => id)
+                              .includes(cartItem.id)}
+                            onChange={() => toggleSelectCartItem(cartItem)}
+                            type="checkbox"
+                          />
+                        </label>
+                        <div className="img-wrapper">
+                          <img src={cartItem.images[0]?.url} alt="" />
+                        </div>
+                      </div>
+                      <div className="col-4">
+                        <div className="info">
+                          <div className="title">{cartItem.name}</div>
+                          <p>{cartItem.quantity} штук</p>
+                        </div>
+                      </div>
+                      <div className="col-2">
+                        <div className="item-info item-price">
+                          {cartItem.price} ₽
+                        </div>
+                      </div>
+                      <div className="col-2">
+                        <div className="item-info item-qty">1 лот</div>
+                      </div>
+                      <div className="col-1">
+                        <div className="icons-wrapper">
+                          <i className="add-favorite active"></i>
+                        </div>
                       </div>
                     </div>
-                    <div className="col-4">
-                      <div className="info">
-                        <div className="title">Iphone Xr уцененные</div>
-                        <p>2020-2022 года, 64-256 гб, 10 штук</p>
-                      </div>
-                    </div>
-                    <div className="col-2">
-                      <div className="item-info item-price">240 000 ₽</div>
-                    </div>
-                    <div className="col-2">
-                      <div className="item-info item-qty">1 лот</div>
-                    </div>
-                    <div className="col-1">
-                      <div className="icons-wrapper">
-                        <i className="add-favorite active"></i>
-                        <i className="remove-item"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="cart-item">
-                    <div className="col-3">
-                      <label className="custom-checkbox">
-                        <input type="checkbox" />
-                      </label>
-                      <div className="img-wrapper">
-                        <img src="/static/cart-item1.png" alt="" />
-                      </div>
-                    </div>
-                    <div className="col-4">
-                      <div className="info">
-                        <div className="title">BMW 5 series седан</div>
-                        <p>Хорошее состояние240 л.с.</p>
-                      </div>
-                    </div>
-                    <div className="col-2">
-                      <div className="item-info item-price">4 290 000 ₽</div>
-                    </div>
-                    <div className="col-2">
-                      <div className="item-info item-qty">1 ед.</div>
-                    </div>
-                    <div className="col-1">
-                      <div className="icons-wrapper">
-                        <i className="add-favorite"></i>
-                        <i className="remove-item"></i>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
                 <Link href="/catalog">
                   <a className="continue-shop">Продолжить покупку</a>
@@ -107,20 +125,31 @@ const CartPage = (props: Props) => {
                 <div className="cart-info">
                   <div className="item">
                     Выбрано товаров:
-                    <span>3 шт.</span>
+                    <span>{selectedCartItemsLength} шт.</span>
                   </div>
                   <div className="item">
                     Вес заказа:
-                    <span>1.8 т</span>
+                    <span>{totalWeight} т</span>
                   </div>
                   <div className="item">
                     Общая стоимость:
-                    <span>4 530 000 ₽</span>
+                    <span>{totalPrice} ₽</span>
                   </div>
                 </div>
                 <div className="input-wrapper">
-                  <input placeholder="Введите промокод" type="text" />
-                  <input type="submit" value="Оформить заказ" />
+                  <input
+                    value={coupon}
+                    onChange={(event) => setCoupon(event.target.value)}
+                    placeholder="Введите промокод"
+                    type="text"
+                  />
+                  <input
+                    onClick={handleSubmitMakeOrder}
+                    className="disabled:opacity-50"
+                    disabled={selectedCartItemsLength === 0}
+                    type="submit"
+                    value="Оформить заказ"
+                  />
                 </div>
               </div>
             </div>

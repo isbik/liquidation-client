@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 type Props = {};
@@ -97,17 +98,21 @@ const Footer = (props: Props) => {
           </div>
           <div className="partner col-3 col-m-12">
             <h4 className="footer_title">Партнер маркетплейс</h4>
-            <a href="">
-              <img src="/static/dopdox.png" alt="" />
-            </a>
+            <Link href="/">
+              <a>
+                <img src="/static/dopdox.png" alt="" />
+              </a>
+            </Link>
           </div>
         </div>
       </div>
       <div className="footer-logo">
         <div className="container">
-          <a href="index" className="logo">
-            <img src="/static/logo.png" alt="" />
-          </a>
+          <Link href="/">
+            <a className="logo">
+              <img src="/static/logo.png" alt="" />
+            </a>
+          </Link>
         </div>
       </div>
     </footer>

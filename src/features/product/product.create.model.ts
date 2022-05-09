@@ -55,9 +55,9 @@ const $manifestFile = restore<CloudFile | null>(setManifestFile, null).reset(
 );
 
 sample({
-  // @ts-ignore
   clock: createProduct,
   source: [$createProductForm, $images, $manifestFile],
+  // @ts-ignore
   fn: ([form, images, manifestFile]: [
     CreateProductForm,
     CloudFile[],

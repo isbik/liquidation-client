@@ -1,5 +1,5 @@
 import { CategorySelect } from "@/components/inputs/CategorySelect";
-import { CONDITION, UNIT_TYPES } from "@/lib";
+import { CONDITION, DELIVERY_METHODS, DELIVERY_SIZE, UNIT_TYPES } from "@/lib";
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect } from "react";
@@ -227,14 +227,28 @@ const ProductCreateForm = () => {
               <div className="items-wrapper">
                 <div className="item-wrapper custom-item">
                   <div className="title">Кто осуществляет доставку</div>
-                  <select name="supplier" onChange={handleChange}>
+                  <select
+                    defaultValue={productForm.supplier}
+                    name="supplier"
+                    onChange={handleChange}
+                  >
                     <option value={Supplier.owner}>Владелец</option>
                     <option value={Supplier.customer}>Заказчик</option>
                   </select>
                 </div>
                 <div className="item-wrapper custom-item">
                   <div className="title">Способ доставки</div>
-                  <select name="" id="" disabled></select>
+                  <select
+                    defaultValue={productForm.deliveryMethod}
+                    name="deliveryMethod"
+                    onChange={handleChange}
+                  >
+                    {DELIVERY_METHODS.map(({ value, text }) => (
+                      <option key={value} value={value}>
+                        {text}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>
@@ -242,11 +256,17 @@ const ProductCreateForm = () => {
               <div className="items-wrapper">
                 <div className="item-wrapper custom-item">
                   <div className="title">Размер доставки</div>
-                  <select name="" id="" disabled></select>
-                </div>
-                <div className="item-wrapper custom-item">
-                  <div className="title">Предпочитаемый способ оплаты</div>
-                  <select name="" id="" disabled></select>
+                  <select
+                    defaultValue={productForm.deliverySize}
+                    name="deliverySize"
+                    onChange={handleChange}
+                  >
+                    {DELIVERY_SIZE.map(({ value, text }) => (
+                      <option key={value} value={value}>
+                        {text}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
             </div>

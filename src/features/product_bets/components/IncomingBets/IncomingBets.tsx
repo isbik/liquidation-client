@@ -4,9 +4,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { $items, fetchItems } from "../../product_bets.incoming.model";
 
-type Props = {};
-
-const IncomingBets = (props: Props) => {
+const IncomingBets = () => {
   const bets = useStore($items);
 
   useEffect(() => {
@@ -30,7 +28,7 @@ const IncomingBets = (props: Props) => {
               <th>Сумма</th>
               <th>Статус</th>
             </tr>
-            {bets.map((bet) => (
+            {bets.map((bet: any) => (
               <tr key={bet.id}>
                 <td className="number">{bet.id}</td>
                 <td>{bet?.buyer}</td>

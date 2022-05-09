@@ -1,6 +1,6 @@
-import { $authenticating, persistUser } from "@/features/auth/auth.model";
-import { useStore } from "effector-react";
+import { persistUser } from "@/features/auth/auth.model";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,14 +11,17 @@ import "swiper/css/thumbs";
 import "../styles/style.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const loading = useStore($authenticating);
-
   useEffect(() => {
     persistUser();
   }, []);
 
   return (
     <>
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <Component {...pageProps} />
       <ToastContainer position="bottom-right" />
     </>

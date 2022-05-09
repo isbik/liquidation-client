@@ -7,7 +7,12 @@ import {
   changeIsPreview,
   createProduct,
 } from "../../product.create.model";
-import { getConditionText, getSupplierText, getUnitTypeText } from "../../product.utils";
+import {
+  getConditionText,
+  getDeliverySizeText,
+  getSupplierText,
+  getUnitTypeText,
+} from "../../product.utils";
 
 type Props = {};
 
@@ -78,7 +83,9 @@ const ProductPreview = (props: Props) => {
             </div>
             <div className="preview-block">
               <h3>Размер доставки</h3>
-              <p className="desc">Грузовик 1.5 - 1.7 тонн</p>
+              <p className="desc">
+                {getDeliverySizeText(productForm.deliverySize)}
+              </p>
             </div>
             <div className="preview-block">
               <h3>Описание</h3>
@@ -109,10 +116,6 @@ const ProductPreview = (props: Props) => {
             <div className="preview-block">
               <h3>Кто осуществляет доставку</h3>
               <p className="desc">{getSupplierText(productForm.supplier)}</p>
-            </div>
-            <div className="preview-block">
-              <h3>Предпочитаемый способ оплаты</h3>
-              <p className="desc">Перевод на расчётный счёт</p>
             </div>
           </div>
           <div className="col-12 order-m-1">

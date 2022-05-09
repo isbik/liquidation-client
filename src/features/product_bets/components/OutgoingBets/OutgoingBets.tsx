@@ -37,7 +37,7 @@ const OutgoingBets = () => {
               <th>Сумма</th>
               <th>Статус</th>
             </tr>
-            {bets.map((bet) => (
+            {bets.map((bet: any) => (
               <tr key={bet.id}>
                 <td className="number">{bet.id}</td>
                 <td>{bet?.product.name}</td>

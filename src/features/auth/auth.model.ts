@@ -6,29 +6,33 @@ import {
   createEvent,
   createStore,
   forward,
+  guard,
   sample,
-} from "effector-next";
+} from "effector";
 import { toast } from "react-toastify";
-import { setUser } from "../user/user.model";
+import { $user, setUser } from "../user/user.model";
 import { User } from "../user/user.types";
 import { AuthData } from "./auth.types";
 
 const makeAuth = createEvent<AuthData>();
 
-const makeAuthFx = createEffect<AuthData, User, void>({
+const makeAuthFx = createEffect<AuthData, User | null>({
   handler: async (data) => {
-    const response = await api.post("/auth/login", data).catch((error) => {
-      toast.error(error.response.data.message);
-    });
+    const response: any = await api
+      .post<User>("/auth/login", data)
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
 
-    return response.data;
+    return (response.data as User) || null;
   },
 });
 
 const persistUser = createEvent();
 
-const persistUserFx = createEffect<void, User, void>({
+const persistUserFx = createEffect<void, User | null, void>({
   handler: async () => {
+    console.log("call persistUserFx");
     const response = await api.get("/auth");
     return response.data;
   },
@@ -47,13 +51,22 @@ const $authenticating = combine(
   }
 );
 
+const $canPersistUser = combine(
+  $user,
+  persistUserFx.pending,
+  (user, isLoading) => {
+    return !user && !isLoading;
+  }
+);
+
 sample({
   clock: makeAuth,
   target: makeAuthFx,
 });
 
-sample({
+guard({
   clock: persistUser,
+  filter: $canPersistUser,
   target: persistUserFx,
 });
 
@@ -61,7 +74,7 @@ const changeAuthForm = createEvent<{ key: string; value: string }>();
 
 const registerUser = createEvent();
 
-const registerUserFx = createEffect<unknown, User | undefined, void>({
+const registerUserFx = createEffect<unknown, User | null>({
   handler: async (data) => {
     try {
       const response = await api.post<User>("/auth/register", data);
@@ -75,6 +88,7 @@ const registerUserFx = createEffect<unknown, User | undefined, void>({
         errors.forEach((m) => toast.warn(m));
       }
     }
+    return null;
   },
 });
 
@@ -95,11 +109,6 @@ const $authForm = createStore({
   directorEmail: "",
   password: "",
 }).on(changeAuthForm, (state, { key, value }) => ({ ...state, [key]: value }));
-
-sample({
-  clock: persistUser,
-  target: persistUserFx,
-});
 
 sample({
   clock: registerUser,

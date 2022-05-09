@@ -1,5 +1,7 @@
 import {
   CONDITION,
+  DELIVERY_METHODS,
+  DELIVERY_SIZE,
   PRODUCT_STATUSES,
   SUPPLIER_VALUES,
   UNIT_TYPES,
@@ -23,4 +25,12 @@ export const getStatusText = (value: string) => {
 
 export const getSupplierText = (value: string) => {
   return SUPPLIER_VALUES.find(({ value: v }) => v === value)?.text;
+};
+
+export const getDeliveryMethodText = (value: string) => {
+  return DELIVERY_METHODS.find(({ value: v }) => v === value)?.text;
+};
+
+export const getDeliverySizeText = (value: string) => {
+  return DELIVERY_SIZE.find(({ value: v }) => v === value)?.text;
 };

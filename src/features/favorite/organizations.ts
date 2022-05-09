@@ -7,6 +7,7 @@ import {
   restore,
   sample,
 } from "effector";
+import { FavoriteOrganization } from "./favorite.types";
 
 const PER_PAGE = 6;
 
@@ -28,7 +29,7 @@ const fetchFavoriteOrganizationsFx = createEffect<
 
 const fetchFavoriteOrganizations = createEvent();
 
-const $favoriteOrganizations = createStore<never[]>([]).on(
+const $favoriteOrganizations = createStore<FavoriteOrganization[]>([]).on(
   fetchFavoriteOrganizationsFx.doneData,
   (_, data) => data.items
 );

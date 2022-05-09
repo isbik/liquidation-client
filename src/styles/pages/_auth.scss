@@ -1,7 +1,3 @@
-.auth {
-  padding: 0 0 120px;
-}
-
 .auth_wrapper {
   max-width: 560px;
   width: 100%;
@@ -48,7 +44,7 @@
   }
 }
 
-.enter_form input[type='submit'] {
+.enter_form input[type="submit"] {
   display: block;
   margin: 0 auto;
   font-family: "Inter-Medium";
@@ -106,7 +102,6 @@
   font-weight: 600;
 }
 
-
 @media (max-width: 540px) {
   .auth {
     padding: 50px 0;
@@ -139,13 +134,13 @@
         }
       }
     }
-    input[type='submit'] {
-       width: 100%;
-       max-width: 100%;
+    input[type="submit"] {
+      width: 100%;
+      max-width: 100%;
     }
   }
   .auth_reg {
-      max-width: 250px;
-      margin: auto;
-    }
+    max-width: 250px;
+    margin: auto;
+  }
 }
