@@ -54,6 +54,7 @@ export type Product = {
   };
   viewsCount?: number;
   favoritesCount?: number;
+  isFavorite?: boolean;
 };
 
 export type CreateProductForm = {

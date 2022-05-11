@@ -6,7 +6,7 @@ import {
 } from "@/features/cart/cart.model";
 import {
   $orderData,
-  createOrderFx,
+  createOrder,
   setOrderData,
 } from "@/features/order/create_order.model";
 import { DELIVERY_METHODS } from "@/lib";
@@ -24,7 +24,7 @@ const PreOrderPage = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    createOrderFx();
+    createOrder();
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

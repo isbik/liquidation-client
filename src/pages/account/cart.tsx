@@ -12,6 +12,7 @@ import {
   setCoupon,
   toggleSelectCartItem,
 } from "@/features/cart/cart.model";
+import clsx from "clsx";
 import { useStore } from "effector-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -65,14 +66,14 @@ const CartPage = () => {
             <div className="col-9 col-m-12">
               <div className="account-cart">
                 <div className="cart-titles">
-                  <div className="col-8">
+                  <div className="col-6">
                     <div className="title">Наименование</div>
                   </div>
-                  <div className="col-1">
-                    <div className="title">Цена</div>
+                  <div className="col-2">
+                    <div className="text-right title">Цена</div>
                   </div>
                   <div className="col-3">
-                    <div className="title">Кол-во</div>
+                    <div className="text-right title">Ваша ставка</div>
                   </div>
                 </div>
                 <div className="cart-items">
@@ -92,7 +93,7 @@ const CartPage = () => {
                           <img src={cartItem.images[0]?.url} alt="" />
                         </div>
                       </div>
-                      <div className="col-4">
+                      <div className="col-2">
                         <div className="info">
                           <div className="title">{cartItem.name}</div>
                           <p>{cartItem.quantity} штук</p>
@@ -104,11 +105,18 @@ const CartPage = () => {
                         </div>
                       </div>
                       <div className="col-2">
-                        <div className="item-info item-qty">1 лот</div>
+                        <div className="item-info item-price">
+                          {cartItem.bet?.count} ₽
+                        </div>
                       </div>
+
                       <div className="col-1">
                         <div className="icons-wrapper">
-                          <i className="add-favorite active"></i>
+                          <i
+                            className={clsx("add-favorite", {
+                              active: cartItem.isFavorite,
+                            })}
+                          ></i>
                         </div>
                       </div>
                     </div>

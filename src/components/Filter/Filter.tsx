@@ -1,22 +1,27 @@
-import { $filters } from "@/features/catalog/catalog.model";
+import { $filters, setFilters } from "@/features/catalog/catalog.model";
+import { Condition } from "@/features/product/product.types";
 import { CONDITION } from "@/lib";
 import { useStore } from "effector-react";
-import React, { useState } from "react";
-
-type Props = {};
+import React from "react";
 
 const Filter = () => {
-  const [priceFrom, setPriceFrom] = useState("");
-  const [priceTo, setPriceTo] = useState("");
-  const [condition, setCondition] = useState("");
+  const filters = useStore($filters);
+
+  const updateFilters = (data: Record<string, any>) => {
+    setFilters(data);
+  };
 
   const handleChangeCondition = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    console.log(event.target.value);
-  };
+    const value = event.target.value as Condition;
 
-  const filters = useStore($filters);
+    const values = filters.condition.includes(value)
+      ? filters.condition.filter((v) => v !== value)
+      : [...filters.condition, value];
+
+    setFilters({ condition: values });
+  };
 
   return (
     <form className="filter-catalog" action="">
@@ -28,8 +33,10 @@ const Filter = () => {
             <div className="filter-value-wrapper">
               <div className="filter-value">
                 <input
-                  onChange={(event) => setPriceFrom(event.target.value)}
-                  value={priceFrom}
+                  onChange={(event) =>
+                    updateFilters({ priceFrom: event.target.value })
+                  }
+                  value={filters.priceFrom}
                   className="w-full h-full p-2"
                   type="number"
                   placeholder="От"
@@ -37,8 +44,10 @@ const Filter = () => {
               </div>
               <div className="filter-value">
                 <input
-                  onChange={(event) => setPriceTo(event.target.value)}
-                  value={priceTo}
+                  onChange={(event) =>
+                    updateFilters({ priceTo: event.target.value })
+                  }
+                  value={filters.priceTo}
                   className="w-full h-full p-2"
                   type="number"
                   placeholder="До"

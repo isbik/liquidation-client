@@ -138,14 +138,16 @@ const Header: React.FC = () => {
                 />
                 <button type="submit">Найти</button>
               </form>
-              <div className="mobile-hidden">
-                <Link href="/account/cart">
-                  <a className="cart-wrapper" href="">
-                    <i className="cart-ico"></i>
-                    <span>{cartItemsLength}</span>
-                  </a>
-                </Link>
-              </div>
+              {user && (
+                <div className="mobile-hidden">
+                  <Link href="/account/cart">
+                    <a className="cart-wrapper" href="">
+                      <i className="cart-ico"></i>
+                      <span>{cartItemsLength}</span>
+                    </a>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

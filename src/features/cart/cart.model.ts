@@ -22,7 +22,7 @@ const fetchCartItemsFx = createEffect({
   },
 });
 
-const $cartItems = createStore<Product[]>([]);
+const $cartItems = createStore<Array<Product & { isFavorite: boolean }>>([]);
 
 const $cartItemsLength = $cartItems.map((state) => state.length);
 
@@ -50,6 +50,10 @@ const $selectedCartItems = createStore<Product[]>([])
     return [...state, payload];
   })
   .reset(resetSelectedCartItems);
+
+const $selectedCartItemsIds = $selectedCartItems.map((state) =>
+  state.map(({ id }) => id)
+);
 
 const $isSelectedAll = combine(
   $cartItems,
@@ -101,6 +105,7 @@ export {
   fetchCartItems,
   $cartItemsLength,
   $selectedCartItems,
+  $selectedCartItemsIds,
   $selectedCartItemsLength,
   toggleSelectCartItem,
   selectAllCartItems,

@@ -1,4 +1,4 @@
-import { DeliveryMethod } from "../product/product.types";
+import { DeliveryMethod, DeliverySize } from "../product/product.types";
 
 export const MOCK_CREATE_ORDER = {
   city: "Москва",
@@ -6,6 +6,7 @@ export const MOCK_CREATE_ORDER = {
   apartment: "55",
   postalCode: "45633",
   deliveryMethod: DeliveryMethod.RUSSIA_POST,
+  deliverySize: DeliverySize.BOX,
 
   fio: "Иванов Иван",
   email: "test@gmail.com",
@@ -21,6 +22,7 @@ export const DEFAULT_CREATE_ORDER = {
   apartment: "",
   postalCode: "",
   deliveryMethod: DeliveryMethod.RUSSIA_POST,
+  deliverySize: DeliverySize.BOX,
 
   fio: "",
   email: "",

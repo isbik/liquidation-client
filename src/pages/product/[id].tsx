@@ -11,14 +11,15 @@ import {
   getUnitTypeText,
 } from "@/features/product/product.utils";
 import { $user } from "@/features/user/user.model";
+import { ThumbnailPlugin } from "@/lib";
 import { api } from "@/services";
+import clsx from "clsx";
 import dayjs from "dayjs";
 import { useStore } from "effector-react";
+import { useKeenSlider } from "keen-slider/react";
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { FreeMode, Navigation, Thumbs } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 export const getServerSideProps: GetServerSideProps = async ({
   query,
@@ -52,8 +53,22 @@ type Props = {
 
 const ProductPage = ({ similarProducts, ...props }: Props) => {
   const [product, setProduct] = useState(props.product);
+
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+    initial: 0,
+  });
+  const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
+    {
+      initial: 0,
+      slides: {
+        perView: 4,
+        spacing: 10,
+      },
+    },
+    [ThumbnailPlugin(instanceRef)]
+  );
+
   const user = useStore($user);
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const handleSubmitBet = (event: React.FormEvent) => {
     event.preventDefault();
@@ -91,35 +106,29 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
             <div className="col-12 product-upper-content">
               <div className="col-6 col-m-12 left-content">
                 <h1>{product.name}</h1>
-                <Swiper
-                  thumbs={{ swiper: thumbsSwiper }}
-                  modules={[FreeMode, Navigation, Thumbs]}
-                  className="mySwiper2"
-                >
+
+                <div ref={sliderRef} className="keen-slider keen-slider-main">
                   {product.images.map((image) => (
-                    <SwiperSlide key={image.id}>
+                    <div className="keen-slider__slide " key={image.id}>
                       <div className="icons-wrapper">
-                        <i className="add-favorite"></i>
+                        <i
+                          className={clsx("add-favorite", {
+                            active: product.isFavorite,
+                          })}
+                        ></i>
                       </div>
                       <img src={image.url} />
-                    </SwiperSlide>
+                    </div>
                   ))}
-                </Swiper>
+                </div>
 
-                <Swiper
-                  spaceBetween={10}
-                  slidesPerView={4}
-                  freeMode={true}
-                  watchSlidesProgress={true}
-                  modules={[FreeMode, Navigation, Thumbs]}
-                  className="mySwiper"
-                >
+                <div ref={thumbnailRef} className="keen-slider thumbnail">
                   {product.images.map((image) => (
-                    <SwiperSlide key={image.id}>
+                    <div className="keen-slider__slide " key={image.id}>
                       <img src={image.url} />
-                    </SwiperSlide>
+                    </div>
                   ))}
-                </Swiper>
+                </div>
               </div>
               <div className="col-6 col-m-12">
                 <EndTimerAuction finishAt={product.finishAuctionAt} />
