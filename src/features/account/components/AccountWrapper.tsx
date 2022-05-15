@@ -1,4 +1,3 @@
-import { Footer, Header } from "@/components";
 import React from "react";
 import { AccountNavigation } from "./AccountNavigation";
 
@@ -10,7 +9,7 @@ type Props = {
 const AccountWrapper = (props: Props) => {
   return (
     <>
-      <Header />
+      
 
       <section className="account-section">
         <div className="container">
@@ -23,7 +22,7 @@ const AccountWrapper = (props: Props) => {
         </div>
       </section>
 
-      <Footer />
+      
     </>
   );
 };

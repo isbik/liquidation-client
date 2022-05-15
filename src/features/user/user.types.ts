@@ -1,3 +1,5 @@
+import { CloudFile } from "@/types";
+
 export type User = {
   id: number;
   fio: string;
@@ -18,4 +20,5 @@ export type User = {
     isSendNewBets: boolean;
     isSendNewCompetitorBets: boolean;
   };
+  avatar: CloudFile | null;
 };

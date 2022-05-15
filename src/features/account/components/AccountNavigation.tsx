@@ -1,12 +1,21 @@
+import { logout } from "@/features/user/user.model";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { MouseEvent } from "react";
 
 type Props = {};
 
 const AccountNavigation = (props: Props) => {
-  const { asPath } = useRouter();
+  const { asPath, ...router } = useRouter();
+
+  const handleLogout = (event: MouseEvent<HTMLAnchorElement | MouseEvent>) => {
+    event.preventDefault();
+
+    logout();
+
+    router.push("/");
+  };
 
   return (
     <div className="col-4 col-m-12">
@@ -32,10 +41,10 @@ const AccountNavigation = (props: Props) => {
             Мои ставки
           </a>
         </Link>
-        <Link href={"/account/advertisements"}>
+        <Link href={"/account/products"}>
           <a
             className={clsx("nav-item", {
-              active: asPath === "/account/advertisements",
+              active: asPath === "/account/products",
             })}
           >
             Мои объявления
@@ -64,6 +73,12 @@ const AccountNavigation = (props: Props) => {
             Корзина
           </a>
         </Link>
+        <a
+          onClick={handleLogout}
+          className={clsx("text-inherit cursor-pointer text-right w-full")}
+        >
+          Выход из аккаунта
+        </a>
       </div>
     </div>
   );

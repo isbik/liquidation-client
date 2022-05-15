@@ -122,7 +122,7 @@ const ProductPreview = (props: Props) => {
             <div className="col-12">
               <button
                 onClick={() => changeIsPreview(false)}
-                className="edit-btn"
+                className="border-none edit-btn"
               >
                 Редактировать
               </button>

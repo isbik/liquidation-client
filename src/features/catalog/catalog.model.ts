@@ -1,6 +1,7 @@
 import { api } from "@/services";
 import { Paginated } from "@/types";
-import { createEffect, createEvent, createStore, guard } from "effector";
+import { createEffect, createEvent, createStore, sample } from "effector";
+import { throttle } from "patronum/throttle";
 import { Condition, Product } from "../product/product.types";
 
 const PER_PAGE = 6;
@@ -21,17 +22,21 @@ const fetchProductsFx = createEffect<
   },
 });
 
-const $isNotLoading = fetchProductsFx.pending.map((pending) => !pending);
+const fetchProducts = createEvent<any>();
 
 const setFilters = createEvent<Record<string, any>>();
+
+const runSearch = throttle({
+  source: fetchProducts,
+  timeout: 500,
+  target: fetchProductsFx,
+});
 
 const $filters = createStore({
   condition: [] as Condition[],
   priceFrom: "",
   priceTo: "",
 }).on(setFilters, (state, payload) => ({ ...state, ...payload }));
-
-const fetchProducts = createEvent();
 
 const $products = createStore<Product[]>([]).on(
   fetchProductsFx.doneData,
@@ -49,11 +54,14 @@ const $page = createStore<number>(0)
   .on(changePage, (_, payload) => payload)
   .reset(setFilters);
 
-guard({
-  clock: [fetchProducts, changePage, setFilters],
+sample({
+  clock: [changePage, setFilters],
   source: [$page, $filters],
-  filter: $isNotLoading,
-  target: fetchProductsFx,
+  target: fetchProducts,
+});
+
+runSearch.watch((v) => {
+  console.log(v, "v");
 });
 
 export {

@@ -19,6 +19,8 @@ const Pagination = ({
     return Math.ceil(total / perPage);
   }, [perPage, total]);
 
+  if (pages <= 1) return null;
+
   return (
     <div className="pagination">
       <div className="pagination-items">
@@ -36,7 +38,7 @@ const Pagination = ({
         <button
           disabled={page === pages - 1}
           onClick={() => onChange(page + 1)}
-          className="pagination-next"
+          className="bg-transparent border-none pagination-next"
         >
           Следующая страница
         </button>

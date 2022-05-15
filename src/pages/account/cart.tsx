@@ -1,4 +1,4 @@
-import { Footer, Header, PageHead } from "@/components";
+import { PageHead } from "@/components";
 import {
   $cartItems,
   $cartItemsLength,
@@ -10,7 +10,7 @@ import {
   resetSelectedCartItems,
   selectAllCartItems,
   setCoupon,
-  toggleSelectCartItem,
+  toggleSelectCartItem
 } from "@/features/cart/cart.model";
 import clsx from "clsx";
 import { useStore } from "effector-react";
@@ -46,7 +46,7 @@ const CartPage = () => {
     <>
       <PageHead title="Корзина" />
 
-      <Header />
+      
       <section className="account-section cart-section">
         <div className="container">
           <form action="">
@@ -165,9 +165,12 @@ const CartPage = () => {
         </div>
       </section>
 
-      <Footer />
+      
     </>
   );
 };
+
+CartPage.requireAuth = true;
+
 
 export default CartPage;

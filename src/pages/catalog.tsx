@@ -1,11 +1,11 @@
-import { Filter, Footer, Header, PageHead, Pagination } from "@/components";
+import { Filter, PageHead, Pagination } from "@/components";
 import {
   $filters,
   $page,
   $products,
   $total,
   changePage,
-  setFilters,
+  setFilters
 } from "@/features/catalog/catalog.model";
 import { ProductCatalogItem } from "@/features/product/components";
 import { api } from "@/services";
@@ -48,8 +48,7 @@ const CatalogInner = () => {
     <>
       <PageHead title="Каталог" />
 
-      <Header />
-      <section className="catalog-inner">
+      <section className="mt-14 catalog-inner">
         <div className="container">
           <div className="col-12">
             <form
@@ -81,8 +80,14 @@ const CatalogInner = () => {
             <div className="mobile-filter-btn">Фильтры</div>
             <Filter />
           </div>
-          <div className="col-9 col-m-12">
-            <div className="items-wrapper">
+          <div className="pl-8 col-9 col-m-12">
+            <div className=" items-wrapper">
+              {products.length === 0 && (
+                <p className="w-full mt-8 text-4xl text-center">
+                  Товары не найдены
+                </p>
+              )}
+
               {products.map((product) => (
                 <ProductCatalogItem key={product.id} product={product} />
               ))}
@@ -93,7 +98,7 @@ const CatalogInner = () => {
         </div>
       </section>
 
-      <Footer />
+      
     </>
   );
 };

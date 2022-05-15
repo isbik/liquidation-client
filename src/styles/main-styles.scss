@@ -206,3 +206,20 @@ h1 {
     opacity: 0.8;
   }
 }
+
+i.add-favorite {
+  width: 21px;
+  height: 21px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.add-favorite {
+  background-image: url(/static/icons/add-favorites.svg);
+}
+
+.add-favorite.active {
+  background-image: url(/static/icons/add-favorites-active.svg);
+}

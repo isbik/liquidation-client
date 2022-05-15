@@ -1,13 +1,13 @@
-import { Footer, Header, PageHead } from "@/components";
+import { PageHead } from "@/components";
 import {
   $selectedCartItemsLength,
   $totalPrice,
-  $totalWeight,
+  $totalWeight
 } from "@/features/cart/cart.model";
 import {
   $orderData,
   createOrder,
-  setOrderData,
+  setOrderData
 } from "@/features/order/create_order.model";
 import { DELIVERY_METHODS } from "@/lib";
 import { useStore } from "effector-react";
@@ -34,8 +34,6 @@ const PreOrderPage = () => {
   return (
     <>
       <PageHead title="Оформление заказа" />
-
-      <Header />
 
       {selectedCartItemsLength === 0 ? (
         <div className="container">
@@ -176,9 +174,11 @@ const PreOrderPage = () => {
         </form>
       )}
 
-      <Footer />
+      
     </>
   );
 };
+
+PreOrderPage.requireAuth = true;
 
 export default PreOrderPage;

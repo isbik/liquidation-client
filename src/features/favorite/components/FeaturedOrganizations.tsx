@@ -38,7 +38,9 @@ const FeaturedOrganizations = () => {
                   <img src="/static/org1.png" alt="" />
                 </div>
                 <div className="info-wrapper">
-                  <div className="item-title">{organization.name}</div>
+                  <div className="item-title">
+                    {organization.organizationName}
+                  </div>
                   <div className="item-title">
                     Объявлений на продажу:{" "}
                     <span className="quantity">{organization.countLots}</span>

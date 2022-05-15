@@ -1,4 +1,4 @@
-import { Footer, Header, Modal, PageHead } from "@/components";
+import { Modal, PageHead } from "@/components";
 import { useStore } from "effector-react";
 import React, { useEffect, useState } from "react";
 import {
@@ -6,7 +6,7 @@ import {
   $isSendedForm,
   changeContactForm,
   resetSendedForm,
-  sendContactForm,
+  sendContactForm
 } from "../features/contact_application/contact_application.model";
 
 const Contacts = () => {
@@ -36,7 +36,7 @@ const Contacts = () => {
     <>
       <PageHead title="Контакты" />
 
-      <Header />
+      
       <Modal
         title="Вопрос успешно отправлен!"
         isOpen={open}
@@ -147,7 +147,7 @@ const Contacts = () => {
         </p>
         <a href="#">Готово</a>
       </div>
-      <Footer />
+      
     </>
   );
 };

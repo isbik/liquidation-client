@@ -161,4 +161,6 @@ const AccountSettingsPage = () => {
   );
 };
 
+AccountSettingsPage.requireAuth = true;
+
 export default AccountSettingsPage;

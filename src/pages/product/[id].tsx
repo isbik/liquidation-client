@@ -1,4 +1,4 @@
-import { Footer, Header, PageHead } from "@/components";
+import { PageHead } from "@/components";
 import {
   EndTimerAuction,
   ProductCatalogItem,
@@ -8,17 +8,19 @@ import { Product } from "@/features/product/product.types";
 import {
   getAuctionType,
   getConditionText,
+  getDeliverySizeText,
   getUnitTypeText,
 } from "@/features/product/product.utils";
 import { $user } from "@/features/user/user.model";
 import { ThumbnailPlugin } from "@/lib";
+import { displayTotalWeight } from "@/lib/displayTotalWeight";
 import { api } from "@/services";
 import clsx from "clsx";
 import dayjs from "dayjs";
 import { useStore } from "effector-react";
 import { useKeenSlider } from "keen-slider/react";
 import { GetServerSideProps } from "next";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export const getServerSideProps: GetServerSideProps = async ({
@@ -27,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const { id } = query;
 
-  const headers: any = req ? { cookie: req.headers.cookie } : {};
+  const headers: any = req ? { cookie: req.headers?.cookie || "" } : {};
 
   const [product, similarProducts] = await Promise.all([
     api.get("/products/" + id, {
@@ -51,12 +53,17 @@ type Props = {
   similarProducts: Product[];
 };
 
-const ProductPage = ({ similarProducts, ...props }: Props) => {
-  const [product, setProduct] = useState(props.product);
+const ProductPage = ({ similarProducts, product: _product }: Props) => {
+  const [isTogglingFavorite, setIsTogglingFavorite] = useState(false);
+
+  const [product, setProduct] = useState(_product);
+
+  const [bet, setBet] = useState(0);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
   });
+
   const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
     {
       initial: 0,
@@ -73,8 +80,6 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
   const handleSubmitBet = (event: React.FormEvent) => {
     event.preventDefault();
   };
-
-  const [bet, setBet] = useState(0);
 
   const handleSendBet = (event: React.MouseEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -95,13 +100,39 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
       });
   };
 
+  useEffect(() => {
+    setProduct(_product);
+  }, [_product]);
+
+  const handleToggleFavorite = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    if (isTogglingFavorite) return;
+
+    setIsTogglingFavorite(true);
+
+    try {
+      if (product.isFavorite) {
+        await api.put(`/favorites/products/${product.id}/remove`).then(() => {
+          setProduct((prev) => ({ ...prev, isFavorite: false }));
+        });
+      } else {
+        await api.put(`/favorites/products/${product.id}/add`).then(() => {
+          setProduct((prev) => ({ ...prev, isFavorite: true }));
+        });
+      }
+    } finally {
+      setIsTogglingFavorite(false);
+    }
+  };
+
   return (
     <>
       <PageHead title={product.name} />
 
-      <Header />
       {user ? (
-        <section className="product-inner">
+        <section className="mt-20 product-inner">
           <div className="container">
             <div className="col-12 product-upper-content">
               <div className="col-6 col-m-12 left-content">
@@ -112,6 +143,7 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
                     <div className="keen-slider__slide " key={image.id}>
                       <div className="icons-wrapper">
                         <i
+                          onClick={handleToggleFavorite}
                           className={clsx("add-favorite", {
                             active: product.isFavorite,
                           })}
@@ -156,7 +188,7 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
                           <p>
                             {product.bet?.count
                               ? product.bet.count + 1
-                              : product.minRate}{" "}
+                              : product.price}{" "}
                             ₽
                           </p>
                         </div>
@@ -210,7 +242,10 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
                         </div>
                         <div className="col-6">
                           <p>
-                            {product.totalWeight}{" "}
+                            {displayTotalWeight(
+                              product.totalWeight,
+                              product.unitType
+                            )}{" "}
                             {getUnitTypeText(product.unitType)}
                           </p>
                         </div>
@@ -339,7 +374,13 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
                         <p>Вес лота:</p>
                       </div>
                       <div className="col-8 col-m-5">
-                        <p>5 кг</p>
+                        <p>
+                          {displayTotalWeight(
+                            product.totalWeight,
+                            product.unitType
+                          )}{" "}
+                          кг
+                        </p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
@@ -366,12 +407,12 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
                         <p>Размерная классификация:</p>
                       </div>
                       <div className="col-8 col-m-5">
-                        <p>Коробка</p>
+                        <p>{getDeliverySizeText(product.delivery.size)}</p>
                       </div>
                     </div>
                     <div className="lot-item-wrapper">
                       <div className="col-3 col-m-7">
-                        <p>Колличество упаковок</p>
+                        <p>Количество упаковок</p>
                       </div>
                       <div className="col-8 col-m-5">
                         <p>1</p>
@@ -407,8 +448,6 @@ const ProductPage = ({ similarProducts, ...props }: Props) => {
           </div>
         </div>
       )}
-
-      <Footer />
     </>
   );
 };

@@ -32,16 +32,10 @@ const persistUser = createEvent();
 
 const persistUserFx = createEffect<void, User | null, void>({
   handler: async () => {
-    console.log("call persistUserFx");
     const response = await api.get("/auth");
     return response.data;
   },
 });
-
-const $authenticated = createStore(false).on(
-  [makeAuthFx.doneData, persistUserFx.doneData],
-  () => true
-);
 
 const $authenticating = combine(
   persistUserFx.pending,
@@ -50,6 +44,10 @@ const $authenticating = combine(
     return params.some(Boolean);
   }
 );
+
+const $isInitAuthenticating = createStore(false)
+  .on([persistUser, makeAuth], () => true)
+  .reset([persistUserFx.doneData, makeAuthFx.doneData]);
 
 const $canPersistUser = combine(
   $user,
@@ -121,8 +119,11 @@ forward({
   to: setUser,
 });
 
+const $isLoginError = createStore(false)
+  .on(makeAuthFx.fail, () => true)
+  .reset(makeAuth);
+
 export {
-  $authenticated,
   makeAuth,
   makeAuthFx,
   persistUser,
@@ -131,4 +132,6 @@ export {
   $authForm,
   changeAuthForm,
   registerUser,
+  $isInitAuthenticating,
+  $isLoginError,
 };

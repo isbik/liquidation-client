@@ -607,7 +607,7 @@
   "resolved" "https://registry.npmjs.org/effector-react/-/effector-react-22.0.6.tgz"
   "version" "22.0.6"
 
-"effector@*", "effector@^22.0.2", "effector@^22.2.0":
+"effector@*", "effector@^22.0.2", "effector@^22.1.2", "effector@^22.2.0":
   "integrity" "sha512-N0dDgEO3/b9InYkPsoSM5YSJgVwJ1bQ/DWHU7C6sm9+L1CrT6gat0pLvey/ljFPNdNKL0S6MW5DEmDUvzJe1Ng=="
   "resolved" "https://registry.npmjs.org/effector/-/effector-22.2.0.tgz"
   "version" "22.2.0"
@@ -1599,6 +1599,11 @@
   "integrity" "sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw=="
   "resolved" "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
   "version" "4.0.0"
+
+"patronum@^1.8.2":
+  "integrity" "sha512-w0SoP6eFLp41D1v5kCFt0/TRbPI27XYb92GeOQ4i0uuNjbGJSugfL58Cnm+MMQIT7Q0gRqUqIp2HRTnt2B4Qkw=="
+  "resolved" "https://registry.npmjs.org/patronum/-/patronum-1.8.2.tgz"
+  "version" "1.8.2"
 
 "picocolors@^1.0.0":
   "integrity" "sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ=="

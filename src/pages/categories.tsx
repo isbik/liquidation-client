@@ -1,4 +1,4 @@
-import { Footer, Header, Modal, PageHead } from "@/components";
+import { Modal, PageHead } from "@/components";
 import { api } from "@/services";
 import { Category, Paginated } from "@/types";
 import Link from "next/link";
@@ -51,16 +51,17 @@ const CatalogPage = ({ categories }: Props) => {
     <>
       <PageHead title="Категории" />
 
-      <Header />
       <Modal
         showButton={false}
         isOpen={openCategoryId !== null}
         setIsOpen={() => setOpenCategoryId(null)}
       >
-        <div className="flex flex-col w-full gap-4 text-left">
+        <div className="flex flex-col w-full gap-4 px-4 text-left">
           {getChildrenCategories(openCategoryId).map((category) => (
             <Link key={category.id} href={`/catalog?categoryId=${category.id}`}>
-              <a>{category.name}</a>
+              <a className="text-gray-300 cursor-pointer hover:text-blue-500">
+                {category.name}
+              </a>
             </Link>
           ))}
         </div>
@@ -116,7 +117,7 @@ const CatalogPage = ({ categories }: Props) => {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 };

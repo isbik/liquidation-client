@@ -1,4 +1,4 @@
-import { CallbackForm, Footer, Header, PageHead } from "@/components";
+import { CallbackForm, PageHead } from "@/components";
 import { Accordion } from "@/ui";
 import type { NextPage } from "next";
 
@@ -37,7 +37,6 @@ const Home: NextPage = () => {
     <>
       <PageHead title="Главная страница" />
 
-      <Header />
       <section className="banner">
         <div className="container">
           <div className="col-6 col-m-12">
@@ -322,7 +321,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
-      <Footer />
+      
     </>
   );
 };

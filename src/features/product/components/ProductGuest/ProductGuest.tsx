@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { Product } from "../../product.types";
 import { getFinishAuction } from "../../utils";
@@ -10,10 +11,10 @@ const ProductGuest = ({ product }: Props) => {
   const { days, hours, minutes } = getFinishAuction(product.finishAuctionAt);
 
   return (
-    <section className="product-inner">
+    <section className="mt-20 product-inner">
       <div className="container">
         <div className="col-12">
-          <h1>
+          <h1 className="font-bold">
             {product.name}, {product.minRate} ₽
           </h1>
         </div>
@@ -50,9 +51,10 @@ const ProductGuest = ({ product }: Props) => {
               <p>
                 Еще <span>{product.images.length}</span> изображений.{" "}
               </p>
-              <p>
-                <a href="#">Войдите или подайте заявку</a>, чтобы увидеть их
-              </p>
+              <Link href="/login">
+                <a>Войдите или подайте заявку</a>
+              </Link>
+              , чтобы увидеть их
             </div>
           </div>
           <div className="col-6 col-m-12">
@@ -61,7 +63,17 @@ const ProductGuest = ({ product }: Props) => {
                 <div className="products-info-wrapper">
                   <div className="lot-item-wrapper lot-guest">
                     <div className="col-5 col-m-12">
-                      <p className="fw-b mobile-fw-n mobile-hidden">
+                      <p className="!font-bold mobile-fw-n">Текущая ставка:</p>
+                    </div>
+                    <div className="col-7 col-m-12">
+                      <p className="fw-b">
+                        {product.bet?.count || product.price} ₽
+                      </p>
+                    </div>
+                  </div>
+                  <div className="lot-item-wrapper lot-guest">
+                    <div className="col-5 col-m-12">
+                      <p className="!font-bold fw-b mobile-fw-n mobile-hidden">
                         Конец аукциона через:
                       </p>
                       <p className="fw-b mobile-fw-n pc-hidden">

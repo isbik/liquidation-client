@@ -41,7 +41,7 @@ const Modal = ({
       onClick={handleBlurClick}
       className="fixed inset-0 z-10 flex items-center justify-center w-screen h-screen bg-black/50"
     >
-      <div className="relative flex flex-col items-center max-w-md px-4 py-10 text-center text-white bg-blue-700 rounded-lg w-[28rem] max-h-[80vh] overflow-auto">
+      <div className="relative flex flex-col items-center max-w-md px-4 py-10 text-center text-white bg-blue-800 rounded-lg w-[28rem] max-h-[80vh] overflow-auto">
         <svg
           onClick={() => setIsOpen(false)}
           className="absolute cursor-pointer top-5 right-5"

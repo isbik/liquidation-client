@@ -10,6 +10,7 @@ const Account = (props: Props) => {
   const user = useStore($user);
 
   if (!user) return null;
+  console.log("user: ", user);
 
   return (
     <>
@@ -18,7 +19,7 @@ const Account = (props: Props) => {
       <AccountWrapper title="Сведения о компании">
         <div className="account-inner company-info">
           <div className="img-wrapper">
-            <img src="/static/account-avatar.png" alt="" />
+            <img src={user.avatar?.url} alt="" />
           </div>
           <div className="item-wrapper">
             <div className="item-title">Название организации</div>
@@ -72,5 +73,7 @@ const Account = (props: Props) => {
     </>
   );
 };
+
+Account.requireAuth = true;
 
 export default Account;

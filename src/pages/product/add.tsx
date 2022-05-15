@@ -1,4 +1,4 @@
-import { Footer, Header, PageHead } from "@/components";
+import { PageHead } from "@/components";
 import { ProductCreateForm } from "@/features/product/components/ProductCreateForm";
 import { ProductPreview } from "@/features/product/components/ProductPreview";
 import { useStore } from "effector-react";
@@ -12,11 +12,12 @@ const AddAdvertisement = () => {
     <>
       <PageHead title="Создание продукта" />
 
-      <Header />
       {isPreview ? <ProductPreview /> : <ProductCreateForm />}
-      <Footer />
+      
     </>
   );
 };
+
+AddAdvertisement.requireAuth = true;
 
 export default AddAdvertisement;

@@ -1,124 +1,121 @@
 .account-section {
-	.account-inner.favorite-lots {
-		border-radius: 0 5px 5px 5px;
-    	padding: 30px 35px;
-    	position: relative;
-    	z-index: 0;
-    	margin-left: -1px;
+  .account-inner.favorite-lots {
+    border-radius: 0 5px 5px 5px;
+    padding: 30px 35px;
+    position: relative;
+    z-index: 0;
 
-    	.catalog-wrapper {
-    		.catalog-item {
-    			.info-wrapper {
-    				.item-info-left {
-    					text-align: left;
-    				}
-    			}
-    		}
-    	}
-	}
-	.account-inner.favorites-organizations {
-		border-radius: 0 5px 5px 5px;
-    	padding: 30px 35px;
-    	position: relative;
-    	z-index: 0;
-    	margin-left: -1px;
+    .catalog-wrapper {
+      .catalog-item {
+        .info-wrapper {
+          .item-info-left {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  .account-inner.favorites-organizations {
+    border-radius: 0 5px 5px 5px;
+    padding: 30px 35px;
+    position: relative;
+    z-index: 0;
 
-    	.organization-items {
-    		background: #e8e8e8;
-    		border: 1px solid #7b7b7b;
-    		margin-top: 17px;
-    		min-height: 335px;
-    		.organization-item {
-    			display: flex;
-    			align-items: center;
-    			background: #fff;
-    			padding: 5px 32px 5px 8px;
-    			border-bottom: 1px solid #7b7b7b;
-    			.img-wrapper {
-    				max-width: 54px;
-    				width: 100%;
-    				height: 33px;
-    				margin-right: 10px;
-   					overflow: hidden;
-   					border: 1px solid #000;
-   					border-radius: 4px;
-    				img {
-    					width: 100%;
-    					height: inherit;
-    					object-fit: cover;
-    				}
-    			}
-    			.info-wrapper {
-    				display: flex;
-    				justify-content: space-between;
-    				width: 100%;
-    				.item-title {
-						font-size: 16px;
-						line-height: 19px;
-						color: #000000;
-    					span.quantity {
-    						color: #367af5;
-    					}
-    				}
-    			}
-    		}
-    	}
-	}
+    .organization-items {
+      background: #e8e8e8;
+      border: 1px solid #7b7b7b;
+      margin-top: 17px;
+      min-height: 335px;
+      .organization-item {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        padding: 5px 32px 5px 8px;
+        border-bottom: 1px solid #7b7b7b;
+        .img-wrapper {
+          max-width: 54px;
+          width: 100%;
+          height: 33px;
+          margin-right: 10px;
+          overflow: hidden;
+          border: 1px solid #000;
+          border-radius: 4px;
+          img {
+            width: 100%;
+            height: inherit;
+            object-fit: cover;
+          }
+        }
+        .info-wrapper {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          .item-title {
+            font-size: 16px;
+            line-height: 19px;
+            color: #000000;
+            span.quantity {
+              color: #367af5;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-
-    
 @media (max-width: 540px) {
-    .account-section {
-        .account-inner.favorites-organizations, .account-inner.favorite-lots {
-            background: #E8E8E8;
-            border-radius: 0 0 5px 5px;
-            margin-left: 0; 
-            padding: 15px 5px;
-            .catalog-wrapper {
-                min-height: unset;
-                margin-top: 0;
-                .catalog-item {
-                    .info-wrapper {
-                        .item-info {
-                            display: flex;
-                            justify-content: space-between;
-                            width: 100%;
-                            .item-title {
-                                &:first-child {
-                                    justify-content: flex-start;
-                                }
-                                &:nth-child(2) {
-                                    justify-content: flex-end;
-                                }
-                                span {
-                                    margin-left: 5px;
-                                }
-                            }
-                        }
-                        .item-info-left {
-                            justify-content: flex-start;
-                            flex-wrap: wrap;
-                        }
-                    }
+  .account-section {
+    .account-inner.favorites-organizations,
+    .account-inner.favorite-lots {
+      background: #e8e8e8;
+      border-radius: 0 0 5px 5px;
+      margin-left: 0;
+      padding: 15px 5px;
+      .catalog-wrapper {
+        min-height: unset;
+        margin-top: 0;
+        .catalog-item {
+          .info-wrapper {
+            .item-info {
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+              .item-title {
+                &:first-child {
+                  justify-content: flex-start;
                 }
-            }
-            .organization-items {
-                margin-top: 0;
-                min-height: unset;
-
-                .organization-item {
-                    .img-wrapper {
-                        display: none;
-                    }
-                    .info-wrapper {
-                        flex-wrap: wrap;
-                    }
-                    &:last-child {
-                        border-bottom: none;
-                    }
+                &:nth-child(2) {
+                  justify-content: flex-end;
                 }
+                span {
+                  margin-left: 5px;
+                }
+              }
             }
+            .item-info-left {
+              justify-content: flex-start;
+              flex-wrap: wrap;
+            }
+          }
         }
+      }
+      .organization-items {
+        margin-top: 0;
+        min-height: unset;
+
+        .organization-item {
+          .img-wrapper {
+            display: none;
+          }
+          .info-wrapper {
+            flex-wrap: wrap;
+          }
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
     }
+  }
 }

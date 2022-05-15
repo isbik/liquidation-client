@@ -1,6 +1,5 @@
-import { $authenticated } from "@/features/auth/auth.model";
 import { $cartItemsLength, fetchCartItems } from "@/features/cart/cart.model";
-import { $user } from "@/features/user/user.model";
+import { $authenticated, $user } from "@/features/user/user.model";
 import { useStore } from "effector-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -19,7 +18,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     setSearch((router.query.q as string) || "");
-  }, [router]);
+  }, [router.query]);
 
   useEffect(() => {
     if (user?.id) fetchCartItems();
@@ -28,11 +27,15 @@ const Header: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    router.push("/catalog", {
-      query: {
-        q: search,
+    router.push(
+      "/catalog",
+      {
+        query: {
+          q: search,
+        },
       },
-    });
+      { shallow: true }
+    );
   };
 
   return (
@@ -64,11 +67,13 @@ const Header: React.FC = () => {
                     <a>Купить</a>
                   </Link>
                 </li>
-                <li>
-                  <Link href={"/account/advertisements"}>
-                    <a>Продать</a>
-                  </Link>
-                </li>
+                {authenticated && (
+                  <li>
+                    <Link href={"/account/products"}>
+                      <a>Продать</a>
+                    </Link>
+                  </li>
+                )}
                 <li>
                   <Link href={"/contacts"}>
                     <a>Контакты</a>
@@ -128,7 +133,7 @@ const Header: React.FC = () => {
               </Link>
             </div>
             <div className="category_section-right">
-              <form onSubmit={handleSubmit} action="" className="search_form">
+              <form onSubmit={handleSubmit} className="search_form">
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}

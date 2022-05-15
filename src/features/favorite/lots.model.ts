@@ -7,7 +7,7 @@ import {
   restore,
   sample,
 } from "effector";
-import { FavoriteLot } from "./favorite.types";
+import { Product } from "../product/product.types";
 
 const PER_PAGE = 6;
 
@@ -26,7 +26,7 @@ const fetchFavoriteLotsFx = createEffect<{ page: number }, Paginated<never>>({
 
 const fetchFavoriteLots = createEvent();
 
-const $favoriteLots = createStore<FavoriteLot[]>([]).on(
+const $favoriteLots = createStore<Product[]>([]).on(
   fetchFavoriteLotsFx.doneData,
   (_, data) => data.items
 );

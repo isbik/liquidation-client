@@ -48,13 +48,19 @@ export type Product = {
   finishAuctionAt: string;
   updatedAt: string;
   status: ProductStatus;
-  bet?: {
-    userId: number;
-    count: number;
-  };
+  bet?:
+    | {
+        userId: number;
+        count: number;
+      }
+    | number;
   viewsCount?: number;
   favoritesCount?: number;
   isFavorite?: boolean;
+  delivery: {
+    size: DeliverySize;
+    method: DeliveryMethod;
+  };
 };
 
 export type CreateProductForm = {

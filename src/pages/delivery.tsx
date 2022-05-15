@@ -1,4 +1,4 @@
-import { Footer, Header, PageHead } from "@/components";
+import { PageHead } from "@/components";
 import React from "react";
 
 type Props = {};
@@ -8,7 +8,7 @@ const Delivery = (props: Props) => {
     <>
       <PageHead title="Доставка" />
 
-      <Header />
+      
 
       <section className="about_delivery">
         <div className="container">
@@ -95,7 +95,7 @@ const Delivery = (props: Props) => {
           </div>
         </div>
       </section>
-      <Footer />
+      
     </>
   );
 };

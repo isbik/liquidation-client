@@ -19,7 +19,7 @@ const EndTimerAuction = ({ finishAt }: Props) => {
       ) : (
         <>
           <div className="lot-desc fw-b">
-            Конец лота через:
+            Конец лота через:{" "}
             <span className="blue">
               {days} дня {hours} часов {minutes} минуты
             </span>

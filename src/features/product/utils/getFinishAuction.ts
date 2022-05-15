@@ -4,7 +4,7 @@ import duration from "dayjs/plugin/duration";
 dayjs.extend(duration);
 
 const getFinishAuction = (date: string) => {
-  if (!date) {
+  if (!date || Date.now() > new Date(date).getTime()) {
     return { days: 0, hours: 0, minutes: 0, isFinish: true };
   }
 

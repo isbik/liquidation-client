@@ -89,9 +89,6 @@
     }
   }
 }
-.fw-b {
-  font-weight: 500;
-}
 
 .left-content {
   padding-right: 30px;
@@ -245,9 +242,7 @@
       margin-left: 5px;
       margin-top: 2px;
     }
-    .fw-b {
-      font-weight: 500;
-    }
+
     .quality-info {
       display: none;
       background: #fff;
@@ -626,14 +621,10 @@
         font-weight: 600;
       }
       .fw-b {
-        font-weight: 600;
         max-width: 100%;
       }
       .fw-b.mobile-fw-n {
         font-weight: 400;
-      }
-      .fw-b.mobile-fw-m {
-        font-weight: 500;
       }
     }
   }

@@ -31,7 +31,7 @@ const AccountFavoritePage = (props: Props) => {
       <PageHead title="Избранное" />
 
       <AccountWrapper title="Избранное">
-        <div className="account-inner advertisement-inner favorite-lots">
+        <div className="account-inner product-inner favorite-lots">
           <div className="account-tab-list">
             <div className="list-detail">
               <a
@@ -56,5 +56,7 @@ const AccountFavoritePage = (props: Props) => {
     </>
   );
 };
+
+AccountFavoritePage.requireAuth = true;
 
 export default AccountFavoritePage;

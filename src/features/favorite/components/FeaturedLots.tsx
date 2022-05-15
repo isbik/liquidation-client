@@ -1,3 +1,4 @@
+import { ProductAccountCard } from "@/features/account/components";
 import { useStore } from "effector-react";
 import Link from "next/link";
 import React, { useEffect } from "react";
@@ -34,38 +35,8 @@ const FeaturedLots = () => {
   return (
     <>
       <div className="catalog-wrapper">
-        {lots.map((lot) => (
-          <div key={lot.id} className="catalog-item">
-            <div className="img-wrapper">
-              <img src="/static/delivery.png" alt="" />
-            </div>
-            <div className="info-wrapper">
-              <div className="item-info item-info-left">
-                <div className="item-title">
-                  {lot.name}
-                  <span>{lot.quantity} штук</span>
-                </div>
-                <p>
-                  Номер объявления:
-                  <span>55672</span>
-                </p>
-                <p>
-                  Создано:
-                  <span>{lot.createdAt}</span>
-                </p>
-              </div>
-              <div className="item-info">
-                <div className="item-title">
-                  Цена:
-                  <span>{lot.recommendedRetailPrice} ₽</span>
-                </div>
-                <div className="item-title">
-                  Кол-во:
-                  <span className="quantity">{lot.quantity} шт</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        {lots.map((product) => (
+          <ProductAccountCard key={product.id} product={product} />
         ))}
       </div>
     </>

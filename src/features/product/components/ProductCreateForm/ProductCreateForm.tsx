@@ -54,13 +54,13 @@ const ProductCreateForm = () => {
   useEffect(() => {
     if (isCreatedProduct) {
       resetCreatedProduct();
-      router.push("/account/advertisements");
+      router.push("/account/products");
     }
   }, [isCreatedProduct]);
 
   return (
     <>
-      <section className="add-advertisement">
+      <section className="add-product">
         <form action="" id="formSteps" onSubmit={handleSubmit}>
           <div className="container mb-4">
             <div className="col-12">

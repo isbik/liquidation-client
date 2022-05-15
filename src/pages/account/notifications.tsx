@@ -87,4 +87,6 @@ const AccountNotificationsPage = (props: Props) => {
   );
 };
 
+AccountNotificationsPage.requireAuth = true;
+
 export default AccountNotificationsPage;

@@ -1,3 +1,4 @@
 export * from "./constants";
 export * from "./debounce";
-export * from './slider'
+export * from "./displayTotalWeight";
+export * from "./slider";

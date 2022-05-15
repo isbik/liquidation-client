@@ -1,4 +1,4 @@
-import { Footer, Header, PageHead } from "@/components";
+import { PageHead } from "@/components";
 import { $user } from "@/features/user/user.model";
 import { useStore } from "effector-react";
 import { useRouter } from "next/router";
@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import {
   $authForm,
   changeAuthForm,
-  registerUser,
+  registerUser
 } from "../features/auth/auth.model";
 
 type Props = {};
@@ -33,7 +33,7 @@ const Registration = (props: Props) => {
     <>
       <PageHead title="Регистрация" />
 
-      <Header />
+      
 
       <section className="reg">
         <div className="container">
@@ -216,7 +216,7 @@ const Registration = (props: Props) => {
         <a href="#">Готово</a>
       </div>
 
-      <Footer />
+      
     </>
   );
 };

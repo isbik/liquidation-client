@@ -68,7 +68,6 @@
         height: inherit;
         border: 1px solid #cad1e1;
         border-radius: 4px;
-        font-family: "Rubik";
         font-size: 16px;
         line-height: 22px;
         &::placeholder {
@@ -82,9 +81,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    .col-4 .item {
-      margin-left: 30px;
-    }
+
     .item {
       background: #f4f5fa;
       border: 1px solid #000000;

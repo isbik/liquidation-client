@@ -56,4 +56,7 @@ const AccountBetsPage = () => {
   );
 };
 
+
+AccountBetsPage.requireAuth = true;
+
 export default AccountBetsPage;

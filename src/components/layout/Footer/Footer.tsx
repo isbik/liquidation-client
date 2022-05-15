@@ -32,15 +32,21 @@ const Footer = (props: Props) => {
                   <a href="#">Реквизиты</a>
                 </li>
                 <li>
-                  <a href="#">Доставка</a>
+                  <Link href={"/delivery"}>
+                    <a>Доставка</a>
+                  </Link>
                 </li>
               </ul>
               <ul className="footer-nav-item">
                 <li>
-                  <a href="#">Связаться с нами</a>
+                  <Link href={"/contacts"}>
+                    <a>Связаться с нами</a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#">Политика конфиденциальности</a>
+                  <Link href="/policy">
+                    <a>Политика конфиденциальности</a>
+                  </Link>
                 </li>
               </ul>
             </div>
