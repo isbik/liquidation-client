@@ -174,8 +174,12 @@ const ProductPage = ({ similarProducts, product: _product }: Props) => {
                         </div>
                         <div className="col-6">
                           <p className="fw-b">
-                            {product.bet?.count
-                              ? `${product.bet?.count}₽`
+                            {product.bet
+                              ? `${
+                                  typeof product.bet === "number"
+                                    ? product.bet
+                                    : product.bet?.count
+                                }₽`
                               : "Отсутствует"}
                           </p>
                         </div>
@@ -186,9 +190,11 @@ const ProductPage = ({ similarProducts, product: _product }: Props) => {
                         </div>
                         <div className="col-6">
                           <p>
-                            {product.bet?.count
-                              ? product.bet.count + 1
-                              : product.price}{" "}
+                            {product.bet
+                              ? typeof product.bet === "number"
+                                ? product.bet
+                                : product.bet?.count
+                              : product.price}
                             ₽
                           </p>
                         </div>
@@ -285,6 +291,7 @@ const ProductPage = ({ similarProducts, product: _product }: Props) => {
                       </div>
                       {product.finishAuctionAt &&
                         dayjs(product.finishAuctionAt).isAfter(new Date()) &&
+                        typeof product.bet === "object" &&
                         product.bet?.userId !== user?.id &&
                         typeof product.owner !== "number" &&
                         product.owner?.id !== user?.id && (
@@ -306,11 +313,12 @@ const ProductPage = ({ similarProducts, product: _product }: Props) => {
                           </>
                         )}
 
-                      {product.bet?.userId === user?.id && (
-                        <p className="w-full font-bold text-center">
-                          Вы сделали ставку
-                        </p>
-                      )}
+                      {typeof product.bet === "object" &&
+                        product.bet?.userId === user?.id && (
+                          <p className="w-full font-bold text-center">
+                            Вы сделали ставку
+                          </p>
+                        )}
                     </div>
                   </div>
                 </form>

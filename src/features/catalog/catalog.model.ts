@@ -22,6 +22,8 @@ const fetchProductsFx = createEffect<
   },
 });
 
+
+
 const fetchProducts = createEvent<any>();
 
 const setFilters = createEvent<Record<string, any>>();

@@ -67,7 +67,10 @@ const ProductGuest = ({ product }: Props) => {
                     </div>
                     <div className="col-7 col-m-12">
                       <p className="fw-b">
-                        {product.bet?.count || product.price} ₽
+                        {typeof product.bet === "object"
+                          ? product.bet.count
+                          : product.bet || product.price}{" "}
+                        ₽
                       </p>
                     </div>
                   </div>

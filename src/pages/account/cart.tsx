@@ -10,7 +10,7 @@ import {
   resetSelectedCartItems,
   selectAllCartItems,
   setCoupon,
-  toggleSelectCartItem
+  toggleSelectCartItem,
 } from "@/features/cart/cart.model";
 import clsx from "clsx";
 import { useStore } from "effector-react";
@@ -46,7 +46,6 @@ const CartPage = () => {
     <>
       <PageHead title="Корзина" />
 
-      
       <section className="account-section cart-section">
         <div className="container">
           <form action="">
@@ -106,7 +105,10 @@ const CartPage = () => {
                       </div>
                       <div className="col-2">
                         <div className="item-info item-price">
-                          {cartItem.bet?.count} ₽
+                          {typeof cartItem.bet === "number"
+                            ? cartItem.bet
+                            : cartItem.bet?.count}{" "}
+                          ₽
                         </div>
                       </div>
 
@@ -164,13 +166,10 @@ const CartPage = () => {
           </form>
         </div>
       </section>
-
-      
     </>
   );
 };
 
 CartPage.requireAuth = true;
-
 
 export default CartPage;

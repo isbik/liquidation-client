@@ -1,19 +1,18 @@
 import { Modal, PageHead } from "@/components";
-import { api } from "@/services";
-import { Category, Paginated } from "@/types";
+import { Category } from "@/types";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
 
 export async function getStaticProps() {
-  const categories = await api.get<Paginated<Category>>("/categories", {
-    params: {
-      limit: 300,
-    },
-  });
+  // const categories = await api.get<Paginated<Category>>("/categories", {
+  //   params: {
+  //     limit: 300,
+  //   },
+  // });
 
   return {
     props: {
-      categories: categories.data.items,
+      categories: [], // categories.data.items,
     },
   };
 }
@@ -117,7 +116,6 @@ const CatalogPage = ({ categories }: Props) => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };
